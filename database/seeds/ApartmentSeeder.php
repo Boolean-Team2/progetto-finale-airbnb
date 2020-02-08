@@ -5,6 +5,7 @@ use Illuminate\Database\Seeder;
 use App\Apartment;
 use App\User;
 use App\Ad;
+use App\ApartmentInfos;
 
 class ApartmentSeeder extends Seeder
 {
@@ -18,6 +19,7 @@ class ApartmentSeeder extends Seeder
                     $apartment -> save();
                     
                     $ad = new Ad;
+                    $info = new ApartmentInfos;
 
                     $ad->fill([
                         '24h' => 1,
@@ -27,7 +29,20 @@ class ApartmentSeeder extends Seeder
                         'apartment_id' => $apartment->id
                     ]);
 
+                    $info->fill([
+                        'parking' => rand(0,1), 
+                        'wifi' => rand(0,1),
+                        'pool' => rand(0,1),
+                        'reception' => rand(0,1),
+                        'sauna' => rand(0,1),
+                        'sea_view'=> rand(0,1),
+                        'apartment_id' => $apartment->id
+                        ]);
+
                     $ad->save();
+
+                    $info->save();
         });
+
     }
 }
