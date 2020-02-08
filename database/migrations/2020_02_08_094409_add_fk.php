@@ -9,21 +9,21 @@ class AddFk extends Migration
     public function up()
     {
         // FK users -> apartements 1:N
-        Schema::table('users', function (Blueprint $table) {
-            $table -> bigInteger('apartment_id') -> unsigned() -> index();
-            $table -> foreign('apartment_id', 'user_apartment') -> references('id') -> on('apartments');
+        Schema::table('apartments', function (Blueprint $table) {
+            $table -> bigInteger('user_id') -> unsigned() -> index();
+            $table -> foreign('user_id', 'user_apartment') -> references('id') -> on('users');
         });
 
         // FK apartements -> info_apartement 1:1
-        Schema::table('apartment_info', function (Blueprint $table) {
+        Schema::table('apartment_infos', function (Blueprint $table) {
             $table -> bigInteger('apartment_id') -> unsigned() -> index();
             $table -> foreign('apartment_id', 'apartment_info_id') -> references('id') -> on('apartments');
         });
 
         // FK apartement -> messages 1:N
-        Schema::table('apartments', function (Blueprint $table) {
-            $table -> bigInteger('message_id') -> unsigned() -> index();
-            $table -> foreign('message_id', 'apartment_message') -> references('id') -> on('messages');
+        Schema::table('messages', function (Blueprint $table) {
+            $table -> bigInteger('apartment_id') -> unsigned() -> index();
+            $table -> foreign('apartment_id', 'apartment_message') -> references('id') -> on('apartments');
         });
 
     }
@@ -37,7 +37,7 @@ class AddFk extends Migration
         });
 
         // FK apartements -> info_apartement 1:1
-        Schema::table('apartment_info', function (Blueprint $table) {
+        Schema::table('apartment_infos', function (Blueprint $table) {
             $table -> dropForeign('apartment_info_id');
             $table -> dropColumn('apartment_id');
         });
