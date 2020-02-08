@@ -7,8 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Ad extends Model
 {
     protected $fillable = [
-        'type',
-        'time'
-    ];    
+        '24h',
+        '72h',
+        '144h',
+        'duration_time'
+    ];
+    
+    public function apartment() {
+
+        return $this -> belongsTo(Apartment::class);
+    }
 
 }

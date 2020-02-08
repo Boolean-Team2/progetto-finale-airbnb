@@ -26,11 +26,16 @@ class Apartment extends Model
 
     public function apartment_info() {
 
-        return $this -> hasOne(Apartment::class);
+        return $this -> hasOne(ApartmentInfo::class);
     }
 
     public function messages() {
 
         return $this -> hasMany(Message::class);
+    }
+
+    public function ad() {
+
+        return $this -> hasOne(Ad::class);
     }
 }
