@@ -3,7 +3,7 @@
 @section('main')
     @foreach ($apartments as $apartment)
         <div>
-            {{ $apartments }}
+            {{ $apartments }},
         </div>        
     @endforeach
 @endsection
