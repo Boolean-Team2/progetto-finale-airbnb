@@ -10884,3 +10884,122 @@ a.text-dark:focus {
   }
 }
 
+body header #carousel {
+  position: relative;
+  height: 700px;
+  background-color: black;
+}
+
+body header #carousel nav {
+  width: 100%;
+  padding-top: 20px;
+  display: flex;
+}
+
+body header #carousel nav .fa-airbnb {
+  font-size: 35px;
+  color: #ffffff;
+}
+
+body header #carousel nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+body header #carousel nav ul li {
+  padding: 0 15px;
+}
+
+body header #carousel nav ul a {
+  color: #ffffff;
+}
+
+body header #carousel #search {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+body header #carousel #search h1 {
+  text-align: center;
+  color: #ffffff;
+}
+
+body header #carousel #search .flex {
+  display: flex;
+}
+
+body header #carousel #search .flex input {
+  height: 35px;
+  width: 600px;
+}
+
+body header #carousel #search .flex button {
+  height: 35px;
+  width: 70px;
+}
+
+body header #carousel #search a {
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+  color: #ffffff;
+}
+
+body main {
+  padding: 80px 0 60px 0;
+}
+
+body main .row {
+  margin-top: 40px;
+}
+
+body main .row .box_img {
+  width: 100%;
+  height: 200px;
+  background-color: black;
+}
+
+body main .row h4 {
+  margin-left: 15px;
+  margin-top: 7px;
+}
+
+body footer {
+  padding: 50px 0 40px 0;
+  border-top: solid 1px #c8c8c8;
+}
+
+body footer .row {
+  border-bottom: solid 1px #c8c8c8;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+body footer .row p {
+  font-weight: bold;
+}
+
+body footer .row ul {
+  padding-left: 0;
+}
+
+body footer .row ul li {
+  list-style: none;
+}
+
+body footer .row ul li a {
+  color: #000000;
+}
+
+body footer .row .social {
+  font-size: 22px;
+}
+
+body footer .row .social a {
+  color: #888888;
+  margin-right: 15px;
+}
+

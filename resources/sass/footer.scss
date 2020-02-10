@@ -1,0 +1,28 @@
+footer{
+  padding: 50px 0 40px 0;
+  border-top: solid 1px #c8c8c8;
+  .row{
+    border-bottom: solid 1px #c8c8c8;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    p{
+      font-weight: bold;
+    }
+    ul{
+      padding-left: 0;
+      li{
+        list-style: none;
+        a{
+          color: #000000;
+        }
+      }
+    }
+    .social{
+      font-size: 22px;
+      a{
+        color: #888888;
+        margin-right: 15px;
+      }
+    }
+  }
+}

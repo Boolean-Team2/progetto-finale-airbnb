@@ -14,7 +14,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
   </head>
 
   <body>
@@ -39,8 +39,12 @@
         </nav>
 
         <div id="search">
-          <input type="text" name="" value="">
-          <button type="button" name="button">VAI</button>
+          <h1>Cerca il to prossimo alloggio su BoolB&B</h1>
+          <div class="flex">
+            <input type="text" name="" value="">
+            <button type="button" name="button">VAI</button>
+          </div>
+          <a href="#">Ricerca avanzata</a>
         </div>
 
       </div>
