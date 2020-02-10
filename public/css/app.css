@@ -10884,3 +10884,71 @@ a.text-dark:focus {
   }
 }
 
+body header #carousel {
+  position: relative;
+  height: 700px;
+  background-color: black;
+}
+
+body header #carousel nav {
+  width: 100%;
+  padding-top: 20px;
+  display: flex;
+}
+
+body header #carousel nav .fa-airbnb {
+  font-size: 35px;
+  color: #ffffff;
+}
+
+body header #carousel nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+body header #carousel nav ul li {
+  padding: 0 15px;
+}
+
+body header #carousel nav ul a {
+  color: #ffffff;
+}
+
+body header #carousel #search {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+
+body header #carousel #search input {
+  height: 35px;
+  width: 600px;
+}
+
+body header #carousel #search button {
+  height: 35px;
+  width: 50px;
+}
+
+body main {
+  padding: 80px 0;
+}
+
+body main .row {
+  margin-top: 40px;
+}
+
+body main .row .box_img {
+  width: 100%;
+  height: 200px;
+  background-color: black;
+}
+
+body main .row h4 {
+  margin-left: 15px;
+  margin-top: 7px;
+}
+
