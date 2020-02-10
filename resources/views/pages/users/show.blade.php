@@ -1,11 +1,13 @@
 @extends('templates.template')
 
+{{-- NAVBAR --}}
 <div class="bg-primary">
     @include('partials.navbar')
 </div>
 
+{{-- CONTENT --}}
 @section('body')
-    <div class="container-fluid">
+    <div class="container my-5 py-5">
         <div class="row">
             <div class="col-12">
                 @if (session('status'))
@@ -42,16 +44,17 @@
                     @method('PATCH')
                     <div class="form-row mb-2">
                         <div class="col-4">
-                            <label for="firstname">Your firstname</label>
+                            <label for="firstname">Firstname</label>
                             <input type="text" class="form-control" name="firstname" value="{{ Auth::user()->firstname}}">
                         </div>
                         <div class="col-4">
-                            <label for="lastname">Your lastname</label>
+                            <label for="lastname">Lastname</label>
                             <input type="text" class="form-control" name="lastname" value="{{ Auth::user()->lastname}}">
                         </div>
                         <div class="col-4">
-                            <label for="date_of_birth">Your date of birth</label>
-                            <input type="text" class="form-control" name="date_of_birth" value="{{ Auth::user()->date_of_birth}}">
+                            <label for="date_of_birth">Date of birth</label>
+                            {{-- <input type="text" class="form-control" name="date_of_birth" value="{{ Auth::user()->date_of_birth}}"> --}}
+                            <input type="date" class="form-control" name="date_of_birth" value="{{ Auth::user()->date_of_birth}}">
                         </div>
                     </div>
                     <div class="form-row mb-2">
@@ -60,7 +63,7 @@
                             <input type="text" class="form-control" name="email" value="{{ Auth::user()->email}}">
                         </div>
                     </div>
-                    <div class="d-flex justify-content-center my-3">
+                    <div class="d-flex justify-content-around my-3">
                         <button type="submit" class="my-2 my-md-0 btn btn-success">Edit informations <i class="fas fa-edit"></i></button>
                         <a class="my-2 my-md-0 ml-md-2 btn btn-danger text-white d-flex align-items-center justify-content-center"
                             onclick="deleteData({{Auth::user()->id}})" data-toggle="modal" data-target="#DeleteModal">
@@ -89,4 +92,6 @@
             </div>
         </div>
     </div>
+{{-- FOOTER --}}
+@include('partials.footer')
 @endsection
