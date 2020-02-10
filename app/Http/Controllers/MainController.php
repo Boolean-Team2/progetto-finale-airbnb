@@ -10,7 +10,7 @@ class MainController extends Controller
 {
     public function index() {
 
-        $appartments = Apartment::all();
-        return view('pages.index', compact('appartments'));
+        $apartments = Apartment::all();
+        return view('pages.index', compact('apartments'));
     }
 }
