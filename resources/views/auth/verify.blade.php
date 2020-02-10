@@ -1,5 +1,9 @@
 @extends('templates.template')
 
+<div class="bg-primary">
+    @include('partials.navbar')
+</div>
+
 @section('body')
 <div class="container">
     <div class="row justify-content-center">
@@ -24,5 +28,8 @@
             </div>
         </div>
     </div>
+</div>
+<div class="bg-secondary">
+    @include('partials.footer')
 </div>
 @endsection
