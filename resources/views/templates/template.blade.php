@@ -10,78 +10,73 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('assets/js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if (Auth::user()->firstname || Auth::user()->lastname)
-                                        {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} 
-                                        @else
-                                            {{ Auth::user()->email }}
-                                    @endif <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('account.show', Auth::user()->id) }}">
-                                        {{ __('My Profile') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('main')
-        </main>
-    </div>
+    @yield('body')
 </body>
+<footer>
+  <div class="container-fluid">
+
+    <div class="row">
+
+      <div class="col-sm-12 col-md-2 offset-md-2">
+        <p>BoolB&B</p>
+        <ul>
+          <li><a href="#">Opportunità di lavoro</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Condizioni</a></li>
+          <li><a href="#">Aiuto</a></li>
+          <li><a href="#">Diversità e appartenenza</a></li>
+          <li><a href="#">Informazioni di contatto</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-12 col-md-2">
+        <p>Scopri</p>
+        <ul>
+          <li><a href="#">Affidabilità e sicurezza</a></li>
+          <li><a href="#">Travel Credit</a></li>
+          <li><a href="#">Cittadino di Airbnb</a></li>
+          <li><a href="#">Viaggi di lavoro</a></li>
+          <li><a href="#">Attività</a></li>
+          <li><a href="#">Airbnbmag</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-12 col-md-2">
+        <p>Ospita</p>
+        <ul>
+          <li><a href="#">Perché affittare</a></li>
+          <li><a href="#">Ospitalità</a></li>
+          <li><a href="#">Ospitare responsabilmente</a></li>
+          <li><a href="#">Community Center</a></li>
+          <li><a href="#">Offri un'esperienza</a></li>
+          <li><a href="#">Open Homes</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-12 col-md-2">
+        <div class="social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <ul>
+          <li><a href="#">Termini</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Mappa del sito</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-2 offset-md-2 pb-3">
+        <hr>
+        <i class="fab fa-airbnb"></i>
+        <span>© 2020 BoolB&B, Inc. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
 </html>
