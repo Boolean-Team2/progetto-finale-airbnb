@@ -1,5 +1,11 @@
+@extends('templates.template')
+
+<div class="bg-primary">
+    @include('partials.navbar')
+</div>
+
 @section('body')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 @if (session('status'))
