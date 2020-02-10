@@ -10884,3 +10884,11 @@ a.text-dark:focus {
   }
 }
 
+.ms_100VhHeader {
+  height: 100vh;
+  background: url(/images/bg-header.jpg?c504a474730fc32096576fdac559bee0);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
