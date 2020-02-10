@@ -1,7 +1,11 @@
 @extends('templates.template')
 
-@include('partials.header')
+{{-- NAVBAR --}}
+<div class="bg-primary">
+    @include('partials.header')
+</div>
 
+{{-- CONTENT --}}
 @section('body')
 <main>    
     <div class="container-fluid">
@@ -52,11 +56,7 @@
     </div>
 </main>
 
-<div class="bg-secondary">
-    @include('partials.footer')
-</div>
+{{-- FOOTER --}}
+@include('partials.footer')
 
 @endsection
-
-
-

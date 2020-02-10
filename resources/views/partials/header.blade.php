@@ -60,7 +60,7 @@
     @include('partials.navbar')
 
 	<div class="container-fluid h-100">
-        <div class="row h-100 align-items-center">
+        <div class="row h-75 align-items-center">
             <div class="col-sm-12 col-md-3 offset-md-1 bg-white p-3">
                 <h1>Prenota alloggi e attività unici.</h2>
                 <form>
