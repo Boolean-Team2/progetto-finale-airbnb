@@ -14,4 +14,10 @@ Route::get('/account/{id}/show', 'LoggedUserController@show')->name('account.sho
 Route::patch('/account/{id}/edit', 'LoggedUserController@edit')->name('account.edit');
 
 // Show user's apartments
-Route::get('/account/{id}/apartments/show', 'LoggedUserController@apartmentShow')->name('account.apartments.show');
+Route::get('/account/{id}/apartments/show', 'ApController@apartmentShow')->name('account.apartments.show');
+
+// Create user's apartment
+Route::get('/account/apartments/create', 'ApController@apartmentCreate')->name('account.apartments.create');
+
+// Store user's apartment
+Route::post('/account/apartments/store', 'ApController@apartmentStore')->name('account.apartments.store');
