@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\User;
-use App\Apartment;
 
 class LoggedUserController extends Controller
 {
@@ -27,6 +26,7 @@ class LoggedUserController extends Controller
         return view('pages.users.show', compact('user'));
     }
 
+    // User edit
     public function edit(Request $request, $id) {
 
         $validator = $request -> validate([
@@ -40,14 +40,5 @@ class LoggedUserController extends Controller
         $editedUser -> update($validator);
 
         return redirect() -> back() -> with('status', 'All informations was edited');
-    }
-
-    public function apartmentShow($id) {
-
-        $owner = User::findOrFail($id);
-
-        $apartments = $owner -> apartments;
-
-        return view('pages.users.apartments.show', compact('apartments'));
     }
 }

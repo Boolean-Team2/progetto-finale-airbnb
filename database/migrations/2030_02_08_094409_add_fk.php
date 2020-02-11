@@ -14,10 +14,24 @@ class AddFk extends Migration
             $table -> foreign('user_id', 'user_apartment') -> references('id') -> on('users');
         });
 
-        // FK apartements -> info_apartement 1:1
-        Schema::table('apartments_info', function (Blueprint $table) {
-            $table -> bigInteger('apartment_id') -> unsigned() -> index();
-            $table -> foreign('apartment_id', 'apartment_info_id') -> references('id') -> on('apartments');
+        // FK apartements -> services N:N
+        Schema::table('apartment_service', function (Blueprint $table) {
+
+            $table  -> bigInteger('apartment_id') 
+                    -> unsigned() 
+                    -> index();
+
+            $table  -> foreign('apartment_id', 'apartment_service')
+                    -> references('id')
+                    -> on('apartments');
+
+            $table  -> bigInteger('service_id') 
+                    -> unsigned() 
+                    -> index();
+
+            $table  -> foreign('service_id', 'service_apartment')
+                    -> references('id')
+                    -> on('services');
         });
 
         // FK apartement -> messages 1:N
@@ -56,10 +70,13 @@ class AddFk extends Migration
             $table -> dropColumn('apartment_id');
         });
 
-        // FK apartements -> info_apartement 1:1
-        Schema::table('apartments_info', function (Blueprint $table) {
-            $table -> dropForeign('apartment_info_id');
+        // FK apartements -> services N:N
+        Schema::table('services', function (Blueprint $table) {
+            $table -> dropForeign('apartment_service');
             $table -> dropColumn('apartment_id');
+
+            $table -> dropForeign('service_apartment');
+            $table -> dropColumn('service_id');
         });
 
         // FK apartement -> messages 1:N

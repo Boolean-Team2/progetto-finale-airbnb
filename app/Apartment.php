@@ -24,9 +24,9 @@ class Apartment extends Model
         return $this -> belongsTo(User::class);
     }
 
-    public function apartment_info() {
+    public function services() {
 
-        return $this -> hasOne(ApartmentInfo::class);
+        return $this -> belongsToMany(Service::class);
     }
 
     public function messages() {

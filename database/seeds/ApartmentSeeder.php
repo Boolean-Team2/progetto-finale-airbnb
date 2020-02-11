@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 use App\Apartment;
 use App\User;
 use App\Ad;
-use App\ApartmentInfo;
+use App\Service;
 
 class ApartmentSeeder extends Seeder
 {
@@ -18,32 +18,12 @@ class ApartmentSeeder extends Seeder
                     $apartment -> user() -> associate($user);
                     $apartment -> save();
                     
-                    $ad = new Ad;
-                    $info = new ApartmentInfo;
+                    $ads = Ad::inRandomOrder() -> take(rand(0,3)) -> get();   
+                    $apartment -> ads() -> attach($ads);
 
-                    $ad->fill([
-                        '24h' => 1,
-                        '72h' => 0,
-                        '144h' => 0,
-                        'start_time' => '2020-02-11 09:53:10',
-                        'end_time' => '2020-03-11 09:53:10'
-                    ]);
-
-                    $ad->save();
-
-                    $info->fill([
-                        'parking' => rand(0,1), 
-                        'wifi' => rand(0,1),
-                        'pool' => rand(0,1),
-                        'reception' => rand(0,1),
-                        'sauna' => rand(0,1),
-                        'sea_view'=> rand(0,1),
-                        'apartment_id' => $apartment->id
-                    ]);
-
-                    $apartment -> ads() -> attach($ad);
-
-                    $info->save();
+                    $services = Service::inRandomOrder() -> take(rand(0,6)) -> get();
+                    $apartment -> services() -> attach($services);
+                    
         });
     }
 }

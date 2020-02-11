@@ -4,19 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ad extends Model
+class Service extends Model
 {
-    protected $table = 'ads';
+    protected $table = 'services';
 
     protected $fillable = [
         'name',
-        'start_time',
-        'end_time'
     ];
-    
+
     public function apartments() {
 
         return $this -> belongsToMany(Apartment::class);
     }
-
+    
 }
