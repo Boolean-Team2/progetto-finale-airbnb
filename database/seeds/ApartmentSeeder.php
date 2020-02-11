@@ -25,9 +25,11 @@ class ApartmentSeeder extends Seeder
                         '24h' => 1,
                         '72h' => 0,
                         '144h' => 0,
-                        'duration_time' => "24:00:00",
-                        'apartment_id' => $apartment->id
+                        'start_time' => '2020-02-11 09:53:10',
+                        'end_time' => '2020-03-11 09:53:10'
                     ]);
+
+                    $ad->save();
 
                     $info->fill([
                         'parking' => rand(0,1), 
@@ -37,9 +39,9 @@ class ApartmentSeeder extends Seeder
                         'sauna' => rand(0,1),
                         'sea_view'=> rand(0,1),
                         'apartment_id' => $apartment->id
-                        ]);
+                    ]);
 
-                    $ad->save();
+                    $apartment -> ads() -> attach($ad);
 
                     $info->save();
         });
