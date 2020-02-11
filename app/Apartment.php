@@ -34,8 +34,8 @@ class Apartment extends Model
         return $this -> hasMany(Message::class);
     }
 
-    public function ad() {
+    public function ads() {
 
-        return $this -> hasOne(Ad::class);
+        return $this -> belongsToMany(Ad::class);
     }
 }
