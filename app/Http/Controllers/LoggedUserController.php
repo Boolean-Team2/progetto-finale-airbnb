@@ -6,24 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\User;
+use App\Apartment;
 
 class LoggedUserController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         return view('index');
@@ -49,5 +40,14 @@ class LoggedUserController extends Controller
         $editedUser -> update($validator);
 
         return redirect() -> back() -> with('status', 'All informations was edited');
+    }
+
+    public function apartmentShow($id) {
+
+        $owner = User::findOrFail($id);
+
+        $apartments = $owner -> apartments;
+
+        return view('pages.users.apartments.show', compact('apartments'));
     }
 }

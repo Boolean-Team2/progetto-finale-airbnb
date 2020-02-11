@@ -17,12 +17,12 @@
                     <p>Una selezione di alloggi verificati per qualità e design.</p>
                     <div class="d-flex flex-wrap justify-content-between">
                         @foreach ($apartments as $apartment)
-                            <div class="card" style="width: 20rem;">
+                            <div class="card mb-3" style="width: 20rem;">
                                 <img class="img-fluid" src="https://source.unsplash.com/random/?apartment" alt="Card image cap">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <h5 class="card-title text-capitalize">{{ $apartment->name }}</h5>
+                                    <p class="card-text text-capitalize">{{ $apartment->description }}</p>
+                                    <a href="#" class="btn btn-primary">Show details</a>
                                 </div>
                             </div>        
                         @endforeach
@@ -39,12 +39,12 @@
                     <p>Una selezione di alloggi verificati per qualità e design.</p>
                     <div class="d-flex flex-wrap justify-content-between">
                         @foreach ($apartments as $apartment)
-                            <div class="card" style="width: 20rem;">
+                            <div class="card mb-3" style="width: 20rem;">
                                 <img class="img-fluid" src="https://source.unsplash.com/random/?apartment" alt="Card image cap">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <h5 class="card-title text-capitalize">{{ $apartment->name }}</h5>
+                                    <p class="card-text text-capitalize">{{ $apartment->description }}</p>
+                                    <a href="#" class="btn btn-primary">Show details</a>
                                 </div>
                             </div>        
                         @endforeach
