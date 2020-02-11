@@ -53,7 +53,6 @@
                         </div>
                         <div class="col-4">
                             <label for="date_of_birth">Date of birth</label>
-                            {{-- <input type="text" class="form-control" name="date_of_birth" value="{{ Auth::user()->date_of_birth}}"> --}}
                             <input type="date" class="form-control" name="date_of_birth" value="{{ Auth::user()->date_of_birth}}">
                         </div>
                     </div>
@@ -63,12 +62,14 @@
                             <input type="text" class="form-control" name="email" value="{{ Auth::user()->email}}">
                         </div>
                     </div>
-                    <div class="d-flex justify-content-around my-3">
+                    <div class="d-flex justify-content-between my-3">
+                        <a href="{{ route('account.apartments.show', Auth::user()->id) }}" class="btn btn-primary">Your apartments</a>
                         <button type="submit" class="my-2 my-md-0 btn btn-success">Edit informations <i class="fas fa-edit"></i></button>
                         <a class="my-2 my-md-0 ml-md-2 btn btn-danger text-white d-flex align-items-center justify-content-center"
                             onclick="deleteData({{Auth::user()->id}})" data-toggle="modal" data-target="#DeleteModal">
                             <span>Delete Account <i class="fa fa-trash"></i></span>
                         </a>
+                        {{-- MODAL DELETE USER WINDOW --}}
                         <div id="DeleteModal" class="modal fade text-danger" role="dialog">
                             <div class="modal-dialog ">
                                 <!-- Modal content-->
