@@ -15,11 +15,11 @@
                         <div class="form-row">
                             <div class="col-6">
                                 <label>Check-in</label>
-                                <input type="text" class="form-control">
+                                <input type="date" class="form-control">
                             </div>
                             <div class="col-6">
                                 <label>Check-out</label>
-                                <input type="text" class="form-control">
+                                <input type="date" class="form-control">
                             </div>
                         </div>
                     </div>
