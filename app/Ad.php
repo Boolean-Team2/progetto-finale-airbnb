@@ -6,18 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ad extends Model
 {
-    protected $table = 'ad';
+    protected $table = 'ads';
 
     protected $fillable = [
         '24h',
         '72h',
         '144h',
-        'duration_time'
+        'start_time',
+        'end_time'
     ];
     
-    public function apartment() {
+    public function apartments() {
 
-        return $this -> belongsTo(Apartment::class);
+        return $this -> belongsToMany(Apartment::class);
     }
 
 }

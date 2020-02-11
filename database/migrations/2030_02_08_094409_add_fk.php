@@ -26,10 +26,24 @@ class AddFk extends Migration
             $table -> foreign('apartment_id', 'apartment_message') -> references('id') -> on('apartments');
         });
 
-        // FK ad -> apartment 1:1
-        Schema::table('ad', function (Blueprint $table) {
-            $table -> bigInteger('apartment_id') -> unsigned() -> index();
-            $table -> foreign('apartment_id', 'apartment_ad_id') -> references('id') -> on('apartments');
+        // FK ad -> apartment N:N
+        Schema::table('ad_apartment', function (Blueprint $table) {
+            
+            $table  -> bigInteger('apartment_id') 
+                    -> unsigned() 
+                    -> index();
+
+            $table  -> foreign('apartment_id', 'apartment_ad')
+                    -> references('id')
+                    -> on('apartments');
+
+            $table  -> bigInteger('ad_id') 
+                    -> unsigned() 
+                    -> index();
+
+            $table  -> foreign('ad_id', 'ad_apartment')
+                    -> references('id')
+                    -> on('ads');
         });
 
     }
@@ -54,10 +68,13 @@ class AddFk extends Migration
             $table -> dropColumn('message_id');
         });
 
-        // FK apartements -> info_apartement 1:1
-        Schema::table('ad', function (Blueprint $table) {
-            $table -> dropForeign('apartment_ad_id');
+        // FK apartements -> ad N:N
+        Schema::table('ad_apartment', function (Blueprint $table) {
+            $table -> dropForeign('apartment_ad');
             $table -> dropColumn('apartment_id');
+
+            $table -> dropForeign('ad_apartment');
+            $table -> dropColumn('ad_id');
         });
 
     }
