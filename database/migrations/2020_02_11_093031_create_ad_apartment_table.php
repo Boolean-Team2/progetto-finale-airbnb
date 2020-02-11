@@ -15,6 +15,8 @@ class CreateAdApartmentTable extends Migration
     {
         Schema::create('ad_apartment', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
         });
     }
 

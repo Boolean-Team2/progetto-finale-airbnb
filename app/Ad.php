@@ -9,14 +9,12 @@ class Ad extends Model
     protected $table = 'ads';
 
     protected $fillable = [
-        'name',
-        'start_time',
-        'end_time'
+        'name'
     ];
     
     public function apartments() {
 
-        return $this -> belongsToMany(Apartment::class);
+        return $this -> belongsToMany(Apartment::class) -> withPivot('start_time','end_time');
     }
 
 }
