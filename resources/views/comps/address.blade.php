@@ -24,12 +24,10 @@
 
                 address = _this.address;
 
-                axios.get("https://api.tomtom.com/search/2/geocode/", {
+                axios.get("https://api.tomtom.com/search/2/geocode/" + address + ".json", {
                         // Per le rotte get
                         params: {
-                            api_key: 'dRFZrptPccTmSHTdFh1v7Apn0osti1eh',
-                            query: address,
-                            ext: "json",
+                            key:'dRFZrptPccTmSHTdFh1v7Apn0osti1eh',
                         }
                     }
                 )
