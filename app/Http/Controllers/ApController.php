@@ -71,7 +71,7 @@ class ApController extends Controller
     // User's apartment edit
     public function apartmentUpdate(Request $request, $id) {
 
-        dd($request);
+        // dd($request);
 
         $data = $request->validate([
             'name' => 'required',
@@ -89,8 +89,14 @@ class ApController extends Controller
         ]);
 
         $apartment = Apartment::findOrFail($id);
-        $services = Service::all();
-        return view('pages.users.apartments.edit', compact('apartment', 'services'));
+
+        $services = $request->input('services');
+
+        $apartment -> update($data);
+
+        $apartment -> services() -> sync($services);
+
+        return redirect() -> route('account.apartments.show', $data['user_id']);
 
     }
 
