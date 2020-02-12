@@ -41,18 +41,20 @@
                 @method("PATCH")
                 <div class="form-row">
                     {{-- INPUT NAME --}}
-                    <div class="col-sm-12 col-md-6 mb-3">
+                    <div class="col-sm-12 col-md-4 mb-3">
                         <label for="name">Name</label>
                         <input type="text" name="name" class="form-control" value="{{ $apartment->name }}">
                     </div>
                     {{-- /INPUT NAME --}}
                     {{-- INPUT IMG --}}
-                    {{-- <div class="col-sm-12 col-md-6 mb-3">
-                        <label for="img">Image</label>
+                    <div class="col-sm-12 col-md-4 mb-3">
+                        <label for="img">Change image</label>
                         <input type="file" name="img" class="form-control">
-                    </div> --}}
+                    </div>
+                    <div class="col-sm-12 col-md-4 mb-3">
+                        <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" class="w-50 p-5">
+                    </div>
                     {{-- /INPUT IMG --}}
-
                     {{-- INPUT ADDRESS --}}
                     <myaddressedit></myaddressedit>
                     {{-- /INPUT ADDRESS --}}
