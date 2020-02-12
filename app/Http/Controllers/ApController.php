@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\File;
+// use Illuminate\Filesystem\Filesystem;
 
 use App\User;
 use App\Service;
@@ -53,10 +55,25 @@ class ApController extends Controller
 
         $apartment = Apartment::create($data);
 
+        if(isset($data['img'])) {
+
+            // Mi salvo il nome del file
+            $fileName = $data['img'] -> getClientOriginalName();
+    
+            // Salvo il file nella cartella "public/assets/images/users/{id_user}/apartments/{apartment->id/nomefile.ext"
+            $data['img'] -> move('assets/images/users/' . $apartment['user_id'] . '/apartments/' . $apartment->id , $fileName);
+
+            // Inserisco il nome dell'immagine nel campo della tabella
+            $apartment['img'] = $fileName;
+
+            // Salvo nuovamente l'appartamente in caso di inserimento dell'immagine
+            $apartment->save();
+        }
+
         $services = $request->input('services');
         $apartment -> services() -> sync($services);
 
-        return redirect() -> route('account.apartments.show', $data['user_id']);
+        return redirect() -> route('account.apartment.edit', $apartment['id']) -> with('status', 'Apartment created with success');
     }
 
     // User's apartment edit
