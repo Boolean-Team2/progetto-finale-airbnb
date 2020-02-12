@@ -46,8 +46,8 @@ class ApController extends Controller
             'baths' => 'required',
             'mq' => 'required',
             'services' => 'nullable',
-            // latitude
-            // longitude
+            'latitude' => 'required',
+            'longitude' => 'required',
             'address' => 'required',
             'user_id' => ''
         ]);
