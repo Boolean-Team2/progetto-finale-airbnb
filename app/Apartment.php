@@ -16,6 +16,7 @@ class Apartment extends Model
         'mq',
         'latitude',
         'longitude',
+        'address',
         'views'
     ];
 

@@ -16,6 +16,7 @@ $factory->define(Apartment::class, function (Faker $faker) {
         'mq' => rand(20, 40),
         'latitude' => $faker->latitude($min = -90, $max = 90),
         'longitude' => $faker->longitude($min = -180, $max = 180),
+        'address' => $faker->address,
         'views' => rand(0, 100)
     ];
 });

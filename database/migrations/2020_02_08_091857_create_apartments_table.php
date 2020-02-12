@@ -19,6 +19,7 @@ class CreateApartmentsTable extends Migration
             $table->integer('mq');
             $table->string('latitude');
             $table->string('longitude');
+            $table->string('address');
             $table->integer('views');
             $table->timestamps();
         });
