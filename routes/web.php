@@ -27,3 +27,6 @@ Route::get('/account/apartment/{ida}/edit', 'ApController@apartmentEdit')->name(
 
 // Update user's apartment
 Route::patch('/account/apartment/{ida}/update', 'ApController@apartmentUpdate')->name('account.apartment.update');
+
+// * * * GUEST ROUTES * * * //
+Route::get('/apartment/{id}/show', 'MainController@apartmentShow')->name('apartment.show');
