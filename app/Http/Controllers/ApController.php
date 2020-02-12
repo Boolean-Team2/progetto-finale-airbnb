@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Service;
+use App\Apartment;
 
 class ApController extends Controller
 {
@@ -35,16 +36,27 @@ class ApController extends Controller
     // User's apartment created store
     public function apartmentStore(Request $request) {
 
-        dd($request);
+        // dd($request);
 
-        $data = $request -> all();
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'rooms' => 'required',
+            'beds' => 'required',
+            'baths' => 'required',
+            'mq' => 'required',
+            'services' => 'nullable',
+            // latitude
+            // longitude
+            'address' => 'required',
+            'user_id' => ''
+        ]);
+
         $apartment = Apartment::create($data);
 
-        $services = Task::find($data['services']);
-        $apartment -> services() -> attach($services);
+        $services = $request->input('services');
+        $apartment -> services() -> sync($services);
 
-        return redirect() -> route('employee.index');
-
-        return "hello";
+        return redirect() -> route('account.apartments.show', $data['user_id']);
     }
 }

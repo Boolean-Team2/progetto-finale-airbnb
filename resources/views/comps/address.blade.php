@@ -1,17 +1,29 @@
 <script type="text/x-template" id="address-template">
-    <div>
-        <label>Municipality or CAP</label>
-        <input type="text" v-model="municipality">
-        <label>Street</label>
-        <input type="text" v-model="street">
-        <label>Number</label>
-        <input type="text" v-model="number">
-
-        <label for="myaddress">Address</label>
-        <input type="text" name='myaddress' v-model="address">
-
-        <button @click="searchAddress()" type="reset" class="btn btn-primary">Cerca</button>
-    </div>
+        <div class="col-sm-12 mb-3">
+            <div class="form-row">
+                <div class="col-sm-12 col-md-3">
+                    <label>Municipality or CAP</label>
+                    <input class="form-control" type="text" v-model="municipality">
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <label>Street</label>
+                    <input class="form-control" type="text" v-model="street">
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <label>Number</label>
+                    <input class="form-control" type="text" v-model="number">
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <label>Cerca</label>
+                    <button @click="searchAddress()" type="reset" class="form-control btn btn-primary">Inserisci indirizzo</button>
+                </div>
+                <div class="col-sm-12 mb-3">
+                    <input class="form-control" type="text" name='address' v-model="address">
+                    <input class="form-control" type="text" name='user_id' value="{{ Auth::user()->id }}">
+                </div>
+            </div>
+        </div>
+    
 </script>
 
 <script type="text/javascript">

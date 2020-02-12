@@ -36,31 +36,25 @@
             <p>Here you can create your apartment</p>
         </div>
         <div id="app" class="col-sm-12">
-            <form action="{{ route('account.apartments.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('account.apartments.store', Auth::user()->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method("POST")
                 <div class="form-row">
                     {{-- INPUT NAME --}}
-                    <div class="col-sm-12 col-md-4 mb-3">
+                    <div class="col-sm-12 col-md-6 mb-3">
                         <label for="name">Name</label>
                         <input type="text" name="name" class="form-control" placeholder="Enter name">
                     </div>
                     {{-- /INPUT NAME --}}
                     {{-- INPUT IMG --}}
-                    <div class="col-sm-12 col-md-4 mb-3">
+                    <div class="col-sm-12 col-md-6 mb-3">
                         <label for="img">Image</label>
                         <input type="file" name="img" class="form-control">
                     </div>
                     {{-- /INPUT IMG --}}
 
                     {{-- INPUT ADDRESS --}}
-                    <div class="col-sm-12 mb-3">
-                        {{-- <label for="address">Address</label> --}}
-                        {{-- <input type="text" name="address" class="form-control" placeholder="Enter address"> --}}
-                        <test
-                            
-                        ></test>
-                    </div>
+                   <test></test>
                     {{-- /INPUT ADDRESS --}}
                     
                     {{-- INPUT DESCR --}}
