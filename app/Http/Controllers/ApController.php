@@ -36,8 +36,6 @@ class ApController extends Controller
     // User's apartment created store
     public function apartmentStore(Request $request) {
 
-        // dd($request);
-
         $data = $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -45,6 +43,7 @@ class ApController extends Controller
             'beds' => 'required',
             'baths' => 'required',
             'mq' => 'required',
+            'img' => 'nullable',
             'services' => 'nullable',
             'latitude' => 'required',
             'longitude' => 'required',
@@ -59,4 +58,42 @@ class ApController extends Controller
 
         return redirect() -> route('account.apartments.show', $data['user_id']);
     }
+
+    // User's apartment edit
+    public function apartmentEdit($id) {
+
+        $apartment = Apartment::findOrFail($id);
+        $services = Service::all();
+        return view('pages.users.apartments.edit', compact('apartment', 'services'));
+
+    }
+
+    // User's apartment edit
+    public function apartmentUpdate(Request $request, $id) {
+
+        dd($request);
+
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'rooms' => 'required',
+            'beds' => 'required',
+            'baths' => 'required',
+            'mq' => 'required',
+            'img' => 'nullable',
+            'services' => 'nullable',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'address' => 'required',
+            'user_id' => ''
+        ]);
+
+        $apartment = Apartment::findOrFail($id);
+        $services = Service::all();
+        return view('pages.users.apartments.edit', compact('apartment', 'services'));
+
+    }
+
+
+    
 }
