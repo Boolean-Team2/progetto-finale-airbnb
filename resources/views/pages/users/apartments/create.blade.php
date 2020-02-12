@@ -9,7 +9,7 @@
 @section('body')
 
 {{-- INCLUDE SCRIPT VUE --}}
-@include('comps.address')
+@include('comps.addressCreate')
 
 <div class="container my-5 py-5">
     <div class="row">
@@ -54,7 +54,7 @@
                     {{-- /INPUT IMG --}}
 
                     {{-- INPUT ADDRESS --}}
-                   <test></test>
+                   <myaddress></myaddress>
                     {{-- /INPUT ADDRESS --}}
                     
                     {{-- INPUT DESCR --}}

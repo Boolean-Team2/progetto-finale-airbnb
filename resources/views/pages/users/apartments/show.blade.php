@@ -43,7 +43,8 @@
                         <div class="card-body">
                             <h5 class="card-title text-capitalize">{{ $apartment->name }}</h5>
                             <p class="card-text text-capitalize">{{ $apartment->description }}</p>
-                            <a href="#" class="btn btn-primary">Edit</a>
+                            <p class="card-text text-capitalize">{{ $apartment->address }}</p>
+                            <a href="{{ route('account.apartment.edit', $apartment->id) }}" class="btn btn-primary">Edit</a>
                         </div>
                     </div>        
                 @endforeach
