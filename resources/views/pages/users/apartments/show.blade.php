@@ -39,7 +39,7 @@
             <div class="col-12 mt-2 m-md-0 d-flex flex-wrap justify-content-between">
                 @foreach ($apartments as $apartment)
                     <div class="card mb-3" style="width: 20rem;">
-                        <img class="img-fluid" src="https://source.unsplash.com/random/?apartment" alt="Card image cap">
+                        <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title text-capitalize">{{ $apartment->name }}</h5>
                             <p class="card-text text-capitalize">{{ $apartment->description }}</p>
