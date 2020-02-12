@@ -21,3 +21,9 @@ Route::get('/account/apartments/create', 'ApController@apartmentCreate')->name('
 
 // Store user's apartment
 Route::post('/account/apartments/store', 'ApController@apartmentStore')->name('account.apartments.store');
+
+// Edit user's apartment
+Route::get('/account/apartment/{ida}edit', 'ApController@apartmentEdit')->name('account.apartment.edit');
+
+// Update user's apartment
+Route::patch('/account/apartment/{ida}update', 'ApController@apartmentUpdate')->name('account.apartment.update');
