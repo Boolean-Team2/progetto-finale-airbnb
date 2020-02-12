@@ -53,10 +53,12 @@
                     </div>
                     {{-- /INPUT IMG --}}
                     {{-- INPUT ADDRESS --}}
-                    <div class="col-sm-12 col-md-4 mb-3">
+                    <div class="col-sm-12 mb-3">
                         <label for="address">Address</label>
                         {{-- <input type="text" name="address" class="form-control" placeholder="Enter address"> --}}
-                        <test></test>
+                        <test
+                            
+                        ></test>
                     </div>
                     {{-- /INPUT ADDRESS --}}
                     {{-- INPUT DESCR --}}

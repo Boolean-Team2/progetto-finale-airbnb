@@ -1,6 +1,11 @@
 <script type="text/x-template" id="address-template">
     <div>
-        <input type="text" v-model="address">
+        <label>Municipality or CAP</label>
+        <input type="text" v-model="municipality">
+        <label>Street</label>
+        <input type="text" v-model="street">
+        <label>Number</label>
+        <input type="text" v-model="number">
         <button @click="searchAddress()" type="reset" class="btn btn-primary">Cerca</button>
     </div>
 </script>
@@ -12,19 +17,23 @@
         template: "#address-template",
         data: function() {
             return {
-                address: ""
+                address: [],
+                municipality: "",
+                street: "",
+                number: "",
             };
         },
         methods: {
             searchAddress() {
                 
                 const _this = this;
-                
-                console.log("Sto cercando:", _this.address);
 
-                query = _this.address;
+                console.clear();
+                
+                query = _this.street + " " + _this.municipality + " " + _this.number;
                 ext = ".json";
-                api_key = 'dRFZrptPccTmSHTdFh1v7Apn0osti1eh';
+                
+                console.log("Sto cercando:", query);
 
                 // https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?key=nGr3NaPGtkTDaByWJX5ms6A6artaA8om
 
@@ -32,12 +41,13 @@
                         // Per le rotte get
                         params: {
                             key: 'dRFZrptPccTmSHTdFh1v7Apn0osti1eh',
+                            limit: 1
                         }
                     }
                 )
                 .then( function(dataTornati) {
-                    console.log("Dati tornati:", dataTornati);
-                    _this.movies = dataTornati.data.results;
+                    console.log("Dati tornati:", dataTornati.data.results);
+                    _this.address = dataTornati.data.results;
                 })
                 .catch( function(error) {
                     console.log("Errori tornati:", error);
