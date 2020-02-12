@@ -36,7 +36,7 @@
             <p>Here you can edit your apartment</p>
         </div>
         <div id="app" class="col-sm-12">
-            <form action="{{ route('account.apartment.update', Auth::user()->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('account.apartment.update', $apartment->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method("PATCH")
                 <div class="form-row">
@@ -54,14 +54,7 @@
                     {{-- /INPUT IMG --}}
 
                     {{-- INPUT ADDRESS --}}
-                    {{-- <div class="col-sm-12 col-md-6 mb-3">
-                        <label for="address">Address</label>
-                        <input class="form-control" type="text" name="address" value="{{ $apartment->address }}">
-                    </div> --}}
-                    <myaddressedit 
-                        {{-- :latitude = "{{ $apartment->latitude }}"
-                        :longitude = "{{ $apartment->longitude }}" --}}
-                    ></myaddressedit>
+                    <myaddressedit></myaddressedit>
                     {{-- /INPUT ADDRESS --}}
                     
                     {{-- INPUT DESCR --}}

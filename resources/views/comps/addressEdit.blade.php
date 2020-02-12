@@ -20,6 +20,7 @@
 
                 {{-- Viene mostrato quando si modifica l'indirizzo --}}
                 <div v-show="showInput" class="col-sm-12">
+                    <input hidden type="text" name='user_id' value="{{ Auth::user()->id }}">
                     <input class="form-control" type="text" name="address" v-model="address">
                     <input hidden class="form-control" type="text" name="latitude" v-model="lat">
                     <input hidden class="form-control" type="text" name="longitude" v-model="lon">
@@ -27,7 +28,6 @@
 
                 {{-- Campi nascosti per passaggio dati --}}
                 <div id="remove" v-show="show" class="col-sm-12 mb-3">
-                    <input hidden type="text" name='user_id' value="{{ Auth::user()->id }}">
                     <input hidden type="text" name="address" value="{{ $apartment->address }}">
                     <input hidden type="text" name='latitude' value="{{ $apartment->latitude }}">
                     <input hidden type="text" name='longitude' value="{{ $apartment->longitude }}">
