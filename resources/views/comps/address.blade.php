@@ -22,14 +22,16 @@
                 
                 console.log("Sto cercando:", _this.address);
 
-                address = _this.address;
+                query = _this.address;
+                ext = ".json";
+                api_key = 'dRFZrptPccTmSHTdFh1v7Apn0osti1eh';
 
-                axios.get("https://api.tomtom.com/search/2/geocode/", {
+                // https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?key=nGr3NaPGtkTDaByWJX5ms6A6artaA8om
+
+                axios.get("https://api.tomtom.com/search/2/geocode/" + query + ext, {
                         // Per le rotte get
                         params: {
-                            api_key: 'dRFZrptPccTmSHTdFh1v7Apn0osti1eh',
-                            query: address,
-                            ext: "json",
+                            key: 'dRFZrptPccTmSHTdFh1v7Apn0osti1eh',
                         }
                     }
                 )
