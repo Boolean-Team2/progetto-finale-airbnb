@@ -6,6 +6,10 @@
         <input type="text" v-model="street">
         <label>Number</label>
         <input type="text" v-model="number">
+
+        <label for="myaddress">Address</label>
+        <input type="text" name='myaddress' v-model="address">
+
         <button @click="searchAddress()" type="reset" class="btn btn-primary">Cerca</button>
     </div>
 </script>
@@ -17,7 +21,7 @@
         template: "#address-template",
         data: function() {
             return {
-                address: [],
+                address: "",
                 municipality: "",
                 street: "",
                 number: "",
@@ -35,8 +39,6 @@
                 
                 console.log("Sto cercando:", query);
 
-                // https://api.tomtom.com/search/2/geocode/4%20north%202nd%20street%20san%20jose.json?key=nGr3NaPGtkTDaByWJX5ms6A6artaA8om
-
                 axios.get("https://api.tomtom.com/search/2/geocode/" + query + ext, {
                         // Per le rotte get
                         params: {
@@ -47,7 +49,16 @@
                 )
                 .then( function(dataTornati) {
                     console.log("Dati tornati:", dataTornati.data.results);
-                    _this.address = dataTornati.data.results;
+                    var indirizzo = dataTornati.data.results;
+
+                    indirizzo.forEach(element => {
+                        _this.address=element.address.freeformAddress;
+                        console.log(element.address.freeformAddress);
+                    });
+
+                    
+                    
+
                 })
                 .catch( function(error) {
                     console.log("Errori tornati:", error);

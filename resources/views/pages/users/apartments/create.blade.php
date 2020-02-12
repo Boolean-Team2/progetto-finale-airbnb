@@ -52,15 +52,17 @@
                         <input type="file" name="img" class="form-control">
                     </div>
                     {{-- /INPUT IMG --}}
+
                     {{-- INPUT ADDRESS --}}
                     <div class="col-sm-12 mb-3">
-                        <label for="address">Address</label>
+                        {{-- <label for="address">Address</label> --}}
                         {{-- <input type="text" name="address" class="form-control" placeholder="Enter address"> --}}
                         <test
                             
                         ></test>
                     </div>
                     {{-- /INPUT ADDRESS --}}
+                    
                     {{-- INPUT DESCR --}}
                     <div class="col-sm-12 mb-3">
                         <label for="description">Description</label>
@@ -70,30 +72,24 @@
                     {{-- INPUT ROOMS --}}
                     <div class="col-sm-12 col-md-3 mb-3">
                         <label for="rooms">Rooms</label>
-                        <select class="form-control" name="rooms">
-                            {{-- TODO: Valorizzare con i dati del db --}}
-                            <option value=""></option> 
-                        </select>
+                        <input type="text" name="rooms" class="form-control" placeholder="Enter number of rooms">
                     </div>
                     {{-- /INPUT ROOMS --}}
+
                     {{-- INPUT BEDS --}}
                     <div class="col-sm-12 col-md-3 mb-3">
                         <label for="beds">Beds</label>
-                        <select class="form-control" name="beds">
-                            {{-- TODO: Valorizzare con i dati del db --}}
-                            <option value=""></option> 
-                        </select>
+                        <input type="text" name="beds" class="form-control" placeholder="Enter number of beds">
                     </div>
                     {{-- /INPUT BEDS --}}
+
                     {{-- INPUT BATHS --}}
                     <div class="col-sm-12 col-md-3 mb-3">
                         <label for="baths">Baths</label>
-                        <select class="form-control" name="baths">
-                            {{-- TODO: Valorizzare con i dati del db --}}
-                            <option value=""></option> 
-                        </select>
+                        <input type="text" name="baths" class="form-control" placeholder="Enter number of baths">
                     </div>
                     {{-- /INPUT BATHS --}}
+
                     {{-- INPUT MQ --}}
                     <div class="col-sm-12 col-md-3 mb-3">
                         <label for="mq">Mq</label>
@@ -103,7 +99,7 @@
                     {{-- INPUT INFO --}}
                     <div class="d-flex flex-wrap">
                         @foreach($services as $service)
-                            <span class="d-flex align-items-center mr-3 text-capitalize"><input class="mr-1" name="tasks[]" type="checkbox" value="{{ $service->id }}">{{ $service->name }}</span>
+                            <span class="d-flex align-items-center mr-3 text-capitalize"><input class="mr-1" name="services[]" type="checkbox" value="{{ $service->id }}">{{ $service->name }}</span>
                         @endforeach
                     </div>
                     {{-- INPUT INFO --}}

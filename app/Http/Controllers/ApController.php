@@ -37,6 +37,14 @@ class ApController extends Controller
 
         dd($request);
 
+        $data = $request -> all();
+        $apartment = Apartment::create($data);
+
+        $services = Task::find($data['services']);
+        $apartment -> services() -> attach($services);
+
+        return redirect() -> route('employee.index');
+
         return "hello";
     }
 }
