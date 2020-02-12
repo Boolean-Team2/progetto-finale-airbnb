@@ -7,6 +7,10 @@
 
 {{-- CONTENT --}}
 @section('body')
+
+{{-- INCLUDE SCRIPT VUE --}}
+@include('comps.address')
+
 <div class="container my-5 py-5">
     <div class="row">
         <div class="col-12">
@@ -31,7 +35,7 @@
             <h3>Create apartment</h3>
             <p>Here you can create your apartment</p>
         </div>
-        <div class="col-sm-12">
+        <div id="app" class="col-sm-12">
             <form action="{{ route('account.apartments.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method("POST")
@@ -51,7 +55,8 @@
                     {{-- INPUT ADDRESS --}}
                     <div class="col-sm-12 col-md-4 mb-3">
                         <label for="address">Address</label>
-                        <input type="text" name="address" class="form-control" placeholder="Enter address">
+                        {{-- <input type="text" name="address" class="form-control" placeholder="Enter address"> --}}
+                        <test></test>
                     </div>
                     {{-- /INPUT ADDRESS --}}
                     {{-- INPUT DESCR --}}
