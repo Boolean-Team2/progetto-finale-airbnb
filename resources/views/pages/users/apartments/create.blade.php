@@ -40,14 +40,23 @@
                 @csrf
                 @method("POST")
                 <div class="form-row">
+                     {{-- INPUT VISIBILITY --}}
+                    <div class="col-sm-12 col-md-4 mb-3">
+                        <label for="visibility">Visibility</label>
+                        <select name="visibility" class="form-control">
+                            <option value="1">Public</option>
+                            <option value="0">Private</option>
+                        </select>
+                    </div>
+                    {{-- /INPUT VISIBILITY --}}
                     {{-- INPUT NAME --}}
-                    <div class="col-sm-12 col-md-6 mb-3">
+                    <div class="col-sm-12 col-md-4 mb-3">
                         <label for="name">Name</label>
                         <input type="text" name="name" class="form-control" placeholder="Enter name" value="Test">
                     </div>
                     {{-- /INPUT NAME --}}
                     {{-- INPUT IMG --}}
-                    <div class="col-sm-12 col-md-6 mb-3">
+                    <div class="col-sm-12 col-md-4 mb-3">
                         <label for="img">Image</label>
                         <input type="file" name="img" class="form-control">
                     </div>

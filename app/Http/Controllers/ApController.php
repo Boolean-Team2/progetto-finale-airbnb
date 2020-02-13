@@ -50,8 +50,11 @@ class ApController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'address' => 'required',
+            'visibility' => 'required',
             'user_id' => ''
         ]);
+
+        dd($data);
 
         $apartment = Apartment::create($data);
 
@@ -102,6 +105,7 @@ class ApController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'address' => 'required',
+            'visibility' => 'required',
             'user_id' => ''
         ]);
 

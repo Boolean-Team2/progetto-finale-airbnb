@@ -48,6 +48,13 @@
                             <h5 class="card-title text-capitalize">{{ $apartment->name }}</h5>
                             <p class="card-text text-capitalize">{{ $apartment->description }}</p>
                             <p class="card-text text-capitalize">{{ $apartment->address }}</p>
+                            <p class="card-text text-capitalize">
+                                @if ($apartment->visibility === 1)
+                                    <span class="text-success">Public</span>
+                                    @else
+                                    <span class="text-danger">Private</span>
+                                @endif
+                            </p>
                             <a href="{{ route('account.apartment.edit', $apartment->id) }}" class="btn btn-primary">Edit</a>
                         </div>
                     </div>        
