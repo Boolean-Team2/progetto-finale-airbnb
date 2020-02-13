@@ -43,7 +43,7 @@
                     {{-- INPUT NAME --}}
                     <div class="col-sm-12 col-md-6 mb-3">
                         <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="Enter name">
+                        <input type="text" name="name" class="form-control" placeholder="Enter name" value="Test">
                     </div>
                     {{-- /INPUT NAME --}}
                     {{-- INPUT IMG --}}
@@ -60,34 +60,34 @@
                     {{-- INPUT DESCR --}}
                     <div class="col-sm-12 mb-3">
                         <label for="description">Description</label>
-                        <textarea type="text" name="description" class="form-control" placeholder="Enter description"></textarea>
+                        <textarea type="text" name="description" class="form-control" placeholder="Enter description">TEST DESCRIPTION</textarea>
                     </div>
                     {{-- /INPUT DESCR --}}
                     {{-- INPUT ROOMS --}}
                     <div class="col-sm-12 col-md-3 mb-3">
                         <label for="rooms">Rooms</label>
-                        <input type="text" name="rooms" class="form-control" placeholder="Enter number of rooms">
+                        <input type="text" name="rooms" class="form-control" placeholder="Enter number of rooms" value="1">
                     </div>
                     {{-- /INPUT ROOMS --}}
 
                     {{-- INPUT BEDS --}}
                     <div class="col-sm-12 col-md-3 mb-3">
                         <label for="beds">Beds</label>
-                        <input type="text" name="beds" class="form-control" placeholder="Enter number of beds">
+                        <input type="text" name="beds" class="form-control" placeholder="Enter number of beds" value="2">
                     </div>
                     {{-- /INPUT BEDS --}}
 
                     {{-- INPUT BATHS --}}
                     <div class="col-sm-12 col-md-3 mb-3">
                         <label for="baths">Baths</label>
-                        <input type="text" name="baths" class="form-control" placeholder="Enter number of baths">
+                        <input type="text" name="baths" class="form-control" placeholder="Enter number of baths"value="1"> 
                     </div>
                     {{-- /INPUT BATHS --}}
 
                     {{-- INPUT MQ --}}
                     <div class="col-sm-12 col-md-3 mb-3">
                         <label for="mq">Mq</label>
-                        <input type="text" name="mq" class="form-control" placeholder="Enter mq">
+                        <input type="text" name="mq" class="form-control" placeholder="Enter mq" value="75">
                     </div>
                     {{-- /INPUT MQ --}}
                     {{-- INPUT INFO --}}

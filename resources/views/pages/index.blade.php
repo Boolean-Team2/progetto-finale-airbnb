@@ -18,7 +18,11 @@
                     <div class="d-flex flex-wrap justify-content-between">
                         @foreach ($apartments as $apartment)
                             <div class="card mb-3" style="width: 20rem;">
-                                <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
+                                @if ($apartment->img)
+                                    <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
+                                    @else
+                                    <img class="img-fluid" src="{{ asset('assets/images/placeholder.jpg') }}" alt="Card image cap">
+                                @endif
                                 <div class="card-body">
                                     <h5 class="card-title text-capitalize">{{ $apartment->name }}</h5>
                                     <p class="card-text text-capitalize">{{ $apartment->description }}</p>
@@ -35,16 +39,20 @@
         <section class="my-5">
             <div class="row">
                 <div class="col-sm-12 col-md-10 offset-md-1 p-3">
-                    <h3>Alloggi Free</h3>
+                    <h3>Alloggi non sponsorizzati</h3>
                     <p>Una selezione di alloggi verificati per qualità e design.</p>
                     <div class="d-flex flex-wrap justify-content-between">
                         @foreach ($apartments as $apartment)
                             <div class="card mb-3" style="width: 20rem;">
-                                <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
+                                @if ($apartment->img)
+                                    <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
+                                    @else
+                                    <img class="img-fluid" src="{{ asset('assets/images/placeholder.jpg') }}" alt="Card image cap">
+                                @endif
                                 <div class="card-body">
                                     <h5 class="card-title text-capitalize">{{ $apartment->name }}</h5>
                                     <p class="card-text text-capitalize">{{ $apartment->description }}</p>
-                                    <a href="#" class="btn btn-primary">Show details</a>
+                                    <a href="{{ route('apartment.show', $apartment->id) }}" class="btn btn-primary">Show details</a>
                                 </div>
                             </div>        
                         @endforeach

@@ -26,7 +26,11 @@
                     
                 </div>
                 <div class="col-sm-12 col-md-8 text-right">
-                    <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
+                    @if ($apartment->img)
+                        <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
+                        @else
+                        <img class="img-fluid" src="{{ asset('assets/images/placeholder.jpg') }}" alt="Card image cap">
+                    @endif
                 </div>
             </div>
             <hr>
@@ -67,27 +71,22 @@
     @include('partials.footer')
 
     {{-- TOMTOM MAP --}}
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.45.0/maps/maps-web.min.js"></script>
     <script>
         $(document).ready(function() {
-
             var lon = $('#lon').val();
             var lat = $('#lat').val();
             var location = [lon,lat];
-            
-
-            console.log(location);
-
             var map = tt.map({
                     key: 'UnotVndyZgjPLoXejGGoIUZDc49X2IrU',
                     container: 'map',
                     style: 'tomtom://vector/1/basic-main',
                     center: location,
-                    zoom: 18
+                    zoom: 18,
                 });
-            
             var marker = new tt.Marker().setLngLat(location).addTo(map);
-
+            map.addControl(new tt.FullscreenControl());
+            map.addControl(new tt.NavigationControl());
+            
             });
     </script>
 

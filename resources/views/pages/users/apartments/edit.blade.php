@@ -52,7 +52,11 @@
                         <input type="file" name="img" class="form-control">
                     </div>
                     <div class="col-sm-12 col-md-4 mb-3">
-                        <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" class="w-50 p-5">
+                        @if ($apartment->img)
+                            <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
+                            @else
+                            <img class="img-fluid" src="{{ asset('assets/images/placeholder.jpg') }}" alt="Card image cap">
+                        @endif
                     </div>
                     {{-- /INPUT IMG --}}
                     {{-- INPUT ADDRESS --}}
