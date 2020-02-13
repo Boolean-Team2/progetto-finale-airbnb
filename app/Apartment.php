@@ -18,6 +18,7 @@ class Apartment extends Model
         'longitude',
         'address',
         'views',
+        'visibility',
         'user_id'
     ];
 

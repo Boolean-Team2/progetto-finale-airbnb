@@ -40,18 +40,32 @@
                 @csrf
                 @method("PATCH")
                 <div class="form-row">
+                    {{-- INPUT VISIBILITY --}}
+                    <div class="col-sm-12 col-md-3 mb-3">
+                        <label for="visibility">Visibility</label>
+                        <select name="visibility" class="form-control">
+                            @if ($apartment->visibility === 1)
+                                <option value="{{ $apartment->visibility }}">Public</option>
+                                <option value="0">Private</option>
+                                @else
+                                <option value="{{ $apartment->visibility }}">Private</option>
+                                <option value="1">Public</option>
+                            @endif
+                        </select>
+                    </div>
+                    {{-- /INPUT VISIBILITY --}}
                     {{-- INPUT NAME --}}
-                    <div class="col-sm-12 col-md-4 mb-3">
+                    <div class="col-sm-12 col-md-3 mb-3">
                         <label for="name">Name</label>
                         <input type="text" name="name" class="form-control" value="{{ $apartment->name }}">
                     </div>
                     {{-- /INPUT NAME --}}
                     {{-- INPUT IMG --}}
-                    <div class="col-sm-12 col-md-4 mb-3">
+                    <div class="col-sm-12 col-md-3 mb-3">
                         <label for="img">Change image</label>
                         <input type="file" name="img" class="form-control">
                     </div>
-                    <div class="col-sm-12 col-md-4 mb-3">
+                    <div class="col-sm-12 col-md-3 mb-3">
                         @if ($apartment->img)
                             <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
                             @else

@@ -21,6 +21,7 @@ class CreateApartmentsTable extends Migration
             $table->string('longitude')->nullable();
             $table->string('address');
             $table->integer('views')->nullable();
+            $table->boolean('visibility')->nullable();
             $table->timestamps();
         });
     }

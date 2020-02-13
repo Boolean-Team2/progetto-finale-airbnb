@@ -14,7 +14,7 @@ class MainController extends Controller
 
         // fare query per appartamenti sponsorizzati, aggiungere campo nel db$authorId = 956;
 
-        $apartments = Apartment::orderBy('id', 'DESC')->paginate(4);
+        $apartments = Apartment::all()->where('visibility', '=', 1);
         return view('pages.index', compact('apartments'));
     }
 

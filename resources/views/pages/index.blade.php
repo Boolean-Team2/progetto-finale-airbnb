@@ -28,6 +28,7 @@
                                     <p class="card-text text-capitalize">{{ $apartment->description }}</p>
                                     <a href="{{ route('apartment.show', $apartment->id) }}" class="btn btn-primary">Show details</a>
                                 </div>
+                                <p>Visibility: {{ $apartment->visibility }}</p>
                             </div>        
                         @endforeach
                     </div>
@@ -54,6 +55,7 @@
                                     <p class="card-text text-capitalize">{{ $apartment->description }}</p>
                                     <a href="{{ route('apartment.show', $apartment->id) }}" class="btn btn-primary">Show details</a>
                                 </div>
+                                <p>Visibility: {{ $apartment->visibility }}</p>
                             </div>        
                         @endforeach
                     </div>
