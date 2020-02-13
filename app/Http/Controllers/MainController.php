@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
-
+use App\Mail\ContactMail;
 use App\Apartment;
+use App\Message;
 
 class MainController extends Controller
 {
@@ -18,7 +20,26 @@ class MainController extends Controller
 
     // Apartment details show
     public function apartmentShow($id) {
+
         $apartment = Apartment::findOrFail($id);
+
         return view('pages.apartments.apartmentShow', compact('apartment'));
+    }
+
+    public function sendMail($ida, Request $request) {
+
+        $infoMsg = $request -> validate([
+            'email_sender' => '',
+            'body' => '',
+            'apartment_id' => ''
+        ]);
+
+        $infoMsg['apartment_id'] = $ida;
+        
+        Message::create($infoMsg);
+
+        $apartment = Apartment::findOrFail($ida);
+        Mail::to('miamail@mail.it') -> send(new ContactMail($apartment));
+
     }
 }

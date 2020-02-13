@@ -30,3 +30,8 @@ Route::patch('/account/apartment/{ida}/update', 'ApController@apartmentUpdate')-
 
 // * * * GUEST ROUTES * * * //
 Route::get('/apartment/{id}/show', 'MainController@apartmentShow')->name('apartment.show');
+
+// * * * MAIL ROUTES * * * //
+Route::get('/sendmail/{ida}', 'MainController@sendMail')->name('sendmail');
+
+

@@ -37,16 +37,17 @@
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <h4>Contact me</h4>
-                    <form action="">
+                <form action="{{route('sendmail', $apartment -> id)}}}">
                         <div class="form-group">
                             @if (Auth::user())
-                                <input type="email" class="form-control" placeholder="tuamail@mail.com" value="{{ Auth::user()->email }}">
+                                <input type="email" name="email_sender" class="form-control" placeholder="tuamail@mail.com" value="{{ Auth::user()->email }}">
                                 @else
-                                <input type="email" class="form-control" placeholder="tuamail@mail.com">
+                                <input type="email" name="email_sender" class="form-control" placeholder="tuamail@mail.com">
                             @endif
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Dear owner.."></textarea>
+                            <textarea class="form-control" name="body" placeholder="Dear owner.."></textarea>
+                        <input type="text" value="{{$apartment -> id}}" name="apartment_id" hidden>
                         </div>
                         <div class="form-row">
                             <div class="col-sm-12 col-md-8">
