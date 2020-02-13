@@ -31,7 +31,7 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 col-md-6">
                     <h4>Contact me</h4>
                     <form action="">
                         <div class="form-group">
@@ -54,11 +54,41 @@
                         </div>
                     </form>
                 </div>
+                <div class="col-sm-12 col-md-6">
+                    <input hidden id="lon" type="text" value="{{ $apartment -> longitude }}">
+                    <input hidden id="lat" type="text" value="{{ $apartment -> latitude }}">
+                    <div id='map' class='map w-100 h-100'></div>
+                </div>
             </div>
         </section>
     </div>
 
     {{-- FOOTER --}}
     @include('partials.footer')
+
+    {{-- TOMTOM MAP --}}
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.45.0/maps/maps-web.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            var lon = $('#lon').val();
+            var lat = $('#lat').val();
+            var location = [lon,lat];
+            
+
+            console.log(location);
+
+            var map = tt.map({
+                    key: 'UnotVndyZgjPLoXejGGoIUZDc49X2IrU',
+                    container: 'map',
+                    style: 'tomtom://vector/1/basic-main',
+                    center: location,
+                    zoom: 18
+                });
+            
+            var marker = new tt.Marker().setLngLat(location).addTo(map);
+
+            });
+    </script>
 
 @endsection
