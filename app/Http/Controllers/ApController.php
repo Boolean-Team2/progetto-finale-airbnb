@@ -54,8 +54,6 @@ class ApController extends Controller
             'user_id' => ''
         ]);
 
-        dd($data);
-
         $apartment = Apartment::create($data);
 
         if(isset($data['img'])) {

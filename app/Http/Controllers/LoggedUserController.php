@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\User;
+use App\Apartment;
 
 class LoggedUserController extends Controller
 {
@@ -19,10 +20,9 @@ class LoggedUserController extends Controller
         return view('index');
     }
 
+    // User show
     public function show($id) {
-
         $user = User::findOrFail($id);
-
         return view('pages.users.show', compact('user'));
     }
 
@@ -40,5 +40,18 @@ class LoggedUserController extends Controller
         $editedUser -> update($validator);
 
         return redirect() -> back() -> with('status', 'All informations was edited');
+    }
+
+    // User messages show
+    public function messagesShow($id) {
+
+        $user = User::findOrFail($id);
+        $userAps = Apartment::all()->where('user_id', '=', $id);
+
+        foreach ($userAps as $apartment) {
+            $userMsgs = $apartment->messages;
+        }
+
+        return view('pages.users.messages.show', compact('userMsgs'));
     }
 }

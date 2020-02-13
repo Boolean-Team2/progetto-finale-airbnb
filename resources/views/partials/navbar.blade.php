@@ -42,9 +42,12 @@
                             <a class="dropdown-item" href="{{ route('account.apartments.show', Auth::user()->id) }}">
                                 {{ __('My Apartments') }}
                             </a>
+                            <a class="dropdown-item" href="{{ route('account.messages.show', Auth::user()->id) }}">
+                                {{ __('My Messages') }}
+                            </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 

@@ -13,6 +13,9 @@ Route::get('/account/{id}/show', 'LoggedUserController@show')->name('account.sho
 // Edit user profile route
 Route::patch('/account/{id}/edit', 'LoggedUserController@edit')->name('account.edit');
 
+// Update user's messages show
+Route::get('/account/{id}/messages/show', 'LoggedUserController@messagesShow')->name('account.messages.show');
+
 // Show user's apartments
 Route::get('/account/{id}/apartments/show', 'ApController@apartmentShow')->name('account.apartments.show');
 
