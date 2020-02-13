@@ -10,6 +10,24 @@
     <div class="container">
         <section class="my-5">
             <div class="row">
+                <div class="col-12">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="m-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-12 col-md-4">
                     <h3>{{ $apartment->name }}</h3>
                     <p>{{ $apartment->description }}</p>
@@ -37,7 +55,9 @@
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <h4>Contact me</h4>
-                <form action="{{route('sendmail', $apartment -> id)}}}">
+                    <form action="{{ route('sendmail', $apartment -> id) }}" method="post">
+                        @csrf
+                        @method('POST')
                         <div class="form-group">
                             @if (Auth::user())
                                 <input type="email" name="email_sender" class="form-control" placeholder="tuamail@mail.com" value="{{ Auth::user()->email }}">
@@ -47,7 +67,7 @@
                         </div>
                         <div class="form-group">
                             <textarea class="form-control" name="body" placeholder="Dear owner.."></textarea>
-                        <input type="text" value="{{$apartment -> id}}" name="apartment_id" hidden>
+                            <input type="text" value="{{$apartment -> id}}" name="apartment_id" hidden>
                         </div>
                         <div class="form-row">
                             <div class="col-sm-12 col-md-8">

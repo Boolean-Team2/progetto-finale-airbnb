@@ -11,28 +11,17 @@ class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-
     private $sendMail;
 
-    public function __construct($sendMail)
+    public function __construct($apartment)
     {
-        $this -> sendMail = $sendMail;
+        $this->sendMail = $apartment;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
-        $sendMail = $this -> sendMail;
-        return $this->view('mail.send-mail', compact('sendMail'));
+        $output = $this->sendMail;
+        return $this->view('mail.send-mail', compact('output'));
     }
 }
 

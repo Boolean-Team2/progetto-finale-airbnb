@@ -29,17 +29,17 @@ class MainController extends Controller
     public function sendMail($ida, Request $request) {
 
         $infoMsg = $request -> validate([
-            'email_sender' => '',
-            'body' => '',
+            'email_sender' => 'email:rfc,dns',
+            'body' => 'string|min:3|max:255',
             'apartment_id' => ''
         ]);
-
-        $infoMsg['apartment_id'] = $ida;
         
         Message::create($infoMsg);
 
         $apartment = Apartment::findOrFail($ida);
         Mail::to('miamail@mail.it') -> send(new ContactMail($apartment));
+
+        return redirect() -> back() -> with('status', 'Message was sended');
 
     }
 }

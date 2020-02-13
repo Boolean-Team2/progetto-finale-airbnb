@@ -32,6 +32,6 @@ Route::patch('/account/apartment/{ida}/update', 'ApController@apartmentUpdate')-
 Route::get('/apartment/{id}/show', 'MainController@apartmentShow')->name('apartment.show');
 
 // * * * MAIL ROUTES * * * //
-Route::get('/sendmail/{ida}', 'MainController@sendMail')->name('sendmail');
+Route::post('/sendmail/{ida}', 'MainController@sendMail')->name('sendmail');
 
 

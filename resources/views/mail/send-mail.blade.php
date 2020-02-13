@@ -1,1 +1,1 @@
-{{$sendMail}}
+{{$output}}
