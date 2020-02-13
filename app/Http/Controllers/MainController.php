@@ -23,6 +23,14 @@ class MainController extends Controller
 
         $apartment = Apartment::findOrFail($id);
 
+        $viewsDB = $apartment -> views; 
+
+        $views=[
+            "views" => $viewsDB + 1
+        ];
+
+        $apartment -> update($views);
+        
         return view('pages.apartments.apartmentShow', compact('apartment'));
     }
 
@@ -31,9 +39,10 @@ class MainController extends Controller
         $infoMsg = $request -> validate([
             'email_sender' => 'email:rfc,dns',
             'body' => 'string|min:3|max:255',
-            'apartment_id' => ''
         ]);
-        
+
+        $infoMsg['apartment_id']= $ida;
+
         Message::create($infoMsg);
 
         $apartment = Apartment::findOrFail($ida);

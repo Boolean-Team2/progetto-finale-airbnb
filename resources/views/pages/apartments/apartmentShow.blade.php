@@ -60,14 +60,14 @@
                         @method('POST')
                         <div class="form-group">
                             @if (Auth::user())
-                                <input type="email" name="email_sender" class="form-control" placeholder="tuamail@mail.com" value="{{ Auth::user()->email }}">
+                                <input type="email" name="email_sender" class="form-control" value="{{ Auth::user()->email }}">
                                 @else
-                                <input type="email" name="email_sender" class="form-control" placeholder="tuamail@mail.com">
+                                <input type="email" name="email_sender" class="form-control" placeholder="Inserisci e-mail">
                             @endif
                         </div>
                         <div class="form-group">
                             <textarea class="form-control" name="body" placeholder="Dear owner.."></textarea>
-                            <input type="text" value="{{$apartment -> id}}" name="apartment_id" hidden>
+                            {{-- <input type="text" value="{{$apartment -> id}}" name="apartment_id" hidden> --}}
                         </div>
                         <div class="form-row">
                             <div class="col-sm-12 col-md-8">
@@ -92,6 +92,7 @@
     @include('partials.footer')
 
     {{-- TOMTOM MAP --}}
+    {{-- <script src="{{asset('assets/js/app.js')}}"></script> --}}
     <script>
         $(document).ready(function() {
             var lon = $('#lon').val();

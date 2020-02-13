@@ -54,4 +54,10 @@ class LoggedUserController extends Controller
 
         return view('pages.users.messages.show', compact('userMsgs'));
     }
+
+    public function apartmentStatistics($ida){
+
+        $apartment = Apartment::findOrFail($ida);
+        return view('pages.users.apartments.apartmentStatistics', compact('apartment'));
+    }
 }

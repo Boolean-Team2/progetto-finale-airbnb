@@ -56,6 +56,7 @@
                                 @endif
                             </p>
                             <a href="{{ route('account.apartment.edit', $apartment->id) }}" class="btn btn-primary">Edit</a>
+                            <a href="{{ route('apartment.statistics', $apartment->id) }}" class="btn btn-primary">Statistics</a>
                         </div>
                     </div>        
                 @endforeach
