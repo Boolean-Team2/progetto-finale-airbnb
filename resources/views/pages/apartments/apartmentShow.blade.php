@@ -104,6 +104,7 @@
                     style: 'tomtom://vector/1/basic-main',
                     center: location,
                     zoom: 18,
+                    radius: 20000
                 });
             var marker = new tt.Marker().setLngLat(location).addTo(map);
             map.addControl(new tt.FullscreenControl());

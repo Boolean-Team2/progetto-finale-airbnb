@@ -118,7 +118,5 @@ class ApController extends Controller
         return redirect() -> route('account.apartments.show', $data['user_id']);
 
     }
-
-
     
 }
