@@ -7,11 +7,16 @@
 
 {{-- CONTENT --}}
 @section('body')
+
+{{-- INCLUDE SCRIPT VUE --}}
+@include('comps.search')
+
 <main>    
     <div class="container-fluid">
         {{-- PREMIUM APARTMENTS --}}
         <section class="my-5">
-            <div class="row">
+            <div id="app" class="row">
+                <apartmentsearch></apartmentsearch>
                 <div class="col-sm-12 col-md-10 offset-md-1 p-3">
                     <h3>Alloggi Sponsorizzati</h3>
                     <p>Una selezione di alloggi verificati per qualità e design.</p>
