@@ -1,23 +1,29 @@
 @extends('templates.template')
 
-{{-- NAVBAR --}}
-<div class="bg-primary">
-    @include('partials.header')
-</div>
-
 {{-- CONTENT --}}
 @section('body')
 
-{{-- INCLUDE SCRIPT VUE --}}
-@include('comps.search')
+<header class="ms_100VhHeader">
+    {{-- INCLUDE SCRIPT VUE --}}
+    @include('comps.search')
+
+    {{-- INCLUDE NAVBAR --}}
+    @include('partials.navbar')
+
+    {{-- SEARCH VUE COMPONENT --}}
+    <div id="app" class="container-fluid h-100">
+        <div class="row h-75 align-items-center">
+            <apartmentsearch></apartmentsearch>
+        </div>
+    </div>
+</header>
 
 <main>    
-    <div class="container-fluid">
+    <div class="container">
         {{-- PREMIUM APARTMENTS --}}
         <section class="my-5">
-            <div id="app" class="row">
-                <apartmentsearch></apartmentsearch>
-                <div class="col-sm-12 col-md-10 offset-md-1 p-3">
+            <div class="row">
+                <div class="col-sm-12 p-3">
                     <h3>Alloggi Sponsorizzati</h3>
                     <p>Una selezione di alloggi verificati per qualità e design.</p>
                     <div class="d-flex flex-wrap justify-content-between">
@@ -44,7 +50,7 @@
         {{-- FREE APARTMENTS --}}
         <section class="my-5">
             <div class="row">
-                <div class="col-sm-12 col-md-10 offset-md-1 p-3">
+                <div class="col-sm-12">
                     <h3>Alloggi non sponsorizzati</h3>
                     <p>Una selezione di alloggi verificati per qualità e design.</p>
                     <div class="d-flex flex-wrap justify-content-between">
