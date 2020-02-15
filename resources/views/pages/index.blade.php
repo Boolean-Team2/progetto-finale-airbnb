@@ -32,14 +32,41 @@
     </div>
 </header>
 
+
+<script src='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.45.0/services/services-web.min.js'></script>
+<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/1.0.8/SearchBox-web.js"></script>
 <script>
     $(document).ready(function() {
 
         $('#js_search').click(function() {
             var input = $('#js_input').val();
+            console.log(input);
+            
+            search(input);
         });
-
-        // Mappa
+        function distance(lat1, lon1, lat2, lon2, unit) {
+                        if ((lat1 == lat2) && (lon1 == lon2)) {
+                            return 0;
+                        }
+                        else {
+                            var radlat1 = Math.PI * lat1/180;
+                            var radlat2 = Math.PI * lat2/180;
+                            var theta = lon1-lon2;
+                            var radtheta = Math.PI * theta/180;
+                            var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+                            if (dist > 1) {
+                                dist = 1;
+                            }
+                            dist = Math.acos(dist);
+                            dist = dist * 180/Math.PI;
+                            dist = dist * 60 * 1.1515;
+                            if (unit=="K") { dist = dist * 1.609344 }
+                            if (unit=="N") { dist = dist * 0.8684 }
+                            return dist;
+                        }
+        };
+        
+        // // Mappa
         var location = [11.747475, 48.213205];
         var map = tt.map({
                 key: 'UnotVndyZgjPLoXejGGoIUZDc49X2IrU',
@@ -50,37 +77,104 @@
             });
         map.addControl(new tt.FullscreenControl());
         map.addControl(new tt.NavigationControl());
-        
-        // Chiamata al nostro db che restituisce tutti gli appartamenti
-        $.ajax({
-            url: "http://localhost:3000/api/apartments/show",
-            method: 'GET',
-            success: function (data) {
-                // console.log(data.apartments);
+        function search(input){
 
-                var apartments = data.apartments;
+            // Chiamata al nostro db che restituisce tutti gli appartamenti
+            $.ajax({
+                url: "http://localhost:3000/api/apartments/show",
+                method: 'GET',
+                data: {
+                    lat : '11.747475',
+                    lng : '48.213205',
+                    radius : 20000
+                },
+                success: function (data) {
+                    //console.log(data);
+                    var apartments = data.apartments;
 
-                var popupOffsets = {
-                    top: [0, 0],
-                    bottom: [0, -70],
-                    'bottom-right': [0, -70],
-                    'bottom-left': [0, -70],
-                    left: [25, -35],
-                    right: [-25, -35]
-                }
+                    var popupOffsets = {
+                        top: [0, 0],
+                        bottom: [0, -70],
+                        'bottom-right': [0, -70],
+                        'bottom-left': [0, -70],
+                        left: [25, -35],
+                        right: [-25, -35]
+                    };
+                    
 
-                apartments.forEach(apartment => {
-                    // console.log(apartment);
-                    // console.log(apartment.latitude, apartment.longitude);
-                    var marker = new tt.Marker().setLngLat([apartment.longitude, apartment.latitude]).addTo(map);
-                    // // var popup = new tt.Popup({offset: popupOffsets}).setHTML(apartment.address);
-                    // marker.setPopup(popup).togglePopup();
-                });
-            },
-            error: function () {
-                alert("Si è verificato un errore")
-            },
-        });
+                    
+                    apartments.forEach(apartment => {
+                        // getDistanceFromLatLonInKm(48.213205, 11.747475, apartment.latitude, apartment.longitude);
+                        
+                        console.log(apartment.latitude, apartment.longitude);
+                        var distanza = distance(48.213205, 11.747475, apartment.latitude, apartment.longitude, "K");
+                        console.log(Math.ceil(distanza));
+                        if (distanza <= 20) {
+                            var marker = new tt.Marker().setLngLat([apartment.longitude, apartment.latitude]).addTo(map);
+                            console.log(apartment.name);
+                            
+                            
+                        }
+                        
+                        // // var popup = new tt.Popup({offset: popupOffsets}).setHTML(apartment.address);
+                        // marker.setPopup(popup).togglePopup();
+                    });
+                    
+                    // tt.services.nearbySearch({
+                    // key: 'UnotVndyZgjPLoXejGGoIUZDc49X2IrU',
+                    // center: location,
+                    // radius: 5000
+                    // })
+                    // .go()
+                    // .then(function(data) {
+                    //     console.log(data);
+                        
+                    //     for (var i = 0; i < data.results.length; i++) {
+                    //         console.log(data.results[i].position);
+                            
+                    //         new tt.Marker().setLngLat(data.results[i].position).addTo(map);
+                    //     }
+                    // });
+                    
+
+                    // const geometryList = [
+                    // {
+                    //     type: 'CIRCLE',
+                    //     position: location,
+                    //     radius: 20000
+                    // },
+                    // ];
+                    
+                    // tt.services.geometrySearch({
+                    //     key: 'UnotVndyZgjPLoXejGGoIUZDc49X2IrU',
+                    //     query: '11.747475, 48.213205',
+                    //     geometryList: geometryList
+                    //     })
+                    //     .go()
+                    //     .then(function(data) {
+                    //     console.log(data);
+                        
+                        
+                    //     console.log(apartments);
+                    //     for (var i = 0; i < apartments.length; i++) {
+                    //         console.log(apartments[i]);
+                            
+                    //         //console.log(data.results[i].position);
+                    //         var position = {lng: apartments[i].longitude, lat: apartments[i].latitude};
+                    //         console.log(position);
+                            
+                            
+                    //         new tt.Marker().setLngLat(position).addTo(map);
+                    //     }
+                    // });
+
+                    
+                },
+                error: function () {
+                    alert("Si è verificato un errore")
+                },
+            });
+        }
     });
 </script>
 
