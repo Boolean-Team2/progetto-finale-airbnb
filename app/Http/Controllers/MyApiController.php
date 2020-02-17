@@ -37,6 +37,7 @@ class MyApiController extends Controller
                 $km = $miles * 1.609344;
                 // Check su distanza, numero di letti e stanze
                 if ($km <= $radius && $apartament['beds'] == $beds && $apartament['rooms'] == $rooms) {
+                    $apartament['km'] = $km;
                     // Check sui servizi ricevuti in input
                     if(!empty($services)) { // se pieno .. 
                         // Prendo tutti i servizi dell'appartamento e li ciclo
@@ -53,6 +54,11 @@ class MyApiController extends Controller
                 }
             }
         };
+
+        //ordine array per distanza
+        $keys = array_column($apps, 'km');
+        array_multisort($keys, SORT_ASC, $apps);
+
         return response() -> json(compact('apps'));
     }
 }
