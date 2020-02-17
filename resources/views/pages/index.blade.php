@@ -46,15 +46,15 @@
         });
         
         // // Mappa
-        var map = tt.map({
-                key: 'UnotVndyZgjPLoXejGGoIUZDc49X2IrU',
-                container: 'map',
-                style: 'tomtom://vector/1/basic-main',
-                center: location,
-                zoom: 9,
-            });
-        map.addControl(new tt.FullscreenControl());
-        map.addControl(new tt.NavigationControl());
+        // var map = tt.map({
+        //         key: 'UnotVndyZgjPLoXejGGoIUZDc49X2IrU',
+        //         container: 'map',
+        //         style: 'tomtom://vector/1/basic-main',
+        //         center: location,
+        //         zoom: 9,
+        //     });
+        // map.addControl(new tt.FullscreenControl());
+        // map.addControl(new tt.NavigationControl());
 
         function search(input){
         $.ajax({
@@ -77,14 +77,14 @@
                     data: {
                         lat : lat,
                         lon : lon,
-                        radius : 20
+                        radius : 100
                     },
                         success: function (data) {
                             console.log(data);
                             
                         },
-                        error: function () {
-                            alert("Si è verificato un errore")
+                        error: function (error) {
+                            alert("Si è verificato un errore", error)
                         },
                     }); 
 

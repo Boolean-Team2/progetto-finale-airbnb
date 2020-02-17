@@ -15,7 +15,8 @@ class MyApiController extends Controller
         $lat1 = $request['lat'];
         $lon1 = $request['lon'];
         $radius = $request['radius'];
-
+        $apps = [];
+        
         foreach ($apartments as $apartament) {
             $lat2 = $apartament['latitude'];
             $lon2 = $apartament['longitude'];
@@ -32,10 +33,12 @@ class MyApiController extends Controller
                 if ($km <= $radius) {
                     $apps[] = $apartament; 
                 }
-   
+                
             }
-        }
+        };
+        
         return response() -> json(compact('apps'));
+  
     }
 
 }
