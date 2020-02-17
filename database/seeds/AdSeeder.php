@@ -10,17 +10,20 @@ class AdSeeder extends Seeder
     {
         $ads = [
             [
-                'name' => '24h', 
+                'name' => '24h',
+                'price' => 2.99 
                 // 'start_time' => new DateTime(),
                 // 'end_time' => date("Y-m-d H:i:s", time() + 86400)
             ],
             [
                 'name' => '72h', 
+                'price' => 5.99 
                 // 'start_time' => new DateTime(),
                 // 'end_time' => date("Y-m-d H:i:s", time() + 259200)
             ],
             [
-                'name' => '144h', 
+                'name' => '144h',
+                'price' => 9.99  
                 // 'start_time' => new DateTime(),
                 // 'end_time' => date("Y-m-d H:i:s", time() + 518400)
             ],

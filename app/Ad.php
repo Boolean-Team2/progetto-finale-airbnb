@@ -9,7 +9,7 @@ class Ad extends Model
     protected $table = 'ads';
 
     protected $fillable = [
-        'name'
+        'name', 'price'
     ];
     
     public function apartments() {

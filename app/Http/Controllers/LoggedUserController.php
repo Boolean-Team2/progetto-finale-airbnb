@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\User;
 use App\Apartment;
+use App\Ad;
 
 class LoggedUserController extends Controller
 {
@@ -60,4 +61,19 @@ class LoggedUserController extends Controller
         $apartment = Apartment::findOrFail($ida);
         return view('pages.users.apartments.apartmentStatistics', compact('apartment'));
     }
+
+    public function apartmentSponsor($ida){
+        $ads = Ad::all();
+        $apartment = Apartment::findOrFail($ida);
+        return view('pages.users.apartments.apartmentSponsor', compact('apartment','ads'));
+    }
+
+    // public function apartmentSponsorPayment($ida, Request $request){
+
+    //     $data = $request->validate([
+    //         'price' => 'required',
+    //     ]);
+    //     $price=$data['price'];
+    //     return view('pages.users.apartments.apartmentSponsorPayment', compact('price'));
+    // }
 }

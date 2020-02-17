@@ -19,6 +19,11 @@ Route::get('/account/{id}/messages/show', 'LoggedUserController@messagesShow')->
 // Statistics
 Route::get('/apartment/{id}/statistics', 'LoggedUserController@apartmentStatistics')->name('apartment.statistics');
 
+// Sponsor
+Route::get('/apartment/{id}/sponsor', 'LoggedUserController@apartmentSponsor')->name('apartment.sponsor');
+
+// Route::patch('/apartment/{ida}/sponsorPayment', 'LoggedUserController@apartmentSponsorPayment') -> name('sponsorPayment');
+
 // Show user's apartments
 Route::get('/account/{id}/apartments/show', 'ApController@apartmentShow')->name('account.apartments.show');
 
