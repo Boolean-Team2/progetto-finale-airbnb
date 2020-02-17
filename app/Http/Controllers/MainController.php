@@ -7,15 +7,14 @@ use Illuminate\Http\Request;
 use App\Mail\ContactMail;
 use App\Apartment;
 use App\Message;
+use App\Service;
 
 class MainController extends Controller
 {
     public function index() {
-
-        // fare query per appartamenti sponsorizzati, aggiungere campo nel db$authorId = 956;
-
         $apartments = Apartment::all()->where('visibility', '=', 1);
-        return view('pages.index', compact('apartments'));
+        $services = Service::all();
+        return view('pages.index', compact('apartments', 'services'));
     }
 
     // Apartment details show
