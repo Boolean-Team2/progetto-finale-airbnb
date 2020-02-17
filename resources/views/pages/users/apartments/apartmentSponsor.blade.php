@@ -24,7 +24,7 @@
 </div>
 
 <div class="content">
-  <form method="post" id="payment-form" action="{{route('checkout')}}">
+  <form method="post" id="payment-form" action="{{route('checkout',$apartment->id)}}">
           @csrf
           <section>
               <label for="amount">
@@ -34,7 +34,6 @@
                     @endforeach
                   </select>
               </label> 
-
               <div class="bt-drop-in-wrapper">
                   <div id="bt-dropin"></div>
               </div>

@@ -22,7 +22,7 @@ Route::get('/apartment/{id}/statistics', 'LoggedUserController@apartmentStatisti
 // Sponsor
 Route::get('/apartment/{id}/sponsor', 'LoggedUserController@apartmentSponsor')->name('apartment.sponsor');
 
-Route::post('/checkout', 'LoggedUserController@checkout') -> name('checkout');
+Route::post('/checkout/{ida}', 'LoggedUserController@checkout') -> name('checkout');
 
 // Show user's apartments
 Route::get('/account/{id}/apartments/show', 'ApController@apartmentShow')->name('account.apartments.show');

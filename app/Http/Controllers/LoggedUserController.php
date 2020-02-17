@@ -9,6 +9,7 @@ use App\User;
 use App\Apartment;
 use App\Ad;
 use Braintree;
+use DateTime;
 
 class LoggedUserController extends Controller
 {
@@ -79,7 +80,8 @@ class LoggedUserController extends Controller
         return view('pages.users.apartments.apartmentSponsor', compact('apartment','ads','token'));
     }
 
-    public function checkout(Request $request){
+    public function checkout(Request $request, $ida){
+        
         $gateway = new Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
@@ -108,8 +110,28 @@ class LoggedUserController extends Controller
             // header("Location: transaction.php?id=" . $transaction->id);
 
             // Sponsorizzare appartamento
+            $ads = Ad::all();
+            $apartment = Apartment::findOrFail($ida);
+            foreach ($ads as $ad) {
+                if($ad->price==$amount){
+                    if($amount==2.99){
+                        $start = new DateTime();
+                        $end = date("Y-m-d H:i:s", time() + 86400);
+                        $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
+                    } elseif ($amount==5.99) {
+                        $start = new DateTime();
+                        $end = date("Y-m-d H:i:s", time() + 259200);
+                        $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
+                    }elseif ($amount==9.99) {
+                        $start = new DateTime();
+                        $end = date("Y-m-d H:i:s", time() + 518400);
+                        $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
+                    }
+                }
 
+            }
             
+
             return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
         } else {
             $errorString = "";
