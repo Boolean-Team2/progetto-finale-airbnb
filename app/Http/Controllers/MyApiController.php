@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Apartment;
+use App\Service;
 
 class MyApiController extends Controller
 {
     // Apartments show API
     public function showApartmentsApi(Request $request) {
-
-        $apartments = Apartment::all();
 
         $lat1 = $request['lat'];
         $lon1 = $request['lon'];
@@ -21,6 +20,19 @@ class MyApiController extends Controller
         $services = $request['services'];
 
         $apps = [];
+
+        // Filtrare la query all'inizio
+        $apartments = new Apartment();
+
+        // Controlli sui filtri che arrivano dall'input
+        if($beds) {
+            $apartments = $apartments->where('beds', '>=', $beds);
+        }
+        if($rooms) {
+            $apartments = $apartments->where('rooms', '>=', $rooms);
+        }
+
+        $apartments = $apartments->get();        
         
         foreach ($apartments as $apartament) {
             $lat2 = $apartament['latitude'];
@@ -35,25 +47,37 @@ class MyApiController extends Controller
                 $dist = rad2deg($dist);
                 $miles = $dist * 60 * 1.1515;
                 $km = $miles * 1.609344;
+
                 // Check su distanza, numero di letti e stanze
-                if ($km <= $radius && $apartament['beds'] == $beds && $apartament['rooms'] == $rooms) {
+                if ($km <= $radius && !empty($services)) {
                     $apartament['km'] = $km;
+                    
+                    // Prendo tutti i servizi dell'appartamento e li ciclo
+                    $apServices = $apartament->services;
+
+                    // Azzero gli array da usare per il confronto ad ogni giro
+                    $intersectServices = [];
+                    $array = [];
+                    
+                    // Creo l'array di id dei servizi
+                    foreach ($apServices as $apService) {
+                        $array [] = $apService['id'];
+                    }
+                    
+                    // check sui valori dei due array
+                    $intersectServices = array_intersect($services, $array);
+
                     // Check sui servizi ricevuti in input
-                    if(!empty($services)) { // se pieno .. 
-                        // Prendo tutti i servizi dell'appartamento e li ciclo
-                        $apServices = $apartament->services;
-                        foreach ($apServices as $apService) {
-                            // check sui valori dei due array
-                            if(in_array($apService['id'], $services) && !in_array($apartament, $apps)) {
-                                $apps[] = $apartament;
-                            }
-                        }
-                    } else { // altrimenti ..
+                    if((count(array_unique(array_merge($intersectServices, $services))) === count($intersectServices)) && !in_array($apartament, $apps)) {
                         $apps[] = $apartament;
                     }
+                } 
+                else if($km <= $radius && empty($services)) {
+                    $apartament['km'] = $km;
+                    $apps[] = $apartament;
                 }
             }
-        };
+        }
 
         //ordine array per distanza
         $keys = array_column($apps, 'km');
