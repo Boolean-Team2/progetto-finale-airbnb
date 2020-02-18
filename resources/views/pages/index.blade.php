@@ -81,6 +81,9 @@
 <script>
     $(document).ready(function() {
 
+        // Nascondo il div dei risultati della ricerca
+        $('#js_infoSearch').hide();
+
         // Stampo il valore del range in pagina
         $('#js_radius').click(function() {
             $('#js_rangeKm').html($('#js_radius').val() + " km");
@@ -132,6 +135,9 @@
                         success: function (data) {
                             // console.log("Dati del db:",data);
                             printData(data);
+
+                            // Scroll to results
+                            scrollToResults();
                         },
                         error: function (error) {
                             console.log("Si è verificato un errore", error);
@@ -161,6 +167,14 @@
                             output.append(html);
                         });
                     }
+                    // Scroll to results function
+                    function scrollToResults() {
+                        $('html,body').animate({
+                            scrollTop: $('#js_hbOutput').offset().top
+                        },'slow');
+
+                        $('#js_infoSearch').show();
+                    }
                     // Fine Chiamata al nostro db che restituisce tutti gli appartamenti
                 },
                 error: function () {
@@ -175,9 +189,8 @@
     <div class="container">
         <section class="my-5">
             <div class="row">
-                {{-- HANDLEBARS OUTPUT --}}
-                <div id="js_hbOutput" class="col-sm-12 d-flex flex-wrap justify-content-between">
-                    {{-- <h3>Alloggi Sponsorizzati</h3>
+                <div class="col-sm-12">
+                    <h3>Alloggi Sponsorizzati</h3>
                     <p>Una selezione di alloggi verificati per qualità e design.</p>
                     <div class="d-flex flex-wrap justify-content-between">
                         @foreach ($apartments as $apartment)
@@ -195,7 +208,15 @@
                                 <p>Visibility: {{ $apartment->visibility }}</p>
                             </div>        
                         @endforeach
-                    </div> --}}
+                    </div>
+                    <div id="js_infoSearch">
+                        <hr>
+                        <h3>Risultati ricerca</h3>
+                        <p>Una selezione di alloggi verificati per qualità e design.</p>
+                    </div>
+                </div>
+                {{-- HANDLEBARS OUTPUT --}}
+                <div id="js_hbOutput" class="col-sm-12 d-flex flex-wrap justify-content-between">
                 </div>
             </div>
         </section>
