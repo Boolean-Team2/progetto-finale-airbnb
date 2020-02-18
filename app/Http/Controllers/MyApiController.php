@@ -32,8 +32,8 @@ class MyApiController extends Controller
             $apartments = $apartments->where('rooms', '>=', $rooms);
         }
 
-        $apartments = $apartments->where('visibility', 1) -> get();        
-        
+        $apartments = $apartments->where('visibility', 1) -> get();
+                
         foreach ($apartments as $apartament) {
             $lat2 = $apartament['latitude'];
             $lon2 = $apartament['longitude'];
