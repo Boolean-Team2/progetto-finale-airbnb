@@ -47,7 +47,7 @@
                     </div>
                 </form>
             </div>
-            <div id="map" class="col-sm-12 col-lg-4 offset-md-1 h-100 p-0"></div>
+            {{-- <div id="map" class="col-sm-12 col-lg-4 offset-md-1 h-100 p-0"></div> --}}
         </div>
     </div>
 </header>
