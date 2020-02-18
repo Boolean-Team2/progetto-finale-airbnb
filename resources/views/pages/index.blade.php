@@ -25,7 +25,11 @@
                     <hr>
                     <div class="form-row">
                         <div class="col-sm-12 col-md-4">
-                            <label>Min 1 - Max 100</label>
+                            <label class="d-flex justify-content-between">
+                                <span>0 km</span>
+                                <span id="js_rangeKm">50 km</span>
+                                <span>100 km</span>
+                            </label>
                             <input id="js_radius" type="range" class="form-control-range">
                         </div>
                         <div class="col-sm-12 col-md-4">
@@ -39,7 +43,7 @@
                     </div>
                     <hr>
                     <div class="form-row">
-                        <div class="col-sm-12 d-flex">
+                        <div class="col-sm-12 d-flex justify-content-center flex-wrap">
                             @foreach($services as $service)
                                 <span class="d-flex align-items-center mr-3 text-capitalize"><input class="mr-1" name="service" type="checkbox" value="{{ $service->id }}">{{ $service->name }}</span>
                             @endforeach
@@ -47,13 +51,17 @@
                     </div>
                 </form>
             </div>
-            {{-- <div id="map" class="col-sm-12 col-lg-4 offset-md-1 h-100 p-0"></div> --}}
         </div>
     </div>
 </header>
 
 <script>
     $(document).ready(function() {
+
+        // Stampo il valore del range in pagina
+        $('#js_radius').click(function() {
+            $('#js_rangeKm').html($('#js_radius').val() + " km");
+        });
 
         // Prendiamo i valori degli input
         $('#js_search').click(function() {
@@ -102,12 +110,12 @@
                             console.log("Dati del db:",data);
                         },
                         error: function (error) {
-                            alert("Si è verificato un errore", error)
+                            console.log("Si è verificato un errore", error);
                         }
                     });
                 },
                 error: function () {
-                alert("Si è verificato un errore")
+                    console.log("Si è verificato un errore");
                 },
             }); 
         }
