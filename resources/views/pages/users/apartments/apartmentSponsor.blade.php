@@ -11,9 +11,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				@if (session('status'))
+				@if (session('success_message'))
 					<div class="alert alert-success">
-						{{ session('status') }}
+						{{ session('success_message') }}
 					</div>
 				@endif
 				@if ($errors->any())
