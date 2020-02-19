@@ -42,6 +42,9 @@
                             <a class="dropdown-item" href="{{ route('account.apartments.show', Auth::user()->id) }}">
                                 {{ __('My Apartments') }}
                             </a>
+                            <a class="dropdown-item" href="{{ route('account.statistics.show', Auth::user()->id) }}">
+                                {{ __('My Statistics') }}
+                            </a>
                             <a class="dropdown-item" href="{{ route('account.messages.show', Auth::user()->id) }}">
                                 {{ __('My Messages') }}
                             </a>
