@@ -64,14 +64,14 @@ class LoggedUserController extends Controller
         $userApartments = $user->apartments;
 
         return view('pages.users.statistics.show', compact('userApartments'));
-
     }
 
     // All user's apartment statistics
     public function apartmentStatistics($id){
 
-        // TO DO: Ricerca appartamento e ritorno dei dati nella pagina dedicata
+        $apartment = Apartment::findOrFail($id);
 
+        return view('pages.users.apartments.statistics', compact('apartment'));
     }
 
     // User sponsor his apartment
