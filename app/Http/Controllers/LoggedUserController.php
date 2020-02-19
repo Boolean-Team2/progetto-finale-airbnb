@@ -48,8 +48,7 @@ class LoggedUserController extends Controller
     // User messages show
     public function messagesShow($id) {
 
-        $user = User::findOrFail($id);
-        $userAps = Apartment::all()->where('user_id', '=', $id);
+        $userAps = Apartment::all()->where('user_id', $id);
 
         foreach ($userAps as $apartment) {
             $userMsgs = $apartment->messages;
@@ -58,12 +57,24 @@ class LoggedUserController extends Controller
         return view('pages.users.messages.show', compact('userMsgs'));
     }
 
-    public function apartmentStatistics($ida){
+    // All user's apartments statistics
+    public function apartmentsStatistics($id){
 
-        $apartment = Apartment::findOrFail($ida);
-        return view('pages.users.apartments.apartmentStatistics', compact('apartment'));
+        $user = User::findOrFail($id);
+        $userApartments = $user->apartments;
+
+        return view('pages.users.statistics.show', compact('userApartments'));
+
     }
 
+    // All user's apartment statistics
+    public function apartmentStatistics($id){
+
+        // TO DO: Ricerca appartamento e ritorno dei dati nella pagina dedicata
+
+    }
+
+    // User sponsor his apartment
     public function apartmentSponsor($ida){
 
         $gateway = new Braintree\Gateway([
