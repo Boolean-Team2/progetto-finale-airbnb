@@ -41,7 +41,7 @@
     
     <div class="col-sm-12 col-lg-6">
       <h3> Messages number</h3>
-      <p id="messages">{{ $apartment->messages->count()}}</p>
+      <p id="messages">{{ $apartment->messages->count() }}</p>
       <div class="container">
         <div class="wrap">
           <canvas id="myMessages"></canvas> 
@@ -51,27 +51,32 @@
   </div>
 </div>
 
-
 {{-- FOOTER --}}
 @include('partials.footer')
 
+{{-- 
+    IDEE GRAFICI 
+    - TORTA CON VIEWS DEI SINGOLI APPARTAMENTI    
+--}}
 
 
 <script>
   
   $(document).ready(function() {  
 
-    var views = $("#views").text();
+    var views = [$("#views").text(), 23, 50];
+    console.log("views", views);
+    
     var ctx = document.getElementById('myViews').getContext('2d');
     new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
-            labels: moment.months(),
+            labels: [1, 5, 10],
             datasets: [{
                 label: 'Views',
                 data: views,
-                backgroundColor: "#fff",
-                borderColor: "#fff",
+                backgroundColor: "red",
+                borderColor: "red",
                 borderWidth: 1
             }]
         },
@@ -95,8 +100,8 @@
             datasets: [{
                 label: 'Messages',
                 data: views,
-                backgroundColor: "#fff",
-                borderColor: "#fff",
+                backgroundColor: "red",
+                borderColor: "red",
                 borderWidth: 1
             }]
         },
