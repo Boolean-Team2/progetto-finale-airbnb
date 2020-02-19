@@ -16,12 +16,14 @@ Route::patch('/account/{id}/edit', 'LoggedUserController@edit')->name('account.e
 // Update user's messages show
 Route::get('/account/{id}/messages/show', 'LoggedUserController@messagesShow')->name('account.messages.show');
 
-// Statistics
-Route::get('/apartment/{id}/statistics', 'LoggedUserController@apartmentStatistics')->name('apartment.statistics');
+// User's apartments statistics
+Route::get('/account/{id}/apartments-statistics', 'LoggedUserController@apartmentsStatistics')->name('account.statistics.show');
+Route::get('/apartment/{id}/statistics', 'LoggedUserController@apartmentStatistics')->name('apartmet.statistics.show');
 
-// Sponsor
+// User sponsor apartments
 Route::get('/apartment/{id}/sponsor', 'LoggedUserController@apartmentSponsor')->name('apartment.sponsor');
 
+// Ads payments
 Route::post('/checkout/{ida}', 'LoggedUserController@checkout') -> name('checkout');
 
 // Show user's apartments
