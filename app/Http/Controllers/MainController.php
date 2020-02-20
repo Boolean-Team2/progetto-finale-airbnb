@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Mail\ContactMail;
@@ -12,8 +13,10 @@ use App\Service;
 class MainController extends Controller
 {
     public function index() {
-        $apartments = Apartment::all()->where('visibility', '=', 1);
+
+        $apartments = Apartment::join('ad_apartment', 'apartments.id', '=', 'ad_apartment.apartment_id') -> where('apartments.visibility', 1) -> get();
         $services = Service::all();
+        
         return view('pages.index', compact('apartments', 'services'));
     }
 
