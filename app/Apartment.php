@@ -19,6 +19,7 @@ class Apartment extends Model
         'address',
         'views',
         'visibility',
+        'sponsored',
         'user_id'
     ];
 

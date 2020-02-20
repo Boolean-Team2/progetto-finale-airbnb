@@ -206,7 +206,7 @@
                                     <a href="{{ route('apartment.show', $apartment->id) }}" class="btn btn-primary">Show details</a>
                                 </div>
                                 <p>Visibility: {{ $apartment->visibility }}</p>
-                                <p>Sponsored</p>
+                                <p>Sponsored: {{ $apartment->sponsored }}</p>
                             </div>        
                         @endforeach
                     </div>

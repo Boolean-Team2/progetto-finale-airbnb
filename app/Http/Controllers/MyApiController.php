@@ -32,7 +32,7 @@ class MyApiController extends Controller
             $apartments = $apartments->where('rooms', '>=', $rooms);
         }
 
-        $apartments = $apartments->where('visibility', 1) -> get();
+        $apartments = $apartments -> where('visibility', 1) -> orderBy('sponsored', 'desc') -> get();
                 
         foreach ($apartments as $apartament) {
             $lat2 = $apartament['latitude'];
@@ -79,9 +79,10 @@ class MyApiController extends Controller
             }
         }
 
-        //ordine array per distanza
-        $keys = array_column($apps, 'km');
-        array_multisort($keys, SORT_ASC, $apps);
+        // Ordinazione array per sponsorizzati e distanza
+        $distance = array_column($apps, 'km');
+        $sponsor = array_column($apps, 'sponsored');
+        array_multisort($sponsor, SORT_DESC, $distance, SORT_ASC, $apps);
 
         return response() -> json(compact('apps'));
     }

@@ -22,6 +22,7 @@ class CreateApartmentsTable extends Migration
             $table->string('address');
             $table->integer('views')->nullable();
             $table->boolean('visibility')->nullable();
+            $table->boolean('sponsored')->nullable();
             $table->timestamps();
         });
     }

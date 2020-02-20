@@ -51,8 +51,11 @@ class ApController extends Controller
             'longitude' => 'required',
             'address' => 'required',
             'visibility' => 'required',
+            'sponsored' => '',
             'user_id' => ''
         ]);
+
+        $data['sponsored'] = 0;
 
         $apartment = Apartment::create($data);
 
