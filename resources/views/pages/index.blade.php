@@ -193,7 +193,7 @@
                     <h3>Alloggi Sponsorizzati</h3>
                     <p>Una selezione di alloggi verificati per qualità e design.</p>
                     <div class="d-flex flex-wrap justify-content-between">
-                        @foreach ($apartments as $apartment)
+                        @foreach ($sponsoredApartments as $apartment)
                             <div class="card mb-3" style="width: 20rem;">
                                 @if ($apartment->img)
                                     <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
@@ -206,6 +206,7 @@
                                     <a href="{{ route('apartment.show', $apartment->id) }}" class="btn btn-primary">Show details</a>
                                 </div>
                                 <p>Visibility: {{ $apartment->visibility }}</p>
+                                <p>Sponsored</p>
                             </div>        
                         @endforeach
                     </div>
