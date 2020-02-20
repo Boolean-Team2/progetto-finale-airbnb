@@ -37,16 +37,19 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('account.show', Auth::user()->id) }}">
-                                {{ __('My Profile') }}
+                                {{ __('Profile') }}
                             </a>
                             <a class="dropdown-item" href="{{ route('account.apartments.show', Auth::user()->id) }}">
-                                {{ __('My Apartments') }}
+                                {{ __('Apartments') }}
                             </a>
                             <a class="dropdown-item" href="{{ route('account.statistics.show', Auth::user()->id) }}">
-                                {{ __('My Statistics') }}
+                                {{ __('Statistics') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('user.sponsor.payments', Auth::user()->id) }}">
+                                {{ __('Payments') }}
                             </a>
                             <a class="dropdown-item" href="{{ route('account.messages.show', Auth::user()->id) }}">
-                                {{ __('My Messages') }}
+                                {{ __('Messages') }}
                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();

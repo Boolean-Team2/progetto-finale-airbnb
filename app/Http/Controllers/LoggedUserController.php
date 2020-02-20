@@ -74,6 +74,14 @@ class LoggedUserController extends Controller
         return view('pages.users.apartments.statistics', compact('apartment'));
     }
 
+    // User show his sponsor payments
+    public function userPayments($id) {
+
+        $user = User::findOrFail($id);
+
+        return view('pages.users.payments.show', compact('user'));
+    }
+
     // User sponsor his apartment
     public function apartmentSponsor($ida){
 
