@@ -49,9 +49,9 @@ class LoggedUserController extends Controller
     public function messagesShow($id) {
 
         $userAps = Apartment::all()->where('user_id', $id);
-
+        $userMsgs = [];
         foreach ($userAps as $apartment) {
-            $userMsgs = $apartment->messages;
+            $userMsgs [] = $apartment->messages;
         }
 
         return view('pages.users.messages.show', compact('userMsgs'));

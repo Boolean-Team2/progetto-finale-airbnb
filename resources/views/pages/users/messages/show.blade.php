@@ -41,15 +41,17 @@
                         <h6 class="text-uppercase font-weight-bold">Apartment</h6>
                     </div>
                     @foreach ($userMsgs as $userMsg)
-                    <div class="col-sm-12 col-md-4">
-                        {{ $userMsg->email_sender }}
-                    </div>
-                    <div class="col-sm-12 col-md-4">
-                        {{ $userMsg->body }}
-                    </div>
-                    <div class="col-sm-12 col-md-4">
-                        {{ $userMsg->apartment->name }}
-                    </div>
+                        @foreach ($userMsg as $msg)
+                            <div class="col-sm-12 col-md-4">
+                                {{ $msg->email_sender }}
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                {{ $msg->body }}
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                {{ $msg->apartment->name }}
+                            </div>
+                        @endforeach
                     @endforeach
                 </div>
             </div>
