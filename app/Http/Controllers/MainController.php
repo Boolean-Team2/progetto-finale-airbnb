@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -14,10 +16,21 @@ class MainController extends Controller
 {
     public function index() {
 
-        $apartments = Apartment::join('ad_apartment', 'apartments.id', '=', 'ad_apartment.apartment_id') -> where('apartments.visibility', 1) -> get();
+        $apartments = Apartment::join('ad_apartment', 'apartments.id', '=', 'ad_apartment.apartment_id') 
+            -> where('apartments.visibility', 1)
+            -> get();
         $services = Service::all();
-        
-        return view('pages.index', compact('apartments', 'services'));
+
+        foreach ($apartments as $apartment) {
+            $finish = Carbon::parse($apartment->end_time);
+            $now = Carbon::now();
+
+            if($now < $finish) {
+                $sponsoredApartments [] = $apartment;
+            }
+        }
+
+        return view('pages.index', compact('sponsoredApartments', 'services'));
     }
 
     // Apartment details show
