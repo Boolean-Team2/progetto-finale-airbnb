@@ -186,15 +186,15 @@
 </script>
 
 <main>    
-    <div class="container">
-        <section class="my-5">
+    <div class="container-fluid bg-info">
+        <section class="my-5 py-3">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3>Alloggi Sponsorizzati</h3>
-                    <p>Una selezione di alloggi verificati per qualità e design.</p>
-                    <div class="d-flex flex-wrap justify-content-between">
+                    <h3 class="text-center">Alloggi Sponsorizzati</h3>
+                    <p class="text-center">Una selezione di alloggi verificati per qualità e design.</p>
+                    <div class="d-flex flex-wrap">
                         @foreach ($sponsoredApartments as $apartment)
-                            <div class="card mb-3" style="width: 20rem;">
+                            <div class="card mr-2 mb-2" style="width: 20rem;">
                                 @if ($apartment->img)
                                     <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
                                     @else
