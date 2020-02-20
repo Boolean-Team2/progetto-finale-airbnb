@@ -89,8 +89,6 @@ class ApController extends Controller
     // User's apartment edit
     public function apartmentUpdate(Request $request, $id) {
 
-        // dd($request);
-
         $data = $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -108,14 +106,24 @@ class ApController extends Controller
         ]);
 
         $apartment = Apartment::findOrFail($id);
-
-        $services = $request->input('services');
-
         $apartment -> update($data);
 
+        if(isset($data['img'])) {
+            // Mi salvo il nome del file
+            $fileName = $data['img'] -> getClientOriginalName();
+            // Salvo il file nella cartella "public/assets/images/users/{id_user}/apartments/{apartment->id/nomefile.ext"
+            $data['img'] -> move('assets/images/users/' . $apartment['user_id'] . '/apartments/' . $apartment->id , $fileName);
+            // Inserisco il nome dell'immagine nel campo della tabella
+            $apartment['img'] = $fileName;
+            // Salvo nuovamente l'appartamente in caso di inserimento dell'immagine
+            $apartment->save();
+                        
+        }
+
+        $services = $request->input('services');
         $apartment -> services() -> sync($services);
 
-        return redirect() -> route('account.apartments.show', $data['user_id']);
+        return redirect() -> route('account.apartments.show', $data['user_id']) -> with('status', 'Apartment was edited with success');
 
     }
     
