@@ -210,17 +210,22 @@
                             </div>        
                         @endforeach
                     </div>
-                    <div id="js_infoSearch">
-                        <hr>
-                        <h3>Risultati ricerca</h3>
-                        <p>Una selezione di alloggi verificati per qualità e design.</p>
-                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="container-fluid">
+        <div class="row my-5 py-3">
+            <div class="col-sm-12">
+                <div id="js_infoSearch">
+                    <h3 class="text-center">Risultati ricerca</h3>
+                    <p class="text-center">Una selezione di alloggi verificati per qualità e design.</p>
                 </div>
                 {{-- HANDLEBARS OUTPUT --}}
                 <div id="js_hbOutput" class="col-sm-12 d-flex flex-wrap justify-content-between">
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 </main>
 
