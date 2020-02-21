@@ -48,16 +48,32 @@
                             <h5 class="card-title text-capitalize">{{ $apartment->name }}</h5>
                             <p class="card-text text-capitalize">{{ $apartment->description }}</p>
                             <p class="card-text text-capitalize">{{ $apartment->address }}</p>
-                            <p class="card-text text-capitalize">
+                            <p class="card-text text-capitalize d-flex justify-content-between">
                                 @if ($apartment->visibility === 1)
                                     <span class="text-success">Public</span>
                                     @else
                                     <span class="text-danger">Private</span>
                                 @endif
+                                @if ($apartment->sponsored == 1)
+                                    <span class="text-success">Sponsorizzato</span>
+                                    @else
+                                    <span class="text-danger">Sponsorizzato</span>
+                                @endif
                             </p>
-                            <a href="{{ route('account.apartment.edit', $apartment->id) }}" class="btn btn-primary">Edit</a>
-                            <a href="{{ route('apartmet.statistics.show', $apartment->id) }}" class="btn btn-primary">Statistics</a>
-                            <a href="{{ route('apartment.sponsor', $apartment->id) }}" class="btn btn-primary">Sponsor</a>
+                            <div>
+                                <a href="{{ route('account.apartment.edit', $apartment->id) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('apartmet.statistics.show', $apartment->id) }}" class="btn btn-primary">Statistics</a>
+                                @if ($apartment->sponsored == 0)
+                                    <a href="{{ route('apartment.sponsor', $apartment->id) }}" class="btn btn-primary">Sponsor</a>
+                                @endif
+                            </div>
+                            <div class="my-2">
+                                @if ($apartment->sponsored == 1)
+                                    @foreach ($apartment->ads as $ad)
+                                        <span>Scadenza: {{ $ad->pivot->end_time }}</span>
+                                    @endforeach
+                                @endif
+                            </div>
                         </div>
                     </div>        
                 @endforeach

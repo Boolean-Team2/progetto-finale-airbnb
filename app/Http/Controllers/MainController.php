@@ -25,9 +25,14 @@ class MainController extends Controller
         foreach ($apartments as $apartment) {
             $finish = Carbon::parse($apartment->end_time);
             $now = Carbon::now();
-
+            
             if($now < $finish) {
                 $sponsoredApartments [] = $apartment;
+            } else { 
+                $sponsor=[
+                    "sponsored" => 0
+                ];
+                $apartment -> update($sponsor);
             }
         }
 
