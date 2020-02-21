@@ -131,6 +131,11 @@ class LoggedUserController extends Controller
             // Sponsorizzare appartamento
             $ads = Ad::all();
             $apartment = Apartment::findOrFail($ida);
+            $apSponsor = $apartment -> sponsored; 
+            $apSponsor=[
+                "sponsored" => 1
+            ];
+            $apartment -> update($apSponsor);
             foreach ($ads as $ad) {
                 if($ad->price==$amount){
                     if($amount==2.99){
@@ -149,8 +154,6 @@ class LoggedUserController extends Controller
                 }
 
             }
-            
-
             return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
         } else {
             $errorString = "";
