@@ -18,7 +18,7 @@ class ApController extends Controller
     }
 
     // User's apartments show
-    public function apartmentShow($id) {
+    public function apartmentsShow($id) {
 
         $owner = User::findOrFail($id);
 

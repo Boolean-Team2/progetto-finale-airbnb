@@ -30,7 +30,7 @@ Route::get('/apartment/{id}/sponsor', 'LoggedUserController@apartmentSponsor')->
 Route::post('/checkout/{ida}', 'LoggedUserController@checkout') -> name('checkout');
 
 // Show user's apartments
-Route::get('/account/{id}/apartments/show', 'ApController@apartmentShow')->name('account.apartments.show');
+Route::get('/account/{id}/apartments/show', 'ApController@apartmentsShow')->name('account.apartments.show');
 
 // Create user's apartment
 Route::get('/account/apartments/create', 'ApController@apartmentCreate')->name('account.apartments.create');
