@@ -18,6 +18,7 @@ class MainController extends Controller
 
         $apartments = Apartment::join('ad_apartment', 'apartments.id', '=', 'ad_apartment.apartment_id') 
             -> where('apartments.visibility', 1)
+            -> where('apartments.sponsored', 1)
             -> orderBy('start_time', 'desc')
             -> get();
         $services = Service::all();
