@@ -70,7 +70,9 @@
                             <div class="my-2">
                                 @if ($apartment->sponsored == 1)
                                     @foreach ($apartment->ads as $ad)
-                                        <span>Scadenza: {{ $ad->pivot->end_time }}</span>
+                                        @if ($loop->last)
+                                            <span>Scadenza: {{ $ad->pivot->end_time }}</span>
+                                        @endif
                                     @endforeach
                                 @endif
                             </div>
