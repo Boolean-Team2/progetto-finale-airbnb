@@ -100,72 +100,79 @@ class LoggedUserController extends Controller
     }
 
     public function checkout(Request $request, $ida){
+
+        $apartment = Apartment::findOrFail($ida);
+
+        if($apartment->sponsored == 0) {
+            $gateway = new Braintree\Gateway([
+                'environment' => config('services.braintree.environment'),
+                'merchantId' => config('services.braintree.merchantId'),
+                'publicKey' => config('services.braintree.publicKey'),
+                'privateKey' => config('services.braintree.privateKey')
+            ]);
         
-        $gateway = new Braintree\Gateway([
-            'environment' => config('services.braintree.environment'),
-            'merchantId' => config('services.braintree.merchantId'),
-            'publicKey' => config('services.braintree.publicKey'),
-            'privateKey' => config('services.braintree.privateKey')
-        ]);
-    
-        $amount = $request->amount;
-        $nonce = $request->payment_method_nonce;
-    
-        $result = $gateway->transaction()->sale([
-            'amount' => $amount,
-            'paymentMethodNonce' => $nonce,
-            'customer' => [
-                'firstName' => 'Tony',
-                'lastName' => 'Stark',
-                'email' => 'tony@avengers.com',
-            ],
-            'options' => [
-                'submitForSettlement' => true
-            ]
-        ]);
-    
-        if ($result->success) {
-            $transaction = $result->transaction;
-            // header("Location: transaction.php?id=" . $transaction->id);
+            $amount = $request->amount;
+            $nonce = $request->payment_method_nonce;
+        
+            $result = $gateway->transaction()->sale([
+                'amount' => $amount,
+                'paymentMethodNonce' => $nonce,
+                'customer' => [
+                    'firstName' => 'Tony',
+                    'lastName' => 'Stark',
+                    'email' => 'tony@avengers.com',
+                ],
+                'options' => [
+                    'submitForSettlement' => true
+                ]
+            ]);
+        
+            if ($result->success) {
+                $transaction = $result->transaction;
+                // header("Location: transaction.php?id=" . $transaction->id);
 
-            // Sponsorizzare appartamento
-            $ads = Ad::all();
-            $apartment = Apartment::findOrFail($ida);
-            $apSponsor = $apartment -> sponsored; 
-            $apSponsor=[
-                "sponsored" => 1
-            ];
-            $apartment -> update($apSponsor);
-            foreach ($ads as $ad) {
-                if($ad->price==$amount){
-                    if($amount==2.99){
-                        $start = new DateTime();
-                        $end = date("Y-m-d H:i:s", time() + 86400);
-                        $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
-                    } elseif ($amount==5.99) {
-                        $start = new DateTime();
-                        $end = date("Y-m-d H:i:s", time() + 259200);
-                        $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
-                    }elseif ($amount==9.99) {
-                        $start = new DateTime();
-                        $end = date("Y-m-d H:i:s", time() + 518400);
-                        $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
+                // Sponsorizzare appartamento
+                $ads = Ad::all();
+                $apSponsor = $apartment -> sponsored; 
+                $apSponsor=[
+                    "sponsored" => 1
+                ];
+                $apartment -> update($apSponsor);
+                foreach ($ads as $ad) {
+                    if($ad->price==$amount){
+                        if($amount==2.99){
+                            $start = new DateTime();
+                            $end = date("Y-m-d H:i:s", time() + 86400);
+                            $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
+                        } elseif ($amount==5.99) {
+                            $start = new DateTime();
+                            $end = date("Y-m-d H:i:s", time() + 259200);
+                            $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
+                        }elseif ($amount==9.99) {
+                            $start = new DateTime();
+                            $end = date("Y-m-d H:i:s", time() + 518400);
+                            $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
+                        }
                     }
-                }
 
+                }
+                return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
+            } else {
+                $errorString = "";
+        
+                foreach ($result->errors->deepAll() as $error) {
+                    $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
+                }
+        
+                // $_SESSION["errors"] = $errorString;
+                // header("Location: index.php");
+                return back()->withErrors('An error occurred with the message: '.$result->message);
             }
-            return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
         } else {
-            $errorString = "";
-    
-            foreach ($result->errors->deepAll() as $error) {
-                $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
-            }
-    
-            // $_SESSION["errors"] = $errorString;
-            // header("Location: index.php");
-            return back()->withErrors('An error occurred with the message: '.$result->message);
+            return back()->withErrors('Hai già una sponsorizzazione attiva');
         }
+        
+        
     }
 
     // public function apartmentSponsorPayment($ida, Request $request){
