@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-6">
                     <h3>{{ $apartment->name }}</h3>
                     <p>{{ $apartment->description }}</p>
                     <p><i class="mr-2 fas fa-map-marker"></i> {{ $apartment->address }}</p>              
@@ -41,9 +41,8 @@
                     <h4>Owner's contacts</h4>
                     <p class="mr-0"><i class="mr-2 fas fa-user"></i>{{ $apartment->user->firstname }} {{ $apartment->user->lastname }}</p>
                     <p class="m-0"><i class="mr-2 fas fa-envelope"></i><a href="mailto:{{ $apartment->user->email }}">{{ $apartment->user->email }}</a></p>
-                    
                 </div>
-                <div class="col-sm-12 col-md-8 text-right">
+                <div class="col-sm-12 col-md-6 text-right">
                     @if ($apartment->img)
                         <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
                         @else
@@ -54,35 +53,42 @@
             <hr>
             <div class="row">
                 <div class="col-sm-12 col-md-6">
-                    <h4>Contact me</h4>
-                    <form action="{{ route('sendmail', $apartment -> id) }}" method="post">
-                        @csrf
-                        @method('POST')
-                        <div class="form-group">
-                            @if (Auth::user())
-                                <input type="email" name="email_sender" class="form-control" value="{{ Auth::user()->email }}">
-                                @else
-                                <input type="email" name="email_sender" class="form-control" placeholder="Inserisci e-mail">
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="body" placeholder="Dear owner.."></textarea>
-                            {{-- <input type="text" value="{{$apartment -> id}}" name="apartment_id" hidden> --}}
-                        </div>
-                        <div class="form-row">
-                            <div class="col-sm-12 col-md-8">
-                                <input class="mr-2" type="checkbox" required><span>Accept terms and conditions</span>
-                            </div>
-                            <div class="col-sm-12 col-md-4 text-right">
-                                <button class="btn btn-primary">Send message</button>
-                            </div>
-                        </div>
-                    </form>
+                    @auth
+                        {{-- OWNER SHOW HIS APARTMENT --}}
+                        @if (Auth::user()->id === $apartment->user_id)
+                            <span class="text-success">You're the apartment owner</span>
+                        @endif
+                        @else
+                            {{-- CONTACT FORM FOR GUESTS AND OTHER USERS--}}
+                            <h4>Contact me</h4>
+                            <form action="{{ route('sendmail', $apartment -> id) }}" method="post">
+                                @csrf
+                                @method('POST')
+                                <div class="form-group">
+                                    @if (Auth::user())
+                                        <input type="email" name="email_sender" class="form-control" value="{{ Auth::user()->email }}">
+                                        @else
+                                        <input type="email" name="email_sender" class="form-control" placeholder="Inserisci e-mail">
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="body" placeholder="Dear owner.."></textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-sm-12 col-md-8">
+                                        <input class="mr-2" type="checkbox" required><span>Accept terms and conditions</span>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 text-right">
+                                        <button class="btn btn-primary">Send message</button>
+                                    </div>
+                                </div>
+                            </form>
+                    @endauth
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <input hidden id="lon" type="text" value="{{ $apartment -> longitude }}">
                     <input hidden id="lat" type="text" value="{{ $apartment -> latitude }}">
-                    <div id='map' class='map w-100 h-100'></div>
+                    <div id="map" class="mapboxgl-map" style="height: 230px; width: 100%;">
                 </div>
             </div>
         </section>
@@ -92,7 +98,6 @@
     @include('partials.footer')
 
     {{-- TOMTOM MAP --}}
-    {{-- <script src="{{asset('assets/js/app.js')}}"></script> --}}
     <script>
         $(document).ready(function() {
             var lon = $('#lon').val();
@@ -103,13 +108,12 @@
                     container: 'map',
                     style: 'tomtom://vector/1/basic-main',
                     center: location,
-                    zoom: 18,
+                    zoom: 12,
                     radius: 20000
                 });
             var marker = new tt.Marker().setLngLat(location).addTo(map);
             map.addControl(new tt.FullscreenControl());
             map.addControl(new tt.NavigationControl());
-            
             });
     </script>
 
