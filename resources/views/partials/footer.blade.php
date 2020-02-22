@@ -1,4 +1,4 @@
-<footer class="alert alert-info py-3 mb-0">
+<footer class="alert alert-info py-3 mt-5 mb-0">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-12 col-md-2 offset-md-2">
