@@ -56,9 +56,11 @@
                     @auth
                         {{-- OWNER SHOW HIS APARTMENT --}}
                         @if (Auth::user()->id === $apartment->user_id)
-                            <span class="text-success">You're the apartment owner</span>
-                        @endif
-                        @else
+                            <p class="d-flex align-items-center justify-content-between">
+                                <span class="text-success">You're the apartment owner.</span>
+                                <a href="{{ route('apartmet.statistics.show', $apartment->id) }}" class="btn btn-primary">View all statistics</a>
+                            </p>
+                            @else
                             {{-- CONTACT FORM FOR GUESTS AND OTHER USERS--}}
                             <h4>Contact me</h4>
                             <form action="{{ route('sendmail', $apartment -> id) }}" method="post">
@@ -83,6 +85,28 @@
                                     </div>
                                 </div>
                             </form>
+                        @endif
+                    @else
+                    {{-- CONTACT FORM FOR GUESTS AND OTHER USERS--}}
+                    <h4>Contact me</h4>
+                    <form action="{{ route('sendmail', $apartment -> id) }}" method="post">
+                        @csrf
+                        @method('POST')
+                        <div class="form-group">
+                            <input type="email" name="email_sender" class="form-control" placeholder="Inserisci e-mail">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="body" placeholder="Dear owner.."></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-sm-12 col-md-8">
+                                <input class="mr-2" type="checkbox" required><span>Accept terms and conditions</span>
+                            </div>
+                            <div class="col-sm-12 col-md-4 text-right">
+                                <button class="btn btn-primary">Send message</button>
+                            </div>
+                        </div>
+                    </form>
                     @endauth
                 </div>
                 <div class="col-sm-12 col-md-6">
