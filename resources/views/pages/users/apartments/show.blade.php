@@ -7,7 +7,7 @@
 
 {{-- CONTENT --}}
 @section('body')
-    <div class="container my-5 py-5">
+    <div class="container my-5">
         <div class="row">
             <div class="col-12">
                 @if (session('status'))
@@ -62,9 +62,9 @@
                             </p>
                             <div>
                                 <a href="{{ route('account.apartment.edit', $apartment->id) }}" class="btn btn-primary">Edit</a>
-                                <a href="{{ route('apartmet.statistics.show', $apartment->id) }}" class="btn btn-primary">Statistics</a>
+                                <a href="{{ route('apartmet.statistics.show', [Auth::user()->id, $apartment->id]) }}" class="btn btn-primary">Statistics</a>
                                 @if ($apartment->sponsored == 0)
-                                    <a href="{{ route('apartment.sponsor', $apartment->id) }}" class="btn btn-primary">Sponsor</a>
+                                    <a href="{{ route('apartment.sponsor', [Auth::user()->id, $apartment->id]) }}" class="btn btn-primary">Sponsor</a>
                                 @endif
                             </div>
                             <div class="my-2">

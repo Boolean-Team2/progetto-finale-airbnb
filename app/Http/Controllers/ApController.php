@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\File;
-// use Illuminate\Filesystem\Filesystem;
 
 use App\User;
 use App\Service;
@@ -19,14 +18,15 @@ class ApController extends Controller
 
     // User's apartments show
     public function apartmentsShow($id) {
-
-        $owner = User::findOrFail($id);
-
-        $apartments = $owner -> apartments;
-
-        return view('pages.users.apartments.show', compact('apartments'));
+        if($id == Auth::user()->id) {
+            $owner = User::findOrFail($id);
+            $apartments = $owner -> apartments;
+            return view('pages.users.apartments.show', compact('apartments'));
+        } else {
+            return back()->withErrors('Non puoi vedere questa pagina');
+        }
     }
-
+    
     // User's apartments create
     public function apartmentCreate() {
 

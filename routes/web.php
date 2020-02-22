@@ -18,16 +18,16 @@ Route::get('/account/{id}/messages/show', 'LoggedUserController@messagesShow')->
 
 // User's apartments statistics
 Route::get('/account/{id}/apartments-statistics', 'LoggedUserController@apartmentsStatistics')->name('account.statistics.show');
-Route::get('/apartment/{id}/statistics', 'LoggedUserController@apartmentStatistics')->name('apartmet.statistics.show');
+Route::get('/account/{id}/apartment/{ida}/statistics', 'LoggedUserController@apartmentStatistics')->name('apartmet.statistics.show');
 
 // User show his sponsor payments
-Route::get('/user/{id}/payments', 'LoggedUserController@userPayments')->name('user.sponsor.payments');
+Route::get('/account/{id}/payments', 'LoggedUserController@userPayments')->name('user.sponsor.payments');
 
 // User sponsor apartments
-Route::get('/apartment/{id}/sponsor', 'LoggedUserController@apartmentSponsor')->name('apartment.sponsor');
+Route::get('/account/{id}/apartment/{ida}/sponsor', 'LoggedUserController@apartmentSponsor')->name('apartment.sponsor');
 
 // Ads payments
-Route::post('/checkout/{ida}', 'LoggedUserController@checkout') -> name('checkout');
+Route::post('/account/{id}/apartment/{ida}/sponsor/checkout', 'LoggedUserController@checkout') -> name('checkout');
 
 // Show user's apartments
 Route::get('/account/{id}/apartments/show', 'ApController@apartmentsShow')->name('account.apartments.show');

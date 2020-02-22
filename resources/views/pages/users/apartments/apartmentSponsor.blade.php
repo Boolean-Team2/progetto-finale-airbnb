@@ -52,7 +52,7 @@
 			</div>
 			<div class="col-sm-12 col-md-6">
 				<div class="content">
-					<form method="post" id="payment-form" action="{{route('checkout',$apartment->id)}}">
+					<form method="post" id="payment-form" action="{{ route('checkout', [Auth::user()->id, $apartment->id]) }}">
 						@csrf
 						<section>
 							<label for="amount">Select the ad</label> 
