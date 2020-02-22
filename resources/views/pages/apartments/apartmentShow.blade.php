@@ -58,7 +58,7 @@
                         @if (Auth::user()->id === $apartment->user_id)
                             <p class="d-flex align-items-center justify-content-between">
                                 <span class="text-success">You're the apartment owner.</span>
-                                <a href="{{ route('apartmet.statistics.show', $apartment->id) }}" class="btn btn-primary">View all statistics</a>
+                                <a href="{{ route('apartmet.statistics.show', [Auth::user()->id, $apartment->id]) }}" class="btn btn-primary">View all statistics</a>
                             </p>
                             @else
                             {{-- CONTACT FORM FOR GUESTS AND OTHER USERS--}}
