@@ -8,6 +8,7 @@ use App\Apartment;
 use App\Service;
 use App\Message;
 use App\User;
+use App\View;
 use Carbon\Carbon;
 class MyApiController extends Controller
 {
@@ -89,7 +90,7 @@ class MyApiController extends Controller
         return response() -> json(compact('apps'));
     }
 
-    public function myApStatistic(Request $request){
+    public function messagesStatistic(Request $request){
         $idApp = $request['id'];
 
         $messages = Message::select('id', 'created_at','apartment_id')
@@ -116,5 +117,33 @@ class MyApiController extends Controller
 
         return response()->json(compact('messagesForMonth'));
 
+    }
+
+    public function viewsStatistics(Request $request){
+        $idApp = $request['id'];
+
+        $views = View::select('id', 'created_at','apartment_id')
+        ->where('apartment_id', $idApp) //Colonna=valore
+        ->get()
+        ->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('m'); // grouping by months
+        });
+
+        $viewsMonthCount = [];
+        $viewsForMonth = [];
+
+        foreach ($views as $key => $value) {
+            $viewsMonthCount[(int)$key] = count($value);
+        }
+
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($viewsMonthCount[$i])){
+                $viewsForMonth[] = $viewsMonthCount[$i];    
+            }else{
+                $viewsForMonth[] = 0;    
+            }
+        }
+
+        return response()->json(compact('viewsForMonth'));
     }
 }

@@ -27,12 +27,12 @@
         </div>
     </div>
 </div>
-<div id="idApp"> {{ $apartment -> id }} </div>
-<div class="container">
+{{-- <div id="idApp"> {{ $apartment -> id }} </div> --}}
+<div id="idApp" class="container" data-param={{$apartment -> id}}>
     <div class="row">
         <div class="col-sm-12 col-lg-6">
         <h3> Views number</h3>
-        <p id="views">{{$apartment->views}}</p>
+        {{-- <p id="views">{{$apartment->views}}</p> --}}
         <div class="container">
             <div class="wrap">
             <canvas id="myViews"></canvas> 
@@ -58,45 +58,61 @@
 <script>
   
   $(document).ready(function() {  
-    //   Views Chart
-     // var views = [$("#views").text(), 23, 50];
-    // console.log("views", views);
-    
-    // var ctx = document.getElementById('myViews').getContext('2d');
-    // new Chart(ctx, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: [1, 5, 10],
-    //         datasets: [{
-    //             label: 'Views',
-    //             data: views,
-    //             backgroundColor: "red",
-    //             borderColor: "red",
-    //             borderWidth: 1
-    //         }]
-    //     },
-    //     options: {
-    //         scales: {
-    //             yAxes: [{
-    //                 ticks: {
-    //                     beginAtZero: true
-    //                 }
-    //             }]
-    //         }
-    //     }
-    // });
-    
-    // Messages Chart
-    var idApp = $('#idApp').text();
+
+    var idApp = $('#idApp').attr("data-param");
 
     $.ajax({
-        url: 'http://localhost:3000/api/apartment/statistic',
+        url: 'http://localhost:3000/api/apartment/viewsStatistic',
         method: 'GET',
         data : {
             'id' : idApp
         },
         success : function(data) {
-            // console.log(data.messagesForMonth);
+            printViews(data.viewsForMonth);
+        },
+        error : function(err) {
+            console.log(err);
+            
+        },
+    });
+
+    function printViews(data){
+    
+    var ctx = document.getElementById('myViews').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [1, 5, 10],
+            datasets: [{
+                label: 'Views',
+                data: data,
+                backgroundColor: "red",
+                borderColor: "red",
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    } 
+    
+    // Messages Chart
+   
+
+    $.ajax({
+        url: 'http://localhost:3000/api/apartment/msgsStatistic',
+        method: 'GET',
+        data : {
+            'id' : idApp
+        },
+        success : function(data) {
             printMsgs(data.messagesForMonth);
         },
         error : function(err) {
