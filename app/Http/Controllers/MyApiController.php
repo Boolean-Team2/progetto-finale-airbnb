@@ -8,7 +8,7 @@ use App\Apartment;
 use App\Service;
 use App\Message;
 use App\User;
-
+use Carbon\Carbon;
 class MyApiController extends Controller
 {
     // Apartments show API
@@ -91,40 +91,30 @@ class MyApiController extends Controller
 
     public function myApStatistic(Request $request){
         $idApp = $request['id'];
-        
-        $apartament = Apartment::findOrFail($idApp);
-        $messages = $apartament-> messages;
 
-        // return $messages;
+        $messages = Message::select('id', 'created_at','apartment_id')
+        ->where('apartment_id', $idApp) //Colonna=valore
+        ->get()
+        ->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('m'); // grouping by months
+        });
 
-        // $results = $messages 
-        //     ->selectRaw('extract(month from messages.created_at) as month')
-        //     ->groupBy('month')
-        //     -> get();
+        $messagesMonthCount = [];
+        $messagesForMonth = [];
 
-        $results = $messages->whereRaw('extract(month from created_at)') -> get();
-        
-        return $results;
-            // ->pluck('messages', 'month');
+        foreach ($messages as $key => $value) {
+            $messagesMonthCount[(int)$key] = count($value);
+        }
 
-        // return $results;
+        for($i = 1; $i <= 12; $i++){
+            if(!empty($messagesMonthCount[$i])){
+                $messagesForMonth[] = $messagesMonthCount[$i];    
+            }else{
+                $messagesForMonth[] = 0;    
+            }
+        }
 
-        // $results = Message::all()
-        //     ->where('messages.apartament_id', $idApp)
-        //     ->selectRaw('count(*) as messages, extract(month from messages.created_at) as month');
-            // ->groupBy('month')
-            // ->pluck('messages', 'month');
-            // -> 
-            // ->leftjoin('apartaments', 'message.apartament_id', '=', 'apartament.id')
-
-        // $finalResults = array_replace(array_fill_keys(range(1, 12), 0), $results->all());
-
-        // return $finalResults;
-        
-        
-
-        // return response()->json(compact('finalResults'));
-
+        return response()->json(compact('messagesForMonth'));
 
     }
 }
