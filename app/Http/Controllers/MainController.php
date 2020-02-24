@@ -16,25 +16,32 @@ class MainController extends Controller
 {
     public function index() {
 
-        $apartments = Apartment::join('ad_apartment', 'apartments.id', '=', 'ad_apartment.apartment_id') 
-            -> where('apartments.visibility', 1)
-            -> where('apartments.sponsored', 1)
-            -> orderBy('start_time', 'desc')
-            -> get();
         $services = Service::all();
+        $apartments = Apartment::where('apartments.visibility', 1) ->where('apartments.sponsored', 1) ->get();
 
+        $sponsoredApartments = [];
+ 
         foreach ($apartments as $apartment) {
-            $finish = Carbon::parse($apartment->end_time);
-            $now = Carbon::now();
-            
-            if($now < $finish) {
-                $sponsoredApartments [] = $apartment;
-            } else { 
-                $sponsor=[
-                    "sponsored" => 0
-                ];
-                $apartment -> update($sponsor);
+            $adsApp = $apartment -> ads;
+            $endTimes = [];
+            foreach ($adsApp as $adApp) {
+                $adEndTime = $adApp -> pivot -> end_time;
+                $endTimes[]= $adEndTime;
             }
+            $maxEnd = max($endTimes);
+            
+            $finish = Carbon::parse($maxEnd);
+            $now = Carbon::now();
+
+                if ($now < $finish) {
+                    $sponsoredApartments[] = $apartment;
+                } else {
+                    $sponsor = [
+                        "sponsored" => 0
+                    ];
+                    $apartment->update($sponsor);
+                }
+
         }
 
         return view('pages.index', compact('sponsoredApartments', 'services'));
