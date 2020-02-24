@@ -13,10 +13,11 @@
         <div class="row h-75 align-items-center">
             <div class="col-sm-12 col-md-10 col-lg-4 offset-md-1 bg-white p-3">
                 <h1 class="mb-3">Apartment Search</h1>
+                <small id="js_alertInput" class="text-danger">* Il campo non può essere vuoto.</small>
                 <form>
                     <div class="form-row">
                         <div class="col-sm-12 col-md-9">
-                            <input id="js_input" type="text" class="form-control" placeholder="Where do you want to go ?">
+                            <input required id="js_input" type="text" class="form-control" placeholder="Where do you want to go ?">
                         </div>
                         <div class="col-sm-12 col-md-3">
                             <a id="js_search" type="submit" class="btn btn-primary w-100">Search</a>
@@ -82,6 +83,7 @@
 
         // Nascondo il div dei risultati della ricerca
         $('#js_infoSearch').hide();
+        $('#js_alertInput').hide();
 
         // Stampo il valore del range in pagina
         $('#js_radius').click(function() {
@@ -100,7 +102,14 @@
             });
 
             // Cerco..
-            search(input, radius, beds, rooms, services);
+            if(!input == "") {
+                search(input, radius, beds, rooms, services);
+            } else { // se l'input è vuoto avverto l'utente
+                $('#js_alertInput').fadeIn(350);
+                setTimeout(() => {
+                    $('#js_alertInput').fadeOut(350);
+                }, 1500);
+            }
         });
 
         // Funzione di ricerca appartamenti
