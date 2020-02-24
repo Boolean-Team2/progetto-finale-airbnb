@@ -9,14 +9,13 @@ class MessageSeeder extends Seeder
 {
     public function run()
     {
-
         factory(Message::class, 30) 
-                -> make() 
-                -> each(function ($message)
-                {
-                    $apartment  = Apartment::inRandomOrder() -> first();
-                    $message -> apartment() -> associate($apartment);
-                    $message -> save();
-                });
+        -> make() 
+        -> each(function ($message)
+        {
+            $apartment  = Apartment::inRandomOrder() -> first();
+            $message -> apartment() -> associate($apartment);
+            $message -> save();
+        });
     }
 }

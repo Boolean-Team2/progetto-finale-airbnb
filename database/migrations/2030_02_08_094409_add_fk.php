@@ -60,6 +60,11 @@ class AddFk extends Migration
                     -> on('ads');
         });
 
+        // FK apartement -> views 1:N
+        Schema::table('views', function (Blueprint $table) {
+            $table -> bigInteger('apartment_id') -> unsigned() -> index();
+            $table -> foreign('apartment_id', 'apartment_view') -> references('id') -> on('apartments');
+        });
     }
 
     public function down()
@@ -79,7 +84,7 @@ class AddFk extends Migration
             $table -> dropColumn('service_id');
         });
 
-        // FK apartement -> messages 1:N
+        // FK apartment -> messages 1:N
         Schema::table('apartments', function (Blueprint $table) {
             $table -> dropForeign('apartment_message');
             $table -> dropColumn('message_id');
@@ -94,6 +99,11 @@ class AddFk extends Migration
             $table -> dropColumn('ad_id');
         });
 
+        // FK apartement -> messages 1:N
+        Schema::table('apartments', function (Blueprint $table) {
+            $table -> dropForeign('apartment_view');
+            $table -> dropColumn('apartment_id');
+        });
     }
 
 
