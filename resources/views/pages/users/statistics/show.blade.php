@@ -31,21 +31,18 @@
             <div class="col-sm-12">
                 <h4>Apartments list</h4>
                 @foreach ($userApartments as $userApartment)
-                    <input hidden type="text" class="js_nameList" value="{{ $userApartment->name }}">
-                    <input hidden type="text" class="js_viewsCount" value="{{ $userApartment->views }}">
-                    <input hidden type="text" class="js_msgsCount" value="{{ $userApartment->messages->count() }}">
                     <div class="row">
                         <div class="col-sm-3">
                             <span><i class="fas fa-building"></i></span>
-                            <span>{{ $userApartment->name }}</span>
+                            <span class="js_nameList">{{ $userApartment->name }}</span>
                         </div>
                         <div class="col-sm-3">
                             <span><i class="mr-2 fas fa-eye"></i></span>
-                            <span>{{ $userApartment->views }}</span>
+                            <span class="js_viewsCount">{{ $userApartment->views->count() }}</span>
                         </div>
                         <div class="col-sm-3">
                             <span><i class="fas fa-envelope"></i></span>
-                            <span>{{ $userApartment->messages->count() }}</span>
+                            <span class="js_msgsCount">{{ $userApartment->messages->count() }}</span>
                         </div>
                         <div class="col-sm-3">
                             <a href="{{ route('apartmet.statistics.show', [Auth::user()->id, $userApartment->id]) }}">Details</a>
@@ -73,13 +70,13 @@
             var views = [];
             var msgs = [];
             $('.js_nameList').each( function() {
-                names.push($(this).val());
+                names.push($(this).text());
             });
             $('.js_viewsCount').each( function() {
-                views.push($(this).val());
+                views.push($(this).text());
             });
             $('.js_msgsCount').each( function() {
-                msgs.push($(this).val());
+                msgs.push($(this).text());
             });
             // console.log("Nomi:", names, "Views:", views, "Msgs:", msgs);
             var ctx = document.getElementById('myViews').getContext('2d');

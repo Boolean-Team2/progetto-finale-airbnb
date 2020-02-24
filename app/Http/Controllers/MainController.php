@@ -6,11 +6,13 @@ use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Mail\ContactMail;
 use App\Apartment;
 use App\Message;
 use App\Service;
+use App\View;
 
 class MainController extends Controller
 {
@@ -51,15 +53,17 @@ class MainController extends Controller
     public function apartmentShow($id) {
 
         $apartment = Apartment::findOrFail($id);
+        $viewsDB = $apartment -> views;
 
-        $viewsDB = $apartment -> views; 
+        // Le views non aumentano se lo visita il proprietario
+        if(Auth::user()) {
+            if(Auth::user()->id !== $apartment->user_id)
+            $view = [
+                'apartment_id' => $id
+            ];
+            View::create($view);
+        }
 
-        $views=[
-            "views" => $viewsDB + 1
-        ];
-
-        $apartment -> update($views);
-        
         return view('pages.apartments.apartmentShow', compact('apartment'));
     }
 

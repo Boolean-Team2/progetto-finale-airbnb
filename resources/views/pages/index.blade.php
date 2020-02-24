@@ -64,7 +64,6 @@
         <div class="card-body">
             <p class="d-flex justify-content-between">
                 <a class="text-primary" href="@{{showUrl}}">@{{name}}</a>
-                <span><i class="mr-1 fas fa-eye"></i>@{{views}}</span>
             </p>
             <p class="d-flex justify-content-between">
                 <span><i class="mr-1 fas fa-bed"></i>@{{beds}}</span>
