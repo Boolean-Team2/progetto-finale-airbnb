@@ -82,7 +82,7 @@
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: [1, 5, 10],
+            labels: moment.months(),
             datasets: [{
                 label: 'Views',
                 data: data,
