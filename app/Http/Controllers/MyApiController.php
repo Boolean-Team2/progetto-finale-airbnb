@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Apartment;
 use App\Service;
+use App\Message;
+use App\User;
 
 class MyApiController extends Controller
 {
@@ -85,5 +87,44 @@ class MyApiController extends Controller
         array_multisort($sponsor, SORT_DESC, $distance, SORT_ASC, $apps);
 
         return response() -> json(compact('apps'));
+    }
+
+    public function myApStatistic(Request $request){
+        $idApp = $request['id'];
+        
+        $apartament = Apartment::findOrFail($idApp);
+        $messages = $apartament-> messages;
+
+        // return $messages;
+
+        // $results = $messages 
+        //     ->selectRaw('extract(month from messages.created_at) as month')
+        //     ->groupBy('month')
+        //     -> get();
+
+        $results = $messages->whereRaw('extract(month from created_at)') -> get();
+        
+        return $results;
+            // ->pluck('messages', 'month');
+
+        // return $results;
+
+        // $results = Message::all()
+        //     ->where('messages.apartament_id', $idApp)
+        //     ->selectRaw('count(*) as messages, extract(month from messages.created_at) as month');
+            // ->groupBy('month')
+            // ->pluck('messages', 'month');
+            // -> 
+            // ->leftjoin('apartaments', 'message.apartament_id', '=', 'apartament.id')
+
+        // $finalResults = array_replace(array_fill_keys(range(1, 12), 0), $results->all());
+
+        // return $finalResults;
+        
+        
+
+        // return response()->json(compact('finalResults'));
+
+
     }
 }

@@ -27,6 +27,7 @@
         </div>
     </div>
 </div>
+<div id="idApp"> {{ $apartment -> id }} </div>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-lg-6">
@@ -42,6 +43,10 @@
         <div class="col-sm-12 col-lg-6">
         <h3> Messages number</h3>
         <p id="messages">{{ $apartment->messages->count() }}</p>
+        @foreach ($apartment->messages as $msg)
+        <p > {{ $msg-> created_at }} </p>
+            
+        @endforeach
         <div class="container">
             <div class="wrap">
             <canvas id="myMessages"></canvas> 
@@ -63,31 +68,57 @@
   
   $(document).ready(function() {  
 
-    var views = [$("#views").text(), 23, 50];
-    console.log("views", views);
+    // var views = [$("#views").text(), 23, 50];
+    // console.log("views", views);
     
-    var ctx = document.getElementById('myViews').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [1, 5, 10],
-            datasets: [{
-                label: 'Views',
-                data: views,
-                backgroundColor: "red",
-                borderColor: "red",
-                borderWidth: 1
-            }]
+    // var ctx = document.getElementById('myViews').getContext('2d');
+    // new Chart(ctx, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: [1, 5, 10],
+    //         datasets: [{
+    //             label: 'Views',
+    //             data: views,
+    //             backgroundColor: "red",
+    //             borderColor: "red",
+    //             borderWidth: 1
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             yAxes: [{
+    //                 ticks: {
+    //                     beginAtZero: true
+    //                 }
+    //             }]
+    //         }
+    //     }
+    // });
+
+    var idApp = $('#idApp').text();
+    // console.log(idApp);
+    
+
+    $.ajax({
+        url: 'http://localhost:3000/api/apartment/statistic',
+        method: 'GET',
+        data : {
+            'id' : idApp
         },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
+        success : function(data) {
+            console.log(data);
+    
+            // for(var i = 0; i < data.messages.length; i++){
+            //     console.log(data.messages[i].created_at);
+            //     var created = data.messages[i].created_at;
+            //     var month = moment(created).month();
+            //     console.log(month); 
+            // }
+        },
+        error : function(err) {
+            console.log(err);
+            
+        },
     });
 
     var views = $("#messages").text();
