@@ -57,11 +57,12 @@ class MainController extends Controller
 
         // Le views non aumentano se lo visita il proprietario
         if(Auth::user()) {
-            if(Auth::user()->id !== $apartment->user_id)
-            $view = [
-                'apartment_id' => $id
-            ];
-            View::create($view);
+            if(Auth::user()->id !== $apartment->user_id){
+                $view = [
+                    'apartment_id' => $id
+                ];
+                View::create($view);
+            }
         }
 
         return view('pages.apartments.apartmentShow', compact('apartment'));
