@@ -63,6 +63,11 @@ class MainController extends Controller
                 ];
                 View::create($view);
             }
+        } else {
+            $view = [
+                'apartment_id' => $id
+            ];
+            View::create($view);
         }
 
         return view('pages.apartments.apartmentShow', compact('apartment'));
