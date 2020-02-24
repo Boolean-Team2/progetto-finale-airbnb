@@ -26,13 +26,13 @@
                 @endif
             </div>
         </div>
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-sm-12 col-md-9">
                 <h3>Your apartments</h3>
                 <p>Here you can show/edit your apartments</p>
             </div>
-            <div class="col sm-12 col-md-3">
-                <a href="{{ route('account.apartments.create') }}" class="btn btn-primary">Add apartments</a>
+            <div class="col sm-12 col-md-3 text-right">
+                <a href="{{ route('account.apartments.create') }}" class="btn btn-primary">Add new apartment</a>
             </div>
         </div>
         <div class="row">
