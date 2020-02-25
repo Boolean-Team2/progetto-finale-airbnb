@@ -36,7 +36,12 @@
                     <p><i class="mr-2 fas fa-bed"></i>{{ $apartment->beds }}</p>              
                     <p><i class="mr-2 fas fa-toilet-paper"></i>{{ $apartment->baths }}</p>              
                     <p><i class="mr-2 fas fa-person-booth"></i>{{ $apartment->rooms }}</p>            
-                    <p><i class="mr-2 fas fa-eye"></i>{{ $apartment->views->count() }}</p> 
+                    <p><i class="mr-2 fas fa-eye"></i>{{ $apartment->views->count() }}</p>
+                    <hr>
+                    <h3>Services</h3>
+                    @foreach ($apartment->services as $service)
+                        <span>{{ $service->name }}</span>
+                    @endforeach 
                     <hr>
                     <h4>Owner's contacts</h4>
                     <p class="mr-0"><i class="mr-2 fas fa-user"></i>{{ $apartment->user->firstname }} {{ $apartment->user->lastname }}</p>

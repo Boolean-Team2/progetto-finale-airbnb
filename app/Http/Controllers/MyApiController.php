@@ -39,6 +39,11 @@ class MyApiController extends Controller
         $apartments = $apartments -> where('visibility', 1) -> get();
                 
         foreach ($apartments as $apartament) {
+
+            // Prendo tutti i servizi
+            $apServices = $apartament->services;
+            $apartament['services'] = $apServices;
+
             $lat2 = $apartament['latitude'];
             $lon2 = $apartament['longitude'];
 
@@ -52,12 +57,10 @@ class MyApiController extends Controller
                 $miles = $dist * 60 * 1.1515;
                 $km = $miles * 1.609344;
 
+                $apartament['km'] = $km;
+
                 // Check su distanza, numero di letti e stanze
                 if ($km <= $radius && !empty($services)) {
-                    $apartament['km'] = $km;
-                    
-                    // Prendo tutti i servizi dell'appartamento e li ciclo
-                    $apServices = $apartament->services;
 
                     // Azzero gli array da usare per il confronto ad ogni giro
                     $intersectServices = [];
@@ -77,7 +80,7 @@ class MyApiController extends Controller
                     }
                 } 
                 else if($km <= $radius && empty($services)) {
-                    $apartament['km'] = $km;
+                    
                     $apps[] = $apartament;
                 }
             }

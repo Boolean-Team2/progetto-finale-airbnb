@@ -72,6 +72,11 @@
                 <span><i class="mr-1 fas fa-toilet-paper"></i>@{{baths}}</span>
                 <span><i class="mr-1 fas fa-ruler-combined"></i>@{{mq}}</span>
             </p>
+            <div class="d-flex flex-wrap justify-content-around">
+                @{{#each services}}
+                    <p class="border border-primary rounded p-1 m-1 text-primary">@{{name}}</p>
+                @{{/each}}
+            </div>
             <p>Distanza dalla ricerca: @{{km}} km</p>
         </div>
     </div>
@@ -153,7 +158,7 @@
                     });
                     // PrintData function
                     function printData(res) {
-                        console.log("Devo stampare in pagina:", res);
+                        // console.log("Devo stampare in pagina:", res);
 
                         var output = $("#js_hbOutput").html("");
                         var sorgente = $("#hbApTemplate").html();
