@@ -15,6 +15,9 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a id="js_goToPremiumAps" class="nav-link text-white" href="#">{{ __('Premium Apartments') }}</a>
+                </li>
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">

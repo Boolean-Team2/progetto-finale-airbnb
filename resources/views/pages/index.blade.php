@@ -93,6 +93,12 @@
 <script>
     $(document).ready(function() {
 
+        $('#js_goToPremiumAps').click(function() {
+            $('html,body').animate({
+                scrollTop: $('#js_homeSlider').offset().top
+            }, 750);
+        });
+
         // Nascondo il div dei risultati della ricerca
         $('#js_homeSearch').hide();
         $('#js_alertInput').hide();
@@ -193,7 +199,7 @@
 
                         $('html,body').animate({
                             scrollTop: $('#js_homeSearch').offset().top
-                        },'slow');
+                        }, 750);
 
                     }
                     // Fine Chiamata al nostro db che restituisce tutti gli appartamenti
@@ -209,7 +215,7 @@
 <main>
     <div class="container-fluid p-0">
         {{-- CAROUSEL SECTION --}}
-        <section id="homeSlider" class="p-5 bg-primary mb-5">
+        <section id="js_homeSlider" class="p-5 bg-primary my-5">
             <div class="mb-5 text-white">
                 <h3 class="text-center text-uppercase">Premium Apartments</h3>
                 <p class="text-center">A selection of verified accommodations for quality and design.</p>
@@ -256,7 +262,7 @@
         </section>
         {{-- /CAROUSEL SECTION --}}
         {{-- SEARCH SECTION --}}
-        <section id="js_homeSearch" class="p-5 bg-info mb-5">
+        <section id="js_homeSearch" class="p-5 bg-info my-5">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="mb-5 text-white">
