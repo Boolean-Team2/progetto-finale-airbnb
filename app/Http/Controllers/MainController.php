@@ -27,8 +27,6 @@ class MainController extends Controller
 
         $services = Service::all();
         $sponsoredApartments = [];
-
-        $sponsoredApartments = [];
  
         foreach ($apartments as $apartment) {
 
@@ -46,7 +44,9 @@ class MainController extends Controller
             }
         }
 
-        return view('pages.index', compact('sponsoredApartments', 'services'));
+        $collection = collect($sponsoredApartments);
+
+        return view('pages.index', compact('sponsoredApartments', 'services', 'collection'));
     }
 
     // Apartment details show
