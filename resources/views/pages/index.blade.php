@@ -11,21 +11,22 @@
     {{-- SEARCH --}}
     <div id="app" class="container-fluid h-100">
         <div class="row h-75 align-items-center">
-            <div class="col-sm-12 col-md-10 col-lg-4 offset-md-1 bg-white p-3">
+            <div class="col-sm-12 col-md-10 col-lg-4 offset-md-1 bg-white p-4 border rounded shadow">
                 <h1 class="mb-3">Apartment Search</h1>
                 <small id="js_alertInput" class="text-danger">* Il campo non può essere vuoto.</small>
                 <form>
-                    <div class="form-row">
+                    <div class="form-row py-2">
                         <div class="col-sm-12 col-md-9">
                             <input required id="js_input" type="text" class="form-control" placeholder="Where do you want to go ?">
                         </div>
                         <div class="col-sm-12 col-md-3">
-                            <a id="js_search" type="submit" class="btn btn-primary w-100">Search</a>
+                            <a id="js_search" type="submit" class="btn btn-primary text-white w-100">Search</a>
                         </div>
                     </div>
                     <hr>
+                    <h5>Filters</h5>
                     <div class="form-row">
-                        <div class="col-sm-12 col-md-4">
+                        <div class="col-sm-12 my-1">
                             <label class="d-flex justify-content-between">
                                 <span>0 km</span>
                                 <span id="js_rangeKm">50 km</span>
@@ -33,18 +34,19 @@
                             </label>
                             <input id="js_radius" type="range" class="form-control-range">
                         </div>
-                        <div class="col-sm-12 col-md-4">
+                        <div class="col-sm-12 col-md-6">
                             <label>Stanze</label>
                             <input id="js_rooms" type="number" class="form-control">
                         </div>
-                        <div class="col-sm-12 col-md-4">
+                        <div class="col-sm-12 col-md-6">
                             <label>Letti</label>
                             <input id="js_beds" type="number" class="form-control">
                         </div>
                     </div>
                     <hr>
+                    <h5>Services</h5>
                     <div class="form-row">
-                        <div class="col-sm-12 d-flex justify-content-center flex-wrap">
+                        <div class="col-sm-12 d-flex flex-wrap">
                             @foreach($services as $service)
                                 <span class="d-flex align-items-center mr-3 text-capitalize"><input class="mr-1" name="service" type="checkbox" value="{{ $service->id }}">{{ $service->name }}</span>
                             @endforeach
