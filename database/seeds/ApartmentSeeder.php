@@ -23,7 +23,7 @@ class ApartmentSeeder extends Seeder
             $start = new DateTime();
             $end = date("Y-m-d H:i:s", time() + 86400);
 
-            $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
+            $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end,'active'=>true]);
             
             $services = Service::inRandomOrder() -> take(rand(0,6)) -> get();
             $apartment -> services() -> attach($services);

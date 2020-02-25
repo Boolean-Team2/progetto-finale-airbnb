@@ -211,7 +211,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title text-capitalize">{{ $apartment->name }}</h5>
                                     <p class="card-text text-capitalize">{{ $apartment->description }}</p>
-                                    <a href="{{ route('apartment.show', $apartment->id) }}" class="btn btn-primary">Show details</a>
+                                    <a href="{{ route('apartment.show', $apartment->apartment_id) }}" class="btn btn-primary">Show details</a>
                                 </div>
                                 <p>Visibility: {{ $apartment->visibility }}</p>
                                 <p>Sponsored: {{ $apartment->sponsored }}</p>

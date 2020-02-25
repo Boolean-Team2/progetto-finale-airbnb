@@ -17,6 +17,7 @@ class CreateAdApartmentTable extends Migration
             $table->bigIncrements('id');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
+            $table->boolean('active')->nullable();;
         });
     }
 

@@ -12,38 +12,38 @@ use App\Mail\ContactMail;
 use App\Apartment;
 use App\Message;
 use App\Service;
-use App\View;
+use DB;
 
 class MainController extends Controller
 {
     public function index() {
 
+        $apartments = Apartment::join('ad_apartment', 'apartments.id', '=', 'ad_apartment.apartment_id') 
+            -> where('apartments.visibility', 1)
+            -> where('ad_apartment.active', 1)
+            -> orderBy('start_time', 'desc')
+            -> get();
+
         $services = Service::all();
-        $apartments = Apartment::where('apartments.visibility', 1) ->where('apartments.sponsored', 1) ->get();
+        $sponsoredApartments = [];
 
         $sponsoredApartments = [];
  
         foreach ($apartments as $apartment) {
-            $adsApp = $apartment -> ads;
-            $endTimes = [];
-            foreach ($adsApp as $adApp) {
-                $adEndTime = $adApp -> pivot -> end_time;
-                $endTimes[]= $adEndTime;
-            }
-            $maxEnd = max($endTimes);
-            
-            $finish = Carbon::parse($maxEnd);
+
+            $finish = Carbon::parse($apartment->end_time);
             $now = Carbon::now();
-
-                if ($now < $finish) {
-                    $sponsoredApartments[] = $apartment;
-                } else {
-                    $sponsor = [
-                        "sponsored" => 0
-                    ];
-                    $apartment->update($sponsor);
-                }
-
+        
+            if($now < $finish) {
+                $sponsoredApartments [] = $apartment;
+            } else { 
+                $idAd = $apartment->id;
+                $active=[
+                    "active" => 0
+                ];
+                DB::table('ad_apartment')->where('id', $idAd)->update($active);
+            }
+           
         }
 
         return view('pages.index', compact('sponsoredApartments', 'services'));

@@ -14,7 +14,7 @@ class Ad extends Model
     
     public function apartments() {
 
-        return $this -> belongsToMany(Apartment::class) -> withPivot('start_time','end_time');
+        return $this -> belongsToMany(Apartment::class) -> withPivot('start_time','end_time','active');
     }
 
 }

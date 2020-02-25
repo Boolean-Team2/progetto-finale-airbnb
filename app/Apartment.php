@@ -18,7 +18,7 @@ class Apartment extends Model
         'longitude',
         'address',
         'visibility',
-        'sponsored',
+        // 'sponsored',
         'user_id'
     ];
 
@@ -39,6 +39,6 @@ class Apartment extends Model
     }
 
     public function ads() {
-        return $this -> belongsToMany(Ad::class) -> withPivot('start_time','end_time');
+        return $this -> belongsToMany(Ad::class) -> withPivot('start_time','end_time','active');
     }
 }
