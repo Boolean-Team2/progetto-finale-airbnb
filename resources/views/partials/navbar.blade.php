@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light text-white">
+<nav style="transition: all 0.2s ease-in-out" class="navbar navbar-expand-md navbar-light text-white">
     <div class="container-fluid">
         <a class="navbar-brand text-white" href="{{ url('/') }}">
             <i class="fab fa-airbnb display-4"></i>

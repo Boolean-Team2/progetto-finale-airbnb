@@ -205,7 +205,7 @@
         {{-- CAROUSEL SECTION --}}
         <section id="homeSlider" class="p-5 bg-primary">
             <div class="mb-5 text-white">
-                <h3 class="text-center">Premium Apartments</h3>
+                <h3 class="text-center text-uppercase">Premium Apartments</h3>
                 <p class="text-center">A selection of verified accommodations for quality and design.</p>
             </div>
             <div class="row">
@@ -224,7 +224,7 @@
                                     <div class="row flex-nowrap">
                                         @foreach ($chunk as $apartment)
                                             <div class="col mx-3">
-                                                <div class="card shadow p-1" style="width: 19rem;">
+                                                <div class="card shadow p-1" style="width: 14.5rem;">
                                                     <img class="img-fluid rounded-top" src="{{ asset('assets/images/placeholder.jpg') }}" alt="Card image cap">
                                                     <div class="card-body">
                                                         <a href="{{ route('apartment.show', $apartment->apartment_id) }}">
