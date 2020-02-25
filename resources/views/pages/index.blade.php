@@ -200,45 +200,70 @@
     });
 </script>
 
-<main>    
-    <div class="container-fluid bg-info">
-        <section class="my-5 py-3">
+<main>
+    <div class="container-fluid p-0">
+        {{-- CAROUSEL SECTION --}}
+        <section id="homeSlider" class="p-5 bg-primary">
+            <div class="mb-5 text-white">
+                <h3 class="text-center">Premium Apartments</h3>
+                <p class="text-center">A selection of verified accommodations for quality and design.</p>
+            </div>
             <div class="row">
-                <div class="col-sm-12">
-                    <h3 class="text-center">Alloggi Sponsorizzati</h3>
-                    <p class="text-center">Una selezione di alloggi verificati per qualità e design.</p>
-                    <div class="d-flex flex-wrap">
-                        @foreach ($sponsoredApartments as $apartment)
-                            <div class="card mr-2 mb-2" style="width: 20rem;">
-                                @if ($apartment->img)
-                                    <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
-                                    @else
-                                    <img class="img-fluid" src="{{ asset('assets/images/placeholder.jpg') }}" alt="Card image cap">
-                                @endif
-                                <div class="card-body">
-                                    <h5 class="card-title text-capitalize">{{ $apartment->name }}</h5>
-                                    <p class="card-text text-capitalize">{{ $apartment->description }}</p>
-                                    <a href="{{ route('apartment.show', $apartment->apartment_id) }}" class="btn btn-primary">Show details</a>
-                                </div>
-                            </div>        
-                        @endforeach
+                <div class="col-12">
+                    {{-- prev --}}
+                    <div>
+                        <a style="width: 1rem" class="carousel-control-prev" href="#multi_item" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    {{-- carousel --}}
+                    <div class="carousel slide" data-ride="carousel" id="multi_item">
+                        <div class="carousel-inner">
+                            @foreach ($collection->chunk(5) as $count => $chunk)
+                                <div class="carousel-item {{ $count == 0 ? 'active' : ' ' }}">
+                                    <div class="row flex-nowrap">
+                                        @foreach ($chunk as $apartment)
+                                            <div class="col mx-3">
+                                                <div class="card shadow p-1" style="width: 19rem;">
+                                                    <img class="img-fluid rounded-top" src="{{ asset('assets/images/placeholder.jpg') }}" alt="Card image cap">
+                                                    <div class="card-body">
+                                                        <a href="{{ route('apartment.show', $apartment->apartment_id) }}">
+                                                            <h5 class="card-title text-center text-capitalize m-0">{{ $apartment->name }}</h5>
+                                                        </a>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>    
+                            @endforeach
+                        </div>
+                    </div>
+                    {{-- next --}}
+                    <div>
+                        <a style="width: 1rem" class="carousel-control-next" href="#multi_item" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
-    </div>
-    <div class="container-fluid">
-        <div class="row my-5 py-3">
-            <div class="col-sm-12">
-                <div id="js_infoSearch">
-                    <h3 class="text-center">Risultati ricerca</h3>
-                    <p class="text-center">Una selezione di alloggi verificati per qualità e design.</p>
-                </div>
-                {{-- HANDLEBARS OUTPUT --}}
-                <div id="js_hbOutput" class="col-sm-12 d-flex flex-wrap justify-content-between">
+        {{-- /CAROUSEL SECTION --}}
+        {{-- SEARCH SECTION --}}
+        <section id="homeSearch">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="js_infoSearch">
+                        <h3 class="text-center">Risultati ricerca</h3>
+                        <p class="text-center">Una selezione di alloggi verificati per qualità e design.</p>
+                    </div>
+                    {{-- HANDLEBARS OUTPUT --}}
+                    <div id="js_hbOutput" class="col-sm-12 d-flex flex-wrap justify-content-between">
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+        {{-- /SEARCH SECTION --}}
     </div>
 </main>
 
