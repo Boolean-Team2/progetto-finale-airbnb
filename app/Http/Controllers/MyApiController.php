@@ -10,6 +10,7 @@ use App\Message;
 use App\User;
 use App\View;
 use Carbon\Carbon;
+
 class MyApiController extends Controller
 {
     // Apartments show API
@@ -35,7 +36,7 @@ class MyApiController extends Controller
             $apartments = $apartments->where('rooms', '>=', $rooms);
         }
 
-        $apartments = $apartments -> where('visibility', 1) -> orderBy('sponsored', 'desc') -> get();
+        $apartments = $apartments -> where('visibility', 1) -> get();
                 
         foreach ($apartments as $apartament) {
             $lat2 = $apartament['latitude'];
@@ -84,8 +85,7 @@ class MyApiController extends Controller
 
         // Ordinazione array per sponsorizzati e distanza
         $distance = array_column($apps, 'km');
-        $sponsor = array_column($apps, 'sponsored');
-        array_multisort($sponsor, SORT_DESC, $distance, SORT_ASC, $apps);
+        array_multisort($distance, SORT_ASC, $apps);
 
         return response() -> json(compact('apps'));
     }
