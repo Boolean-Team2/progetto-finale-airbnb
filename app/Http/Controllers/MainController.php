@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Mail\ContactMail;
 use App\Apartment;
 use App\Message;
+use App\View;
 use App\Service;
 use DB;
 
@@ -43,7 +44,6 @@ class MainController extends Controller
                 ];
                 DB::table('ad_apartment')->where('id', $idAd)->update($active);
             }
-           
         }
 
         return view('pages.index', compact('sponsoredApartments', 'services'));
