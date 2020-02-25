@@ -94,6 +94,7 @@ class LoggedUserController extends Controller
     // User sponsor his apartment
     public function apartmentSponsor($id, $ida){
 
+       
         $apartment = Apartment::findOrFail($ida);
 
         if($id == $apartment->user_id) {
@@ -113,10 +114,13 @@ class LoggedUserController extends Controller
 
     public function checkout(Request $request, $id, $ida){
 
+        // Richiamare pivot table
         $apartment = Apartment::findOrFail($ida);
+        // $ads = $apartment->ads()->where('apartment_id', $ida)->firstOrFail();
+      
         if($apartment->user_id == Auth::user()->id) {
 
-            if($apartment->sponsored == 0) {
+            // if($apartment->ads()->active == 0) {
                 $gateway = new Braintree\Gateway([
                     'environment' => config('services.braintree.environment'),
                     'merchantId' => config('services.braintree.merchantId'),
@@ -146,25 +150,25 @@ class LoggedUserController extends Controller
 
                     // Sponsorizzare appartamento
                     $ads = Ad::all();
-                    $apSponsor = $apartment -> sponsored; 
-                    $apSponsor=[
-                        "sponsored" => 1
-                    ];
-                    $apartment -> update($apSponsor);
+                    // $apSponsor = $apartment -> sponsored; 
+                    // $apSponsor=[
+                    //     "sponsored" => 1
+                    // ];
+                    // $apartment -> update($apSponsor);
                     foreach ($ads as $ad) {
                         if($ad->price==$amount){
                             if($amount==2.99){
                                 $start = new DateTime();
                                 $end = date("Y-m-d H:i:s", time() + 86400);
-                                $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
+                                $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end,'active'=>1]);
                             } elseif ($amount==5.99) {
                                 $start = new DateTime();
                                 $end = date("Y-m-d H:i:s", time() + 259200);
-                                $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
+                                $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end,'active'=>1]);
                             }elseif ($amount==9.99) {
                                 $start = new DateTime();
                                 $end = date("Y-m-d H:i:s", time() + 518400);
-                                $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end]);
+                                $apartment -> ads() -> attach($ad,["start_time" => $start, "end_time" => $end,'active'=>1]);
                             }
                         }
 
@@ -181,9 +185,9 @@ class LoggedUserController extends Controller
                     // header("Location: index.php");
                     return back()->withErrors('An error occurred with the message: '.$result->message);
                 }
-            } else {
-                return back()->withErrors('Hai già una sponsorizzazione attiva');
-            }
+            // } else {
+            //     return back()->withErrors('Hai già una sponsorizzazione attiva');
+            // }
         } else {
             return back()->withErrors('Sei sicuro di voler sponsorizzare un appartamento della concorrenza?');
         }
