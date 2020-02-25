@@ -51,7 +51,7 @@
                     @foreach ($user->apartments as $apartment)
                         @foreach ($apartment->ads as $ad)
                             @if (($apartment->ads->count()) > 0)
-                            <div class="col-sm-12 col-md-3">
+                            <div class="col-sm-12 col-md-3 font-weight-bold">
                                 {{ $apartment->name }}
                             </div>
                             <div class="col-sm-12 col-md-2">

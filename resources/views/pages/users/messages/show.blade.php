@@ -42,14 +42,14 @@
                     </div>
                     @foreach ($userMsgs as $userMsg)
                         @foreach ($userMsg as $msg)
+                            <div class="col-sm-12 col-md-4 font-weight-bold">
+                                {{ $msg->apartment->name }}
+                            </div>
                             <div class="col-sm-12 col-md-4">
                                 {{ $msg->email_sender }}
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 {{ $msg->body }}
-                            </div>
-                            <div class="col-sm-12 col-md-4">
-                                {{ $msg->apartment->name }}
                             </div>
                         @endforeach
                     @endforeach
