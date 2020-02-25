@@ -62,11 +62,12 @@
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 {{-- TEMPLATE HANDLEBARS --}}
 <script id="hbApTemplate" type="text/x-handlebars-template">
-    <div class="card mb-3" style="width: 20rem;">
-        <img class="img-fluid p-1" src="http://localhost:3000/assets/images/users/@{{user_id}}/apartments/@{{id}}/@{{img}}"  alt="Card image cap">
+    <div class="card mb-3 p-1" style="width: 19rem;">
+        <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/placeholder.jpg"  alt="Card image cap">
+        {{-- <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/users/@{{user_id}}/apartments/@{{id}}/@{{img}}"  alt="Card image cap"> --}}
         <div class="card-body">
             <p class="d-flex justify-content-between">
-                <a class="text-primary" href="@{{showUrl}}">@{{name}}</a>
+                <a class="text-primary text-capitalize" href="@{{showUrl}}">@{{name}}</a>
             </p>
             <p class="d-flex justify-content-between">
                 <span><i class="mr-1 fas fa-bed"></i>@{{beds}}</span>
@@ -74,11 +75,15 @@
                 <span><i class="mr-1 fas fa-toilet-paper"></i>@{{baths}}</span>
                 <span><i class="mr-1 fas fa-ruler-combined"></i>@{{mq}}</span>
             </p>
-            <div class="d-flex flex-wrap justify-content-around">
-                @{{#each services}}
-                    <p class="border border-primary rounded p-1 m-1 text-primary">@{{name}}</p>
-                @{{/each}}
-            </div>
+            <p class="d-flex flex-nowrap">
+                @{{#if services}}
+                    @{{#each services}}
+                        <small class="text-primary mr-1">@{{name}}</small>
+                    @{{/each}}
+                    @{{else}}
+                        <small class="text-danger">No services avaible</small>
+                @{{/if}}
+            </p>
             <p>Distanza dalla ricerca: @{{km}} km</p>
         </div>
     </div>
@@ -89,7 +94,7 @@
     $(document).ready(function() {
 
         // Nascondo il div dei risultati della ricerca
-        $('#js_infoSearch').hide();
+        $('#js_homeSearch').hide();
         $('#js_alertInput').hide();
 
         // Stampo il valore del range in pagina
@@ -184,11 +189,12 @@
                     }
                     // Scroll to results function
                     function scrollToResults() {
+                        $('#js_homeSearch').show();
+
                         $('html,body').animate({
-                            scrollTop: $('#js_hbOutput').offset().top
+                            scrollTop: $('#js_homeSearch').offset().top
                         },'slow');
 
-                        $('#js_infoSearch').show();
                     }
                     // Fine Chiamata al nostro db che restituisce tutti gli appartamenti
                 },
@@ -203,7 +209,7 @@
 <main>
     <div class="container-fluid p-0">
         {{-- CAROUSEL SECTION --}}
-        <section id="homeSlider" class="p-5 bg-primary">
+        <section id="homeSlider" class="p-5 bg-primary mb-5">
             <div class="mb-5 text-white">
                 <h3 class="text-center text-uppercase">Premium Apartments</h3>
                 <p class="text-center">A selection of verified accommodations for quality and design.</p>
@@ -224,7 +230,7 @@
                                     <div class="row flex-nowrap">
                                         @foreach ($chunk as $apartment)
                                             <div class="col mx-3">
-                                                <div class="card shadow p-1" style="width: 14.5rem;">
+                                                <div class="card shadow p-1" style="width: 19rem;">
                                                     <img class="img-fluid rounded-top" src="{{ asset('assets/images/placeholder.jpg') }}" alt="Card image cap">
                                                     <div class="card-body">
                                                         <a href="{{ route('apartment.show', $apartment->apartment_id) }}">
@@ -250,12 +256,12 @@
         </section>
         {{-- /CAROUSEL SECTION --}}
         {{-- SEARCH SECTION --}}
-        <section id="homeSearch">
+        <section id="js_homeSearch" class="p-5 bg-info mb-5">
             <div class="row">
                 <div class="col-sm-12">
-                    <div id="js_infoSearch">
-                        <h3 class="text-center">Risultati ricerca</h3>
-                        <p class="text-center">Una selezione di alloggi verificati per qualità e design.</p>
+                    <div class="mb-5 text-white">
+                        <h3 class="text-center text-uppercase">Search Results</h3>
+                        <p class="text-center">The research has produced these results.</p>
                     </div>
                     {{-- HANDLEBARS OUTPUT --}}
                     <div id="js_hbOutput" class="col-sm-12 d-flex flex-wrap justify-content-between">
