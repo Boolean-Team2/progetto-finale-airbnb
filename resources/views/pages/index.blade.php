@@ -8,8 +8,32 @@
     {{-- INCLUDE NAVBAR --}}
     @include('partials.navbar')
 
+    {{-- FULLHEADER CAROUSEL --}}
+    <div class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active" style="background-image: url('{{ asset('assets/images/slide1.jpg') }}')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">Seaview apartments</h2>
+                    <p class="lead">This is a description for the first slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-image: url('{{ asset('assets/images/slide2.jpg') }}')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">Confort and relax</h2>
+                    <p class="lead">This is a description for the second slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-image: url('{{ asset('assets/images/slide3.jpg') }}')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">Strange places</h2>
+                    <p class="lead">This is a description for the third slide.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{-- SEARCH --}}
-    <div id="app" class="container-fluid h-100">
+    <div id="app" class="container-fluid mt-5 pt-5 h-100 position-absolute fixed-top" style="z-index: 1;">
         <div class="row h-75 align-items-center">
             <div class="col-sm-12 col-md-10 col-lg-4 offset-md-1 bg-white p-4 border rounded shadow">
                 <h1 class="mb-3">Apartment Search</h1>
@@ -63,7 +87,7 @@
 {{-- TEMPLATE HANDLEBARS --}}
 <script id="hbApTemplate" type="text/x-handlebars-template">
     <div class="card mb-3 p-1" style="width: 19rem;">
-        <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/placeholder.jpg"  alt="Card image cap">
+        {{-- debug --}} <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/placeholder.jpg"  alt="Card image cap"> {{-- debug --}}
         {{-- <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/users/@{{user_id}}/apartments/@{{id}}/@{{img}}"  alt="Card image cap"> --}}
         <div class="card-body">
             <p class="d-flex justify-content-between">
@@ -209,8 +233,8 @@
 <main>
     <div class="container-fluid p-0">
         {{-- CAROUSEL SECTION --}}
-        <section id="js_homeSlider" class="p-5 bg-primary my-5">
-            <div class="mb-5 text-white">
+        <section id="js_homeSlider" class="p-5">
+            <div class="mb-5">
                 <h3 class="text-center text-uppercase">Premium Apartments</h3>
                 <p class="text-center">A selection of verified accommodations for quality and design.</p>
             </div>
@@ -218,19 +242,19 @@
                 <div class="col-12">
                     {{-- prev --}}
                     <div>
-                        <a style="width: 1rem" class="carousel-control-prev" href="#multi_item" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <a style="width: 1rem;" class="carousel-control-prev pr-lg-1" href="#multi_item" role="button" data-slide="prev">
+                            <span class="bg-primary rounded carousel-control-prev-icon" aria-hidden="true"></span>
                         </a>
                     </div>
                     {{-- carousel --}}
                     <div class="carousel slide" data-ride="carousel" id="multi_item">
                         <div class="carousel-inner">
-                            @foreach ($collection->chunk(5) as $count => $chunk)
+                            @foreach ($collection->chunk(6) as $count => $chunk)
                                 <div class="carousel-item {{ $count == 0 ? 'active' : ' ' }}">
                                     <div class="row flex-nowrap">
                                         @foreach ($chunk as $apartment)
-                                            <div class="col mx-3">
-                                                <div class="card shadow p-1" style="width: 19rem;">
+                                            <div class="col-12 col-md-4 col-lg-2 px-5 px-md-4 px-lg-3 mx-md-0">
+                                                <div class="card shadow p-1">
                                                     <img class="img-fluid rounded-top" src="{{ asset('assets/images/placeholder.jpg') }}" alt="Card image cap">
                                                     <div class="card-body">
                                                         <a href="{{ route('apartment.show', $apartment->apartment_id) }}">
@@ -247,8 +271,8 @@
                     </div>
                     {{-- next --}}
                     <div>
-                        <a style="width: 1rem" class="carousel-control-next" href="#multi_item" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <a style="width: 1rem" class="carousel-control-next pl-lg-1" href="#multi_item" role="button" data-slide="next">
+                            <span class="bg-primary rounded carousel-control-next-icon" aria-hidden="true"></span>
                         </a>
                     </div>
                 </div>
@@ -256,10 +280,10 @@
         </section>
         {{-- /CAROUSEL SECTION --}}
         {{-- SEARCH SECTION --}}
-        <section id="js_homeSearch" class="p-5 bg-info my-5">
+        <section id="js_homeSearch" class="bg-secondary p-5 my-5">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="mb-5 text-white">
+                    <div class="mb-5">
                         <h3 class="text-center text-uppercase">Search Results</h3>
                         <p class="text-center">The research has produced these results.</p>
                     </div>
