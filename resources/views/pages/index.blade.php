@@ -93,12 +93,6 @@
 <script>
     $(document).ready(function() {
 
-        $('#js_goToPremiumAps').click(function() {
-            $('html,body').animate({
-                scrollTop: $('#js_homeSlider').offset().top
-            }, 750);
-        });
-
         // Nascondo il div dei risultati della ricerca
         $('#js_homeSearch').hide();
         $('#js_alertInput').hide();
