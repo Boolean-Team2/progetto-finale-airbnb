@@ -26,39 +26,56 @@
                 @endif
             </div>
         </div>
-        <div class="row my-4">
-            {{-- APARTMENT'S DETAILS LIST --}}
+        <div class="row mb-3">
             <div class="col-sm-12">
-                <h4>Apartments list</h4>
-                @foreach ($userApartments as $userApartment)
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <span><i class="fas fa-building"></i></span>
-                            <span class="js_nameList">{{ $userApartment->name }}</span>
+                @if (Auth::user()->firstname)
+                    <h3>Welcome back {{ Auth::user()->firstname }}</h3>
+                    @else
+                        <h3>Welcome back {{ Auth::user()->email }}</h3>
+                @endif
+                <p>Here you can edit your informations</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="d-none d-md-block col-md-3">
+                @include('partials.leftSidebarUser')
+            </div>
+            <div class="col-sm-12 col-md-9">
+                {{-- APARTMENT'S DETAILS LIST --}}
+                <div class="col-sm-12">
+                    <h4>Apartments list</h4>
+                    @foreach ($userApartments as $userApartment)
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <span><i class="fas fa-building"></i></span>
+                                <span class="js_nameList">{{ $userApartment->name }}</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span><i class="mr-2 fas fa-eye"></i></span>
+                                <span class="js_viewsCount">{{ $userApartment->views->count() }}</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span><i class="fas fa-envelope"></i></span>
+                                <span class="js_msgsCount">{{ $userApartment->messages->count() }}</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <a href="{{ route('apartmet.statistics.show', [Auth::user()->id, $userApartment->id]) }}">Details</a>
+                            </div>
                         </div>
-                        <div class="col-sm-3">
-                            <span><i class="mr-2 fas fa-eye"></i></span>
-                            <span class="js_viewsCount">{{ $userApartment->views->count() }}</span>
-                        </div>
-                        <div class="col-sm-3">
-                            <span><i class="fas fa-envelope"></i></span>
-                            <span class="js_msgsCount">{{ $userApartment->messages->count() }}</span>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="{{ route('apartmet.statistics.show', [Auth::user()->id, $userApartment->id]) }}">Details</a>
-                        </div>
+                    @endforeach
+                </div>
+                <div class="row">
+                    {{-- APARTMENT'S VIEWS CHART --}}
+                    <div class="col-sm-12 col-lg-6 my-5">
+                        <h4 class="text-center">Views</h4>
+                        <canvas id="myViews"></canvas>
                     </div>
-                @endforeach
-            </div>
-            {{-- APARTMENT'S VIEWS CHART --}}
-            <div class="col-sm-12 col-lg-6 my-5">
-                <h4 class="text-center">Views</h4>
-                <canvas id="myViews"></canvas>
-            </div>
-            {{-- APARTMENT'S MESSAGES CHART --}}
-            <div class="col-sm-12 col-lg-6 my-5">
-                <h4 class="text-center">Messages</h4>
-                <canvas id="myMessages"></canvas>
+                    {{-- APARTMENT'S MESSAGES CHART --}}
+                    <div class="col-sm-12 col-lg-6 my-5">
+                        <h4 class="text-center">Messages</h4>
+                        <canvas id="myMessages"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

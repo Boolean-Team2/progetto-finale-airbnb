@@ -32,8 +32,21 @@
                 @endif
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-sm-12">
+                @if (Auth::user()->firstname)
+                    <h3>Welcome back {{ Auth::user()->firstname }}</h3>
+                    @else
+                        <h3>Welcome back {{ Auth::user()->email }}</h3>
+                @endif
+                <p>Here you can edit your informations</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="d-none d-md-block col-md-3">
+                @include('partials.leftSidebarUser')
+            </div>
+            <div class="col-sm-12 col-md-9">
                 <h3 class="mb-3">Your payments</h3>
                 <div class="row">
                     <div class="d-none d-sm-block col-md-3">
@@ -64,15 +77,15 @@
                                 from {{ $ad->pivot->start_time }} to {{ $ad->pivot->end_time }}
                             </div>
                             @endif
-                            @endforeach
+                        @endforeach
                     @endforeach
-
                 </div>
+                <hr>
+                    <div class="text-right"> Total payments: {{ $result }}€ </div>
+                <hr>
             </div>
         </div>
-        <hr>
-            <div class="text-right"> Total payments: {{ $result }}€ </div>
-        <hr>
+        
     </div>
 
     {{-- INCLUDE FOOTER --}}

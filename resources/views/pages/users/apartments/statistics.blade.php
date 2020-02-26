@@ -7,47 +7,62 @@
 
 {{-- CONTENT --}}
 @section('body')
-<div class="container my-5">
-    <div class="row">
-        <div class="col-12">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="m-0">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+    <div id="idApp" class="container my-5" data-param={{$apartment -> id}}>
+        <div class="row">
+            <div class="col-12">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="m-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
         </div>
-    </div>
-</div>
-<div id="idApp" class="container" data-param={{$apartment -> id}}>
-    <div class="row">
-        <div class="col-sm-12 col-lg-6">
-            <h3> Views number</h3>
-            <div class="container">
-                <div class="wrap">
-                    <canvas id="myViews"></canvas> 
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                @if (Auth::user()->firstname)
+                    <h3>Welcome back {{ Auth::user()->firstname }}</h3>
+                    @else
+                        <h3>Welcome back {{ Auth::user()->email }}</h3>
+                @endif
+                <p>Here you can edit your informations</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="d-none d-md-block col-md-3">
+                @include('partials.leftSidebarUser')
+            </div>
+            <div class="col-sm-12 col-md-9">
+                <div class="row">
+                    <div class="col col-lg-6">
+                        <h3> Views number</h3>
+                        <div class="container">
+                            <div class="wrap">
+                                <canvas id="myViews"></canvas> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-lg-6">
+                        <h3> Messages number</h3>
+                        <div class="container">
+                            <div class="wrap">
+                                <canvas id="myMessages"></canvas> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-lg-6">
-            <h3> Messages number</h3>
-            <div class="container">
-                <div class="wrap">
-                    <canvas id="myMessages"></canvas> 
-                </div>
-            </div>
-        </div>
     </div>
-</div>
-
+    
 {{-- FOOTER --}}
 @include('partials.footer')
 

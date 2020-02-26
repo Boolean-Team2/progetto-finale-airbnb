@@ -11,7 +11,7 @@
 {{-- INCLUDE SCRIPT VUE --}}
 @include('comps.addressCreate')
 
-<div class="container my-5 py-5">
+<div class="container my-5">
     <div class="row">
         <div class="col-12">
             @if (session('status'))
@@ -30,12 +30,23 @@
             @endif
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-sm-12">
+            @if (Auth::user()->firstname)
+                <h3>Welcome back {{ Auth::user()->firstname }}</h3>
+                @else
+                    <h3>Welcome back {{ Auth::user()->email }}</h3>
+            @endif
+            <p>Here you can edit your informations</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="d-none d-md-block col-md-3">
+            @include('partials.leftSidebarUser')
+        </div>
+        <div id="app" class="col-sm-12 col-md-9">
             <h3>Create apartment</h3>
             <p>Here you can create your apartment</p>
-        </div>
-        <div id="app" class="col-sm-12">
             <form action="{{ route('account.apartments.store', Auth::user()->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method("POST")
