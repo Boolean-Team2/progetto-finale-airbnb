@@ -71,7 +71,7 @@
             </p>
             <p class="d-flex justify-content-between">
                 <span><i class="mr-1 fas fa-bed"></i>@{{beds}}</span>
-                <span><i class="mr-1 fas fa-users"></i>@{{rooms}}</span>
+                <span><i class="mr-1 fas fa-person-booth"></i>@{{rooms}}</span>
                 <span><i class="mr-1 fas fa-toilet-paper"></i>@{{baths}}</span>
                 <span><i class="mr-1 fas fa-ruler-combined"></i>@{{mq}}</span>
             </p>
