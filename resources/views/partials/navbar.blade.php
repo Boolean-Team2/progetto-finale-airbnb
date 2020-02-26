@@ -1,9 +1,9 @@
-<nav style="transition: all 0.2s ease-in-out" class="navbar navbar-expand-md navbar-light text-white">
+<nav style="z-index: 999999;" class="navbar navbar-expand-md navbar-light bg-white shadow">
     <div class="container-fluid">
-        <a class="navbar-brand text-white" href="{{ url('/') }}">
+        <a class="navbar-brand text-primary" href="{{ url('/') }}">
             <i class="fab fa-airbnb display-4"></i>
         </a>
-        <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -18,16 +18,16 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link text-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link text-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-primary" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             @if (Auth::user()->firstname || Auth::user()->lastname)
                                 {{ Auth::user()->firstname }} {{ Auth::user()->lastname }} 
                                 @else
@@ -36,22 +36,22 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('account.show', Auth::user()->id) }}">
+                            <a class="dropdown-item text-primary" href="{{ route('account.show', Auth::user()->id) }}">
                                 {{ __('Profile') }}
                             </a>
-                            <a class="dropdown-item" href="{{ route('account.apartments.show', Auth::user()->id) }}">
+                            <a class="dropdown-item text-primary" href="{{ route('account.apartments.show', Auth::user()->id) }}">
                                 {{ __('Apartments') }}
                             </a>
-                            <a class="dropdown-item" href="{{ route('account.statistics.show', Auth::user()->id) }}">
+                            <a class="dropdown-item text-primary" href="{{ route('account.statistics.show', Auth::user()->id) }}">
                                 {{ __('Statistics') }}
                             </a>
-                            <a class="dropdown-item" href="{{ route('user.sponsor.payments', Auth::user()->id) }}">
+                            <a class="dropdown-item text-primary" href="{{ route('user.sponsor.payments', Auth::user()->id) }}">
                                 {{ __('Payments') }}
                             </a>
-                            <a class="dropdown-item" href="{{ route('account.messages.show', Auth::user()->id) }}">
+                            <a class="dropdown-item text-primary" href="{{ route('account.messages.show', Auth::user()->id) }}">
                                 {{ __('Messages') }}
                             </a>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
