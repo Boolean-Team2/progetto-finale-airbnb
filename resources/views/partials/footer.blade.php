@@ -1,7 +1,7 @@
 <footer class="alert alert-info py-3 mb-0">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-12 col-md-2 offset-md-2">
+			<div class="col-sm-12 col-md-2 offset-md-1">
 				<p>BoolB&B</p>
 				<ul class="list-unstyled">
 					<li><a href="#">Opportunità di lavoro</a></li>
@@ -35,27 +35,31 @@
 				</ul>
 			</div>
 			<div class="col-sm-12 col-md-2">
-				<div class="social">
-					<a href="#"><i class="fab fa-facebook-f"></i></a>
-					<a href="#"><i class="fab fa-twitter"></i></a>
-					<a href="#"><i class="fab fa-instagram"></i></a>
-				</div>
+				<p>Link utili</p>
 				<ul class="list-unstyled">
-					<li><a href="#">Termini</a></li>
-					<li><a href="#">Privacy</a></li>
-					<li><a href="#">Mappa del sito</a></li>
+					<li><a href="#">Sitemap</a></li>
+					<li><a href="#">Cookie</a></li>
 				</ul>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-8 offset-md-2">
-				<hr>
+			<div class="col-sm-12 col-md-2">
+				<div class="social">
+					<p>Realizzazione</p>
+					<ul class="list-unstyled d-flex">
+						<li class="mr-3 display-4"><a class="text-success" href="https://github.com/Sofiag19"><i class="fab fa-github"></i></a></li>
+						<li class="mr-3 display-4"><a class="text-danger" href="https://github.com/Marco-S117"><i class="fab fa-github"></i></a></li>
+						<li class="mr-3 display-4"><a class="text-info" href="https://github.com/DevAngelo98"><i class="fab fa-github"></i></a></li>
+						<li class="mr-3 display-4"><a class="text-primary" href="https://github.com/MATVEN"><i class="fab fa-github"></i></a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-12 col-md-8 offset-md-2">
+			<div class="col-sm-10 offset-md-1">
+				<hr>
+		<div class="row">
+			<div class="col-sm-12 col-md-10">
 				<i class="fab fa-airbnb"></i>
-				<span>© 2020 BoolB&B, Inc. All rights reserved.</span>
+				<span>© 2020 BoolB&B by Team2, Inc. All rights reserved.</span>
 			</div>
 		</div>
 	</div>
