@@ -9946,15 +9946,9 @@ h3 {
     border-color: #dee2e6;
   }
 }
-.ms_100VhHeader {
-  height: 100vh;
-  background: url("../images/bg-header.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
+header .carousel-item {
+  height: calc(100vh - 93px);
+  min-height: 350px;
+  background: no-repeat center center scroll;
   background-size: cover;
-}
-
-.wrap {
-  margin: auto;
-  max-width: 700px;
 }

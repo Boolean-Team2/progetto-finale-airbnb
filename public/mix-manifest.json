@@ -1,5 +1,8 @@
 {
     "/assets/js/app.js": "/assets/js/app.js",
     "/assets/css/app.css": "/assets/css/app.css",
-    "/assets/images/bg-header.jpg": "/assets/images/bg-header.jpg"
+    "/assets/images/bg-header.jpg": "/assets/images/bg-header.jpg",
+    "/assets/images/slide1.jpg": "/assets/images/slide1.jpg",
+    "/assets/images/slide2.jpg": "/assets/images/slide2.jpg",
+    "/assets/images/slide3.jpg": "/assets/images/slide3.jpg"
 }
