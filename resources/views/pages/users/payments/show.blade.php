@@ -71,7 +71,7 @@
             </div>
         </div>
         <hr>
-        <div class="text-right"> Total payments: {{ $apartment->ads->sum('price') }}€ </div>
+            <div class="text-right"> Total payments: {{ $result }}€ </div>
         <hr>
     </div>
 

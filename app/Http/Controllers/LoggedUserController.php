@@ -85,7 +85,12 @@ class LoggedUserController extends Controller
     public function userPayments($id) {
         if($id == Auth::user()->id) {
             $user = User::findOrFail($id);
-            return view('pages.users.payments.show', compact('user'));
+            $total = [];
+            foreach ($user->apartments as $apartment) {
+                $total[]=$apartment->ads->sum('price');
+            }
+            $result = array_sum($total);
+            return view('pages.users.payments.show', compact('user', 'result'));
         } else {
             return back()->withErrors('Non puoi vedere questa pagina');
         }
