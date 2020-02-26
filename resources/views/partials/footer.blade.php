@@ -1,8 +1,8 @@
-<footer class="alert alert-info py-3 mb-0">
+<footer class="bg-dark text-white py-3 mb-0">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-12 col-md-2 offset-md-1">
-				<p>BoolB&B</p>
+				<p class="text-uppercase">BoolB&B</p>
 				<ul class="list-unstyled">
 					<li><a href="#">Opportunità di lavoro</a></li>
 					<li><a href="#">News</a></li>
@@ -13,7 +13,7 @@
 				</ul>
 			</div>
 			<div class="col-sm-12 col-md-2">
-				<p>Scopri</p>
+				<p class="text-uppercase">Scopri</p>
 				<ul class="list-unstyled">
 					<li><a href="#">Affidabilità e sicurezza</a></li>
 					<li><a href="#">Travel Credit</a></li>
@@ -24,7 +24,7 @@
 				</ul>
 			</div>
 			<div class="col-sm-12 col-md-2">
-				<p>Ospita</p>
+				<p class="text-uppercase">Ospita</p>
 				<ul class="list-unstyled">
 					<li><a href="#">Perché affittare</a></li>
 					<li><a href="#">Ospitalità</a></li>
@@ -35,7 +35,7 @@
 				</ul>
 			</div>
 			<div class="col-sm-12 col-md-2">
-				<p>Link utili</p>
+				<p class="text-uppercase">Link utili</p>
 				<ul class="list-unstyled">
 					<li><a href="#">Sitemap</a></li>
 					<li><a href="#">Cookie</a></li>
@@ -43,19 +43,19 @@
 			</div>
 			<div class="col-sm-12 col-md-2">
 				<div class="social">
-					<p>Realizzazione</p>
-					<ul class="list-unstyled d-flex">
-						<li class="mr-3 display-4"><a class="text-success" href="https://github.com/Sofiag19"><i class="fab fa-github"></i></a></li>
-						<li class="mr-3 display-4"><a class="text-danger" href="https://github.com/Marco-S117"><i class="fab fa-github"></i></a></li>
-						<li class="mr-3 display-4"><a class="text-info" href="https://github.com/DevAngelo98"><i class="fab fa-github"></i></a></li>
-						<li class="mr-3 display-4"><a class="text-primary" href="https://github.com/MATVEN"><i class="fab fa-github"></i></a></li>
+					<p class="text-uppercase">Crediti</p>
+					<ul class="list-unstyled d-flex justify-content-between">
+						<li style="font-size: 2rem" class="mr-3"><a class="text-success" href="https://github.com/Sofiag19"><i class="fab fa-github"></i></a></li>
+						<li style="font-size: 2rem" class="mr-3"><a class="text-danger" href="https://github.com/Marco-S117"><i class="fab fa-github"></i></a></li>
+						<li style="font-size: 2rem" class="mr-3"><a class="text-warning" href="https://github.com/DevAngelo98"><i class="fab fa-github"></i></a></li>
+						<li style="font-size: 2rem" class="mr-3"><a class="text-primary" href="https://github.com/MATVEN"><i class="fab fa-github"></i></a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-10 offset-md-1">
-				<hr>
+				<hr class="border-light">
 		<div class="row">
 			<div class="col-sm-12 col-md-10">
 				<i class="fab fa-airbnb"></i>
