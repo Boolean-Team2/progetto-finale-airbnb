@@ -63,7 +63,7 @@ class ChatController extends Controller
     {
         $from = Auth::id();
         $to = $request->receiver_id;
-        $message = $request->message;
+        $message = $request->chat;
 
         $data = new MessageChat();
         $data->from = $from;

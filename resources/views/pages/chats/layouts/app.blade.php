@@ -207,9 +207,9 @@
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
         var pusher = new Pusher('7d56624a5db3101417dc', {
-            cluster: 'eu',
-            forceTLS: true
-        });
+      cluster: 'eu',
+      forceTLS: true
+    });
         var channel = pusher.subscribe('my-channel');
         channel.bind('my-event', function (data) {
             // alert(JSON.stringify(data));
@@ -252,6 +252,7 @@
             if (e.keyCode == 13 && message != '' && receiver_id != '') {
                 $(this).val(''); // while pressed enter text box will be empty
                 var datastr = "receiver_id=" + receiver_id + "&chat=" + message;
+                
                 $.ajax({
                     type: "post",
                     url: "chat", // need to create this post route
@@ -260,6 +261,7 @@
                     success: function (data) {
                     },
                     error: function (jqXHR, status, err) {
+                        console.log(err, datastr);
                     },
                     complete: function () {
                         scrollToBottomFunc();
