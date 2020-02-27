@@ -5,7 +5,6 @@ Route::get('/', 'MainController@index')->name('index');
 
 // Auth routes
 Auth::routes();
-Route::redirect('/home', '/');
 
 // Show user profile route
 Route::get('/account/{id}/show', 'LoggedUserController@show')->name('account.show');
@@ -54,3 +53,7 @@ Route::post('/sendmail/{ida}', 'MainController@sendMail')->name('sendmail');
 Route::get('/chats', 'ChatController@index')->name('chats');
 Route::get('/chat/{id}', 'ChatController@getMessage')->name('chat');
 Route::post('chat', 'ChatController@sendMessage');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
