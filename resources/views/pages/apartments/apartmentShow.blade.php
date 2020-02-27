@@ -53,29 +53,41 @@
                             </p>
                             @else
                             {{-- CONTACT FORM FOR GUESTS AND OTHER USERS--}}
-                            <h4>Contact me</h4>
-                            <form action="{{ route('sendmail', $apartment -> id) }}" method="post">
-                                @csrf
-                                @method('POST')
-                                <div class="form-group">
-                                    @if (Auth::user())
-                                        <input type="email" name="email_sender" class="form-control" value="{{ Auth::user()->email }}">
-                                        @else
-                                        <input type="email" name="email_sender" class="form-control" placeholder="Inserisci e-mail">
-                                    @endif
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <h4>Use our chats!</h4>
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias, nisi dolorem? Labore, earum. Quam officia deserunt nobis sapiente perferendis. Adipisci qui veritatis vero doloremque est veniam corrupti ut iste aperiam.</p>
+                                    <a class="" href="{{ route('chats') }}">
+                                        {{ __('Chat messages') }}
+                                    </a>
                                 </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" name="body" placeholder="Dear owner.."></textarea>
+                                <div class="col-sm-12 col-md-6">
+                                    <h4>Contact me</h4>
+                                    <p>Use the form below to send an email to apartment's owner.</p>
+                                    <form action="{{ route('sendmail', $apartment -> id) }}" method="post">
+                                        @csrf
+                                        @method('POST')
+                                        <div class="form-group">
+                                            @if (Auth::user())
+                                                <input type="email" name="email_sender" class="form-control" value="{{ Auth::user()->email }}">
+                                                @else
+                                                <input type="email" name="email_sender" class="form-control" placeholder="Inserisci e-mail">
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="body" placeholder="Dear owner.."></textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-sm-12 col-md-8">
+                                                <input class="mr-2" type="checkbox" required><span>Accept terms and conditions</span>
+                                            </div>
+                                            <div class="col-sm-12 col-md-4 text-right">
+                                                <button class="btn btn-primary">Send message</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="form-row">
-                                    <div class="col-sm-12 col-md-8">
-                                        <input class="mr-2" type="checkbox" required><span>Accept terms and conditions</span>
-                                    </div>
-                                    <div class="col-sm-12 col-md-4 text-right">
-                                        <button class="btn btn-primary">Send message</button>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         @endif
                     @else
                     {{-- CONTACT FORM FOR GUESTS AND OTHER USERS--}}

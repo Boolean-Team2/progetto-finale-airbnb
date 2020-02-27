@@ -13,6 +13,9 @@
         <a class="list-group-item text-primary" href="{{ route('user.sponsor.payments', Auth::user()->id) }}">{{ __('Payments') }}</a>
     </li>
     <li>
-        <a class="list-group-item text-primary" href="{{ route('account.messages.show', Auth::user()->id) }}">{{ __('Messages') }}</a>
+        <a class="list-group-item text-primary" href="{{ route('account.messages.show', Auth::user()->id) }}">{{ __('Emails') }}</a>
+    </li>
+    <li>
+        <a class="list-group-item text-primary" href="{{ route('chats') }}">{{ __('Chat messages') }}</a>
     </li>
 </ul>
