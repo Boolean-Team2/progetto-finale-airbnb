@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->date('date_of_birth')->nullable();
