@@ -10,14 +10,14 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
 
     <style>
         /* width */
@@ -166,7 +166,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->firstname }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -237,7 +237,7 @@
             receiver_id = $(this).attr('id');
             $.ajax({
                 type: "get",
-                url: "message/" + receiver_id, // need to create this route
+                url: "chat/" + receiver_id, // need to create this route
                 data: "",
                 cache: false,
                 success: function (data) {
@@ -251,10 +251,10 @@
             // check if enter key is pressed and message is not null also receiver is selected
             if (e.keyCode == 13 && message != '' && receiver_id != '') {
                 $(this).val(''); // while pressed enter text box will be empty
-                var datastr = "receiver_id=" + receiver_id + "&message=" + message;
+                var datastr = "receiver_id=" + receiver_id + "&chat=" + message;
                 $.ajax({
                     type: "post",
-                    url: "message", // need to create this post route
+                    url: "chat", // need to create this post route
                     data: datastr,
                     cache: false,
                     success: function (data) {

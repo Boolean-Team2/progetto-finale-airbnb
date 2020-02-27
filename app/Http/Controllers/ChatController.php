@@ -45,7 +45,7 @@ class ChatController extends Controller
     public function getMessage($user_id)
     {
         $my_id = Auth::id();
-
+        
         // Make read all unread message
         MessageChat::where(['from' => $user_id, 'to' => $my_id])->update(['is_read' => 1]);
 
