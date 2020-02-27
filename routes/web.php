@@ -50,4 +50,7 @@ Route::get('/apartment/{id}/show', 'MainController@apartmentShow')->name('apartm
 // * * * MAIL ROUTES * * * //
 Route::post('/sendmail/{ida}', 'MainController@sendMail')->name('sendmail');
 
-
+// Chat routes
+Route::get('/chats', 'ChatController@index')->name('chats');
+Route::get('/chat/{id}', 'ChatController@getMessage')->name('chat');
+Route::post('chat', 'ChatController@sendMessage');

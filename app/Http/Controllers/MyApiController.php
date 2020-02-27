@@ -97,7 +97,7 @@ class MyApiController extends Controller
         $idApp = $request['id'];
 
         $messages = Message::select('id', 'created_at','apartment_id')
-        ->where('apartment_id', $idApp) //Colonna=valore
+        ->where('apartment_id', $idApp) 
         ->get()
         ->groupBy(function($date) {
             return Carbon::parse($date->created_at)->format('m'); // grouping by months
