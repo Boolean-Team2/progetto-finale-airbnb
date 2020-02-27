@@ -2,9 +2,9 @@
 
 {{-- CONTENT --}}
 @section('body')
-    <div id="idApp" class="container my-5" data-param={{$apartment -> id}}>
+    <div id="idApp" class="container-fluid mb-5" data-param={{$apartment -> id}}>
         <div class="row mb-3">
-            <div class="col-sm-12">
+            <div class="col-sm-12 col-md-10 offset-md-1">
                 @if (Auth::user()->firstname)
                     <h3>Welcome back {{ Auth::user()->firstname }}</h3>
                     @else
@@ -14,10 +14,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="d-none d-md-block col-md-3">
+            <div class="d-none d-md-block col-md-3 offset-md-1">
                 @include('partials.leftSidebarUser')
             </div>
-            <div class="col-sm-12 col-md-9">
+            <div class="col-sm-12 col-md-7">
                 <div class="row">
                     <div class="col col-lg-6">
                         <h3> Views number</h3>

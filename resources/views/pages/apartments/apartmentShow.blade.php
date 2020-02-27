@@ -2,24 +2,28 @@
 
 {{-- CONTENT --}}
 @section('body')   
-    <div class="container">
+    <div class="container-fluid">
         <section class="my-5">
             <div class="row">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4 offset-md-1">
                     <h3>{{ $apartment->name }}</h3>
-                    <p>{{ $apartment->description }}</p>
-                    <p><i class="mr-2 fas fa-map-marker"></i> {{ $apartment->address }}</p>              
-                    <p><i class="mr-2 fas fa-ruler-combined"></i>{{ $apartment->mq }}</p>              
-                    <p><i class="mr-2 fas fa-bed"></i>{{ $apartment->beds }}</p>              
-                    <p><i class="mr-2 fas fa-toilet-paper"></i>{{ $apartment->baths }}</p>              
-                    <p><i class="mr-2 fas fa-person-booth"></i>{{ $apartment->rooms }}</p>            
-                    <p><i class="mr-2 fas fa-eye"></i>{{ $apartment->views->count() }}</p>
-                    <hr>
+                    <p class="font-italic">{{ $apartment->description }}</p>
+                    <p><i class="mr-2 fas fa-map-marker"></i> {{ $apartment->address }}</p>
+                    <div>
+                        <p class="d-flex align-items-center justify-content-between"> 
+                            <span><i class="mr-2 fas fa-ruler-combined"></i>{{ $apartment->mq }}</span>
+                            <span><i class="mr-2 fas fa-bed"></i>{{ $apartment->beds }}</span>
+                            <span><i class="mr-2 fas fa-toilet-paper"></i>{{ $apartment->baths }}</span>
+                            <span><i class="mr-2 fas fa-person-booth"></i>{{ $apartment->rooms }}</span>
+                            <span><i class="mr-2 fas fa-eye"></i>{{ $apartment->views->count() }}</span>
+                        </p>
+                    </div>
+                    <hr class="my-4">
                     <h3>Services</h3>
                     @foreach ($apartment->services as $service)
                         <span>{{ $service->name }}</span>
                     @endforeach 
-                    <hr>
+                    <hr class="my-4">
                     <h4>Owner's contacts</h4>
                     <p class="mr-0"><i class="mr-2 fas fa-user"></i>{{ $apartment->user->firstname }} {{ $apartment->user->lastname }}</p>
                     <p class="m-0"><i class="mr-2 fas fa-envelope"></i><a href="mailto:{{ $apartment->user->email }}">{{ $apartment->user->email }}</a></p>
@@ -32,9 +36,8 @@
                     @endif
                 </div>
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
+            <div class="row my-5">
+                <div class="col-sm-12 col-md-10 offset-md-1">
                     @auth
                         {{-- OWNER SHOW HIS APARTMENT --}}
                         @if (Auth::user()->id === $apartment->user_id)
@@ -91,10 +94,17 @@
                     </form>
                     @endauth
                 </div>
-                <div class="col-sm-12 col-md-6">
+            </div>
+            <div class="row my-5">
+                <div class="col-sm-12 col-md-10 offset-md-1">
+                    <hr>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col-sm-12 col-md-10 offset-md-1">
                     <input hidden id="lon" type="text" value="{{ $apartment -> longitude }}">
                     <input hidden id="lat" type="text" value="{{ $apartment -> latitude }}">
-                    <div id="map" class="mapboxgl-map" style="height: 230px; width: 100%;">
+                    <div id="map" class="mapboxgl-map" style="height: 400px; width: 100%;">
                 </div>
             </div>
         </section>

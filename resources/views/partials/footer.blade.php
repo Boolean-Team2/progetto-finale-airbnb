@@ -56,8 +56,6 @@
 		<div class="row">
 			<div class="col-sm-10 offset-md-1">
 				<hr class="border-light">
-		<div class="row">
-			<div class="col-sm-12 col-md-10">
 				<i class="fab fa-airbnb"></i>
 				<span>© 2020 BoolB&B by Team2, Inc. All rights reserved.</span>
 			</div>

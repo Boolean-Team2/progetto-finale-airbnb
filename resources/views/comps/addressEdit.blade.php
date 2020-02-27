@@ -22,8 +22,8 @@
                 <div v-show="showInput" class="col-sm-12">
                     <input hidden type="text" name='user_id' value="{{ Auth::user()->id }}">
                     <input class="form-control" type="text" name="address" v-model="address">
-                    <input hidden class="form-control" type="text" name="latitude" v-model="lat">
-                    <input hidden class="form-control" type="text" name="longitude" v-model="lon">
+                    <input hidden type="text" name="latitude" v-model="lat">
+                    <input hidden type="text" name="longitude" v-model="lon">
                 </div>
 
                 {{-- Campi nascosti per passaggio dati --}}
@@ -32,7 +32,13 @@
                     <input hidden type="text" name='latitude' value="{{ $apartment->latitude }}">
                     <input hidden type="text" name='longitude' value="{{ $apartment->longitude }}">
                 </div>
-                <div v-show="!show" class="col-sm-12 col-md-6 mt-3">
+                
+                <div v-show="!show" class="col-sm-12 col-md-9">
+                    <label>Addresss</label>
+                    <input class="form-control" type="text" value="{{ $apartment->address }}">
+                </div>
+                <div v-show="!show" class="col-sm-12 col-md-3">
+                    <label style="color: white">W IL TEAM 2</label>
                     <a @click="editAddress()" href="#" class="form-control btn btn-primary">Modifica indirizzo</a>
                 </div>
             </div>

@@ -50,10 +50,13 @@ class LoggedUserController extends Controller
     public function messagesShow($id) {
         if($id == Auth::user()->id) {
             $userAps = Apartment::all()->where('user_id', $id);
-            $userMsgs = [];
+            $msgs = [];
             foreach ($userAps as $apartment) {
-                $userMsgs [] = $apartment->messages;
+                $msgs [] = $apartment->messages;
             }
+
+            $userMsgs = collect($msgs);
+
             return view('pages.users.messages.show', compact('userMsgs'));
         } else {
             return back()->withErrors('Non puoi vedere questa pagina');

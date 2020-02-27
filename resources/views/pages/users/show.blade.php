@@ -1,9 +1,9 @@
 @extends('templates.template')
     {{-- CONTENT --}}
     @section('body')
-        <div class="container my-5">
+        <div class="container-fluid mb-5">
             <div class="row mb-3">
-                <div class="col-sm-12">
+                <div class="col-sm-12 col-md-10 offset-md-1">
                     @if (Auth::user()->firstname)
                         <h3>Welcome back {{ Auth::user()->firstname }}</h3>
                         @else
@@ -13,10 +13,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="d-none d-md-block col-md-3">
+                <div class="d-none d-md-block col-md-3 offset-md-1">
                     @include('partials.leftSidebarUser')
                 </div>
-                <div class="col-sm-12 col-md-9 mt-2 m-md-0">
+                <div class="col-sm-12 col-md-7 mt-2 m-md-0">
                     <h3>Your informations</h3>
                     <form action="{{ route('account.edit', Auth::user()->id) }}" method="post">
                         <input id="mjs_user" type="hidden" value="{{ Auth::user()->id }}">

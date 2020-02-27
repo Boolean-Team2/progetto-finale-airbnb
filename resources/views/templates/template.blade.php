@@ -37,8 +37,10 @@
   {{-- INCLUDE NAVBAR --}}
   @include('partials.navbar')
 
-  {{-- INCLUDE ERRORS/MESSAGES SECTION --}}
-  @include('partials.showErrors')
+  <div class="container-fluid">
+    {{-- INCLUDE ERRORS/MESSAGES SECTION --}}
+    @include('partials.showErrors')
+  </div>
 
   {{-- CONTENT SECTION --}}
   @yield('body')

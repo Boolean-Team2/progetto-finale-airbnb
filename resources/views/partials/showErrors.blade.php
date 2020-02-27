@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12">
+    <div class="col-sm-12 col-md-10 offset-md-1 mt-5">
         @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
