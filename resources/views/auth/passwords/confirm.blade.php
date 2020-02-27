@@ -1,9 +1,5 @@
 @extends('templates.tempalte')
 
-<div class="bg-primary">
-    @include('partials.navbar')
-</div>
-
 @section('body')
 <div class="container my-5 py-5">
     <div class="row justify-content-center">
@@ -49,8 +45,5 @@
             </div>
         </div>
     </div>
-</div>
-<div class="bg-secondary">
-    @include('partials.footer')
 </div>
 @endsection

@@ -1,10 +1,5 @@
 @extends('templates.template')
 
-{{-- NAVBAR --}}
-<div class="bg-primary">
-    @include('partials.navbar')
-</div>
-
 {{-- CONTENT --}}
 @section('body')
 <div class="container my-5 py-5">
@@ -31,8 +26,5 @@
         </div>
     </div>
 </div>
-
-{{-- FOOTER --}}
-@include('partials.footer')
 
 @endsection

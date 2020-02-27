@@ -5,9 +5,6 @@
 
 <header class="ms_100VhHeader">
 
-    {{-- INCLUDE NAVBAR --}}
-    @include('partials.navbar')
-
     {{-- FULLHEADER CAROUSEL --}}
     <div class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
@@ -296,8 +293,5 @@
         {{-- /SEARCH SECTION --}}
     </div>
 </main>
-
-{{-- FOOTER --}}
-@include('partials.footer')
 
 @endsection
