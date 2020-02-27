@@ -3,6 +3,11 @@
 {{-- CONTENT --}}
 @section('body')
 
+	{{-- INCLUDE ERRORS/MESSAGES SECTION --}}
+    <div class="container-fluid">
+        @include('partials.showErrors')
+    </div>
+
 	<div class="container-fluid mb-5">
 		<div class="row">
 			<div class="d-none d-md-block col-md-3 offset-md-1">

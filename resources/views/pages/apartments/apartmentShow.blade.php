@@ -1,7 +1,13 @@
 @extends('templates.template')
 
 {{-- CONTENT --}}
-@section('body')   
+@section('body')
+
+    {{-- INCLUDE ERRORS/MESSAGES SECTION --}}
+    <div class="container-fluid">
+        @include('partials.showErrors')
+    </div>
+
     <div class="container-fluid">
         <section class="my-5">
             <div class="row">

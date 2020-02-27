@@ -33,14 +33,9 @@
     {{-- tomtom style --}}
     <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.45.0/maps/maps.css'>
 </head>
-<body>
+<body class="bg-white">
   {{-- INCLUDE NAVBAR --}}
   @include('partials.navbar')
-
-  <div class="container-fluid">
-    {{-- INCLUDE ERRORS/MESSAGES SECTION --}}
-    @include('partials.showErrors')
-  </div>
 
   {{-- CONTENT SECTION --}}
   @yield('body')

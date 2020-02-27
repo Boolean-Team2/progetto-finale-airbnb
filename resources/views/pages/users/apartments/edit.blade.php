@@ -3,8 +3,13 @@
 {{-- CONTENT --}}
 @section('body')
 
-{{-- INCLUDE SCRIPT VUE --}}
-@include('comps.addressEdit')
+    {{-- INCLUDE SCRIPT VUE --}}
+    @include('comps.addressEdit')
+
+    {{-- INCLUDE ERRORS/MESSAGES SECTION --}}
+    <div class="container-fluid">
+        @include('partials.showErrors')
+    </div>
 
     <div class="container-fluid mb-5">
         <div class="row mb-3">

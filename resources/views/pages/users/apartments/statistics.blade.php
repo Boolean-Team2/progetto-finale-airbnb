@@ -2,6 +2,12 @@
 
 {{-- CONTENT --}}
 @section('body')
+
+    {{-- INCLUDE ERRORS/MESSAGES SECTION --}}
+    <div class="container-fluid">
+        @include('partials.showErrors')
+    </div>
+    
     <div id="idApp" class="container-fluid mb-5" data-param={{$apartment -> id}}>
         <div class="row mb-3">
             <div class="col-sm-12 col-md-10 offset-md-1">
