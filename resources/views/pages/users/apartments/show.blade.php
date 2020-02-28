@@ -19,7 +19,7 @@
                     <div>
                         <h3>Your apartments</h3>
                     </div>
-                    <a href="{{ route('account.apartments.create') }}" class="btn btn-primary">Add new apartment</a>
+                    <a href="{{ route('account.apartment.create') }}" class="btn btn-primary">Add new apartment</a>
                 </div>
                 {{-- Sponsorizzati --}}
                 <div class="d-flex flex-wrap justify-content-between">

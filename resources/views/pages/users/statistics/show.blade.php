@@ -16,7 +16,7 @@
             <div class="col-sm-12 col-md-7">
                 {{-- APARTMENT'S DETAILS LIST --}}
                 <div class="col-sm-12">
-                    <h4 class="mb-3">Apartments list and charts</h4>
+                    <h3 class="mb-3">Apartments list and charts</h3>
                     @foreach ($userApartments as $userApartment)
                         <div class="row">
                             <div class="col-sm-3">

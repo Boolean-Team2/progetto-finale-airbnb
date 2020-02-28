@@ -20,7 +20,7 @@
             <div id="app" class="col-sm-12 col-md-7">
                 <h3>Create apartment</h3>
                 <p>Here you can create your apartment</p>
-                <form action="{{ route('account.apartments.store', Auth::user()->id) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('account.apartment.store', Auth::user()->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method("POST")
                     <div class="form-row">
