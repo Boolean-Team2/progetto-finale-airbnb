@@ -75,7 +75,7 @@ class LoggedUserController extends Controller
 
             return view('pages.users.messages.show', compact('userMsgs', 'unread_msgs'));
         } else {
-            return back()->withErrors('Non puoi vedere questa pagina');
+            return back()->withErrors("You don't have permission to visit this page");
         }
     }
     public function messageShow($id, $idm) {
@@ -87,7 +87,7 @@ class LoggedUserController extends Controller
 
             return view('pages.users.messages.details', compact('msg'));
         } else {
-            return back()->withErrors('Non puoi vedere questa pagina');
+            return back()->withErrors("You don't have permission to visit this page");
         }
     }
 
@@ -98,7 +98,7 @@ class LoggedUserController extends Controller
             $userApartments = $user->apartments;
             return view('pages.users.statistics.show', compact('userApartments'));
         } else {
-            return back()->withErrors('Non puoi vedere questa pagina');
+            return back()->withErrors("You don't have permission to visit this page");
         }
     }
 
@@ -108,7 +108,7 @@ class LoggedUserController extends Controller
         if($id == $apartment->user_id && $id == Auth::user()->id) {
             return view('pages.users.apartments.statistics', compact('apartment'));
         } else {
-            return back()->withErrors('Non puoi vedere questa pagina');
+            return back()->withErrors("You don't have permission to visit this page");
         }
     }
 
@@ -123,7 +123,7 @@ class LoggedUserController extends Controller
             $result = array_sum($total);
             return view('pages.users.payments.show', compact('user', 'result'));
         } else {
-            return back()->withErrors('Non puoi vedere questa pagina');
+            return back()->withErrors("You don't have permission to visit this page");
         }
     }
 

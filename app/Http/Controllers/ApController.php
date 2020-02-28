@@ -46,7 +46,7 @@ class ApController extends Controller
 
             return view('pages.users.apartments.show', compact('apartmentsAdActive','apartmentsAdNotActive'));
         } else {
-            return back()->withErrors('Non puoi vedere questa pagina');
+            return back()->withErrors("You don't have permission to visit this page");
         }
     }
     
@@ -164,9 +164,9 @@ class ApController extends Controller
 
             $apartment -> delete();
 
-            return back() -> with('status', 'Success');
+            return back() -> with('status', 'Apartment delete with success.');
         } else {
-            return back()->withErrors('Non puoi vedere questa pagina');
+            return back()->withErrors("You don't have permission to visit this page");
         }
 
     }
