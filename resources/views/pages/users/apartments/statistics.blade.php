@@ -17,7 +17,7 @@
             <div class="col-sm-12 col-md-7">
                 <div class="row">
                     <div class="col col-lg-6">
-                        <h3> Views number</h3>
+                        <h3>Views <span class="badge badge-primary">{{ $apartment->views->count() }}</span></h3>
                         <div class="container">
                             <div class="wrap">
                                 <canvas id="myViews"></canvas> 
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="col col-lg-6">
-                        <h3> Messages number</h3>
+                        <h3>Messages <span class="badge badge-primary">{{ $apartment->messages->count() }}</span></h3>
                         <div class="container">
                             <div class="wrap">
                                 <canvas id="myMessages"></canvas> 
@@ -81,8 +81,8 @@
                     datasets: [{
                         label: 'Views',
                         data: data,
-                        backgroundColor: "red",
-                        borderColor: "red",
+                        backgroundColor: "#3490dc",
+                        borderColor: "#3490dc",
                         borderWidth: 1
                     }]
                 },
@@ -106,8 +106,8 @@
                     datasets: [{
                         label: 'Messages',
                         data: data,
-                        backgroundColor: "red",
-                        borderColor: "red",
+                        backgroundColor: "#3490dc",
+                        borderColor: "#3490dc",
                         borderWidth: 1
                     }]
                 },
