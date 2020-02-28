@@ -64,8 +64,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="js_adEndTime card-text text-center mt-1">
-                                    Ad active until: {{ $apartment->end_time }}
+                                <p class="js_adEndTime card-text text-center mt-2">
+                                    Expiry date: {{ date('d M yy, h:i a', strtotime($apartment->end_time)) }}
                                 </p>
                             </div>
                         </div>        

@@ -12,7 +12,7 @@
                     @else
                         <h3 class="m-0">Welcome back {{ Auth::user()->email }}</h3>
                 @endif
-                <p class="m-0">Registration date: {{ Auth::user()->created_at }}</p>
+                <p class="m-0">Registration date: {{ date('d M yy, h:i a', strtotime(Auth::user()->created_at)) }}</p>
             </div>
             <a class="btn btn-danger w-50" href="{{ route('logout') }}"
                 onclick="event.preventDefault();

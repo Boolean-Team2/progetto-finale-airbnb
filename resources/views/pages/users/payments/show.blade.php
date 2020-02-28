@@ -16,16 +16,16 @@
                 <h3 class="mb-4">Your payments</h3>
                 <div class="row">
                     <div class="d-none d-sm-block col-md-3">
-                        <h6 class="text-uppercase font-weight-bold">Apartment Name</h6>
+                        <h6 class="text-uppercase font-weight-bold">Apartment</h6>
                     </div>
                     <div class="d-none d-sm-block col-md-1">
-                        <h6 class="text-uppercase font-weight-bold">Ad Type</h6>
+                        <h6 class="text-uppercase font-weight-bold">Type</h6>
                     </div>
                     <div class="d-none d-sm-block col-md-2">
-                        <h6 class="text-uppercase font-weight-bold">Ad Price</h6>
+                        <h6 class="text-uppercase font-weight-bold">Price</h6>
                     </div>
                     <div class="d-none d-sm-block col-md-5">
-                        <h6 class="text-uppercase font-weight-bold">Ad Period</h6>
+                        <h6 class="text-uppercase font-weight-bold">Period</h6>
                     </div>
                     <div class="d-none d-sm-block col-md-1">
                         <h6 class="text-uppercase font-weight-bold">Status</h6>
@@ -43,7 +43,10 @@
                                     {{ $ad->price }}€
                                 </div>
                                 <div class="col-sm-12 col-md-5">
-                                    from {{ $ad->pivot->start_time }} to {{ $ad->pivot->end_time }}
+                                    <span>
+                                        from {{ date('d M yy', strtotime($ad->pivot->start_time)) }}
+                                        to {{ date('d M yy', strtotime($ad->pivot->end_time)) }}
+                                    </span>
                                 </div>
                                 <div class="col-sm-12 col-md-1">
                                     @if($ad->pivot->active == 1)

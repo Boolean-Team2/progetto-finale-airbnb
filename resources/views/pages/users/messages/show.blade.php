@@ -46,7 +46,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
-                                <span>{{ date('d M y, h:i a', strtotime($msg->created_at)) }}</span>
+                                <span>{{ date('d M yy, h:i a', strtotime($msg->created_at)) }}</span>
                             </div>
                             <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
                                 <span>{{ $msg->apartment->name }}</span>
