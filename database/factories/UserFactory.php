@@ -10,7 +10,7 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'firstname' => $faker->firstname,
         'lastname' => $faker->lastname,
-        'avatar' => 'https://via.placeholder.com/150',
+        'avatar' => '',
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'date_of_birth' => $faker->date,
