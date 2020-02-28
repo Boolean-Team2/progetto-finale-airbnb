@@ -33,22 +33,22 @@
                             @endif <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item text-primary" href="{{ route('account.show', Auth::user()->id) }}">
+                            <a class="dropdown-item" href="{{ route('account.show', Auth::user()->id) }}">
                                 {{ __('Profile') }}
                             </a>
-                            <a class="dropdown-item text-primary" href="{{ route('account.apartments.show', Auth::user()->id) }}">
+                            <a class="dropdown-item" href="{{ route('account.apartments.show', Auth::user()->id) }}">
                                 {{ __('Apartments') }}
                             </a>
-                            <a class="dropdown-item text-primary" href="{{ route('account.statistics.show', Auth::user()->id) }}">
+                            <a class="dropdown-item" href="{{ route('account.statistics.show', Auth::user()->id) }}">
                                 {{ __('Statistics') }}
                             </a>
-                            <a class="dropdown-item text-primary" href="{{ route('user.sponsor.payments', Auth::user()->id) }}">
+                            <a class="dropdown-item" href="{{ route('user.sponsor.payments', Auth::user()->id) }}">
                                 {{ __('Payments') }}
                             </a>
-                            <a class="dropdown-item text-primary" href="{{ route('account.messages.show', Auth::user()->id) }}">
+                            <a class="dropdown-item" href="{{ route('account.messages.show', Auth::user()->id) }}">
                                 {{ __('Emails') }}
                             </a>
-                            <a class="dropdown-item text-primary" href="{{ route('chats') }}">
+                            <a class="dropdown-item" href="{{ route('chats') }}">
                                 {{ __('Chat messages') }}
                             </a>
                             <a class="dropdown-item text-danger" href="{{ route('logout') }}"
