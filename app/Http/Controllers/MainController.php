@@ -78,9 +78,11 @@ class MainController extends Controller
         $infoMsg = $request -> validate([
             'email_sender' => 'email:rfc,dns',
             'body' => 'string|min:3|max:255',
+            'is_read' => 'nullable',
         ]);
 
-        $infoMsg['apartment_id']= $ida;
+        $infoMsg['apartment_id'] = $ida;
+        $infoMsg['is_read'] = 0;
 
         Message::create($infoMsg);
 

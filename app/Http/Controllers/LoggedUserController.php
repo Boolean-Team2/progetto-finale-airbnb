@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\User;
 use App\Apartment;
+use App\Message;
 use App\Ad;
 use Braintree;
 use DateTime;
@@ -57,14 +58,34 @@ class LoggedUserController extends Controller
     public function messagesShow($id) {
         if($id == Auth::user()->id) {
             $userAps = Apartment::all()->where('user_id', $id);
+
             $msgs = [];
+            $unread_msgs = 0;
+
             foreach ($userAps as $apartment) {
+                foreach ($apartment->messages as $message) {
+                    if($message->is_read == 0) {
+                        $unread_msgs ++;
+                    }
+                }
                 $msgs [] = $apartment->messages;
             }
 
             $userMsgs = collect($msgs);
 
-            return view('pages.users.messages.show', compact('userMsgs'));
+            return view('pages.users.messages.show', compact('userMsgs', 'unread_msgs'));
+        } else {
+            return back()->withErrors('Non puoi vedere questa pagina');
+        }
+    }
+    public function messageShow($id, $idm) {
+        if($id == Auth::user()->id) {
+
+            $msg = Message::findOrFail($idm);
+            $msg->is_read = 1;
+            $msg->update();
+
+            return view('pages.users.messages.details', compact('msg'));
         } else {
             return back()->withErrors('Non puoi vedere questa pagina');
         }
@@ -109,7 +130,6 @@ class LoggedUserController extends Controller
     // User sponsor his apartment
     public function apartmentSponsor($id, $ida){
 
-       
         $apartment = Apartment::findOrFail($ida);
 
         if($id == $apartment->user_id) {

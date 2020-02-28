@@ -20,34 +20,38 @@
                 @include('partials.leftSidebarUser')
             </div>
             <div class="col-sm-12 col-md-7">
-                <h3 class="mb-3">Your messages <span class="badge badge-primary">{{ $userMsgs->count() }}</span></h3>
+                <h3 class="mb-3">Your messages, <span class="badge badge-primary">{{ $unread_msgs }}</span> unread.</h3>
                 <div class="row">
-                    <div class="d-none d-sm-block col-md-4">
+                    <div class="d-none d-sm-block col-md-3">
                         <h6 class="text-uppercase font-weight-bold">From</h6>
                     </div>
-                    <div class="d-none d-sm-block col-md-4">
-                        <h6 class="text-uppercase font-weight-bold">Content message</h6>
+                    <div class="d-none d-sm-block col-md-3">
+                        <h6 class="text-uppercase font-weight-bold">Preview message</h6>
                     </div>
-                    <div class="d-none d-sm-block col-md-2">
-                        <h6 class="text-uppercase font-weight-bold">Apartment</h6>
-                    </div>
-                    <div class="d-none d-sm-block col-md-2">
+                    <div class="d-none d-sm-block col-md-3">
                         <h6 class="text-uppercase font-weight-bold">Date</h6>
                     </div>
+                    <div class="d-none d-sm-block col-md-3">
+                        <h6 class="text-uppercase font-weight-bold">Apartment</h6>
+                    </div>
+                    <hr>
                     @foreach ($userMsgs as $userMsg)
                         @foreach ($userMsg as $msg)
-                            <div class="col-sm-12 col-md-4 font-weight-bold">
-                                {{ $msg->email_sender }}
+                            <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
+                                <span>{{ $msg->email_sender }}</span>
                             </div>
-                            <div class="col-sm-12 col-md-4">
-                                {{ $msg->body }}
+                            <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
+                                <a href="{{ route('account.message.show', [Auth::user()->id, $msg->id]) }}">
+                                    <p style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{ $msg->body }}</p>
+                                </a>
                             </div>
-                            <div class="col-sm-12 col-md-2">
-                                {{ $msg->apartment->name }}
+                            <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
+                                <span>{{ date('d M y, h:i a', strtotime($msg->created_at)) }}</span>
                             </div>
-                            <div class="col-sm-12 col-md-2">
-                                {{ $msg->created_at }}
+                            <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
+                                <span>{{ $msg->apartment->name }}</span>
                             </div>
+                            
                         @endforeach
                     @endforeach
                 </div>

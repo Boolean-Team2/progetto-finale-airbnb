@@ -12,6 +12,7 @@ class CreateMessagesTable extends Migration
             $table->bigIncrements('id');
             $table->string('email_sender');
             $table->text('body');
+            $table->boolean('is_read');
             $table->timestamps();
         });
     }

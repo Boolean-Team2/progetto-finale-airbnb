@@ -12,8 +12,9 @@ Route::get('/account/{id}/show', 'LoggedUserController@show')->name('account.sho
 // Edit user profile route
 Route::patch('/account/{id}/edit', 'LoggedUserController@edit')->name('account.edit');
 
-// Update user's messages show
+// User messages routes
 Route::get('/account/{id}/messages/show', 'LoggedUserController@messagesShow')->name('account.messages.show');
+Route::get('/account/{id}/messages/message/{idm}', 'LoggedUserController@messageShow')->name('account.message.show');
 
 // User's apartments statistics
 Route::get('/account/{id}/apartments-statistics', 'LoggedUserController@apartmentsStatistics')->name('account.statistics.show');
@@ -53,7 +54,3 @@ Route::post('/sendmail/{ida}', 'MainController@sendMail')->name('sendmail');
 Route::get('/chats', 'ChatController@index')->name('chats');
 Route::get('/chat/{id}', 'ChatController@getMessage')->name('chat');
 Route::post('chat', 'ChatController@sendMessage');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

@@ -8,6 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Message::class, function (Faker $faker) {
     return [
         'email_sender' => $faker->email,
-        'body' => $faker->sentence
+        'body' => $faker->sentence,
+        'is_read' => 0
     ];
 });
