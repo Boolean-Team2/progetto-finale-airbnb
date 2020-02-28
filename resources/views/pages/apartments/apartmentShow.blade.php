@@ -122,11 +122,92 @@
                 <div class="col-sm-12 col-md-10 offset-md-1">
                     <input hidden id="lon" type="text" value="{{ $apartment -> longitude }}">
                     <input hidden id="lat" type="text" value="{{ $apartment -> latitude }}">
-                    <div id="map" class="mapboxgl-map" style="height: 400px; width: 100%;">
+                    <div id="map" class="mapboxgl-map" style="height: 400px; width: 100%;"></div>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col-sm-12 col-md-10 offset-md-1">
+                    <hr>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col-sm-12 col-md-10 offset-md-1">
+                    <h4>Near apartments</h4>
+                    {{-- HANDLEBARS OUTPUT --}}
+                    <div id="js_hbOutput" class="d-flex flex-wrap">
+                    </div>
                 </div>
             </div>
         </section>
     </div>
+
+    {{-- CDN HANDLEBARS --}}
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    {{-- TEMPLATE HANDLEBARS --}}
+    <script id="hbApTemplate" type="text/x-handlebars-template">
+        <div class="card mb-3 p-1 mr-3" style="width: 19rem;">
+            {{-- debug --}} <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/placeholder.jpg"  alt="Card image cap"> {{-- debug --}}
+            {{-- <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/users/@{{user_id}}/apartments/@{{id}}/@{{img}}"  alt="Card image cap"> --}}
+            <div class="card-body">
+                <h5 class="card-title text-center m-0">
+                    <a class="text-primary text-capitalize" href="@{{showUrl}}">@{{name}}</a>
+                </h5>
+            </div>
+        </div>
+    </script>
+
+    {{-- APPARTAMENTI IN ZONA --}}
+    <script>
+        $(document).ready(function() {
+
+            // Chiamata al nostro db che restituisce gli appartamenti
+            var lat = $('#lat').val();
+            var lon = $('#lon').val();            
+
+            $.ajax({
+                url: "http://localhost:3000/api/apartments-in-radius",
+                method: 'GET',
+                data: {
+                    lat : lat,
+                    lon : lon,
+                    radius : 10
+                },
+                success: function (data) {
+                    console.log("Dati del db:",data);
+                    printData(data);
+                },
+                error: function (error) {
+                    console.log("Si è verificato un errore", error);
+                }
+            });
+
+            // PrintData function
+            function printData(res) {
+                // console.log("Devo stampare in pagina:", res);
+
+                var output = $("#js_hbOutput").html("");
+                var sorgente = $("#hbApTemplate").html();
+                var template = Handlebars.compile(sorgente);
+                var temp;
+
+                res.apps.forEach(oggetto => {
+                    temp = oggetto;
+
+                    var dist = oggetto.km.toFixed(2);
+                    temp['km'] = dist;
+
+                    var id = oggetto.id;
+                    var routeUrl = '{{ route("apartment.show", ":id") }}';
+                    routeUrl = routeUrl.replace(':id', id);
+                    temp['showUrl'] = routeUrl;
+
+                    html = template(temp);
+                    output.append(html);
+                });
+            }
+
+        }); 
+    </script>
 
     {{-- TOMTOM MAP --}}
     <script>

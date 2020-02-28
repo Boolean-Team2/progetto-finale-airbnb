@@ -93,6 +93,39 @@ class MyApiController extends Controller
         return response() -> json(compact('apps'));
     }
 
+    public function apartmentsInRadius(Request $request) {
+
+        $lat1 = $request['lat'];
+        $lon1 = $request['lon'];
+        $radius = $request['radius'];
+
+        $apps = [];
+
+        $apartments = new Apartment();
+        $apartments = $apartments -> where('visibility', 1) -> get();
+
+        foreach ($apartments as $apartament) {
+
+            $lat2 = $apartament['latitude'];
+            $lon2 = $apartament['longitude'];
+
+            $theta = $lon1 - $lon2;
+            $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+            $dist = acos($dist);
+            $dist = rad2deg($dist);
+            $miles = $dist * 60 * 1.1515;
+            $km = $miles * 1.609344;
+
+            $apartament['km'] = $km;
+
+            if ($apartament['km'] <= $radius) {
+                $apps[] = $apartament;
+            }
+        }
+
+        return response() -> json(compact('apps'));
+    }
+
     public function messagesStatistic(Request $request){
         $idApp = $request['id'];
 
