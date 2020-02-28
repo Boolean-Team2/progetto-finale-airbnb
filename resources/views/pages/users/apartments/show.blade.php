@@ -33,14 +33,15 @@
                             <div class="card-body">
                                 <div class="d-flex aling-items-center justify-content-between h-100">
                                     @if ($apartment->visibility === 1)
-                                        <h5 class="card-title text-capitalize text-success mt-2">{{ $apartment->name }}</h5>
+                                        <h5 class="card-title text-capitalize text-success m-0">{{ $apartment->name }}</h5>
                                         @else
-                                        <h5 class="card-title text-capitalize text-danger mt-2">{{ $apartment->name }}</h5>
+                                        <h5 class="card-title text-capitalize text-danger m-0">{{ $apartment->name }}</h5>
                                     @endif
-                                    <div>
-                                        <a style="font-size: 1.4rem" class="ml-1" href="{{ route('account.apartment.edit', $apartment->id) }}"><i class="far fa-edit"></i></a>
-                                        <a style="font-size: 1.4rem" class="ml-1" href="{{ route('apartmet.statistics.show', [Auth::user()->id, $apartment->id]) }}"><i class="fas fa-chart-pie"></i></a>
-                                        <span style="font-size: 1.4rem; cursor: pointer;" id="js_showEndTimeAd" class="ml-1 text-success"><i class="fas fa-ad"></i></span>
+                                    <div class="d-flex">
+                                        <a class="ml-2" href="{{ route('account.apartment.edit', $apartment->id) }}"><i class="far fa-edit fa-lg"></i></a>
+                                        <a class="ml-2" href="{{ route('apartmet.statistics.show', [Auth::user()->id, $apartment->id]) }}"><i class="fas fa-chart-pie fa-lg"></i></a>
+                                        <span style="cursor: pointer;" id="js_showEndTimeAd" class="ml-2 text-success"><i class="fas fa-ad fa-lg"></i></span>
+                                        <a class="ml-2 text-muted" href="{{ route('account.apartment.delete', [Auth::user()->id, $apartment->id]) }}"><i class="fas fa-trash-alt fa-lg"></i></a>
                                     </div>
                                 </div>
                                 <p class="js_adEndTime card-text text-center mt-1">
@@ -64,10 +65,11 @@
                                         @else
                                         <h5 class="card-title text-capitalize text-danger">{{ $apartment->name }}</h5>
                                     @endif
-                                    <div>
-                                        <a style="font-size: 1.4rem" class="ml-1" href="{{ route('account.apartment.edit', $apartment->id) }}"><i class="far fa-edit"></i></a>
-                                        <a style="font-size: 1.4rem" class="ml-1" href="{{ route('apartmet.statistics.show', [Auth::user()->id, $apartment->id]) }}"><i class="fas fa-chart-pie"></i></a>
-                                        <a href="{{ route('apartment.sponsor', [Auth::user()->id, $apartment->id]) }}"><span style="font-size: 1.4rem; cursor: pointer;" class="ml-1 text-danger"><i class="fas fa-ad"></i></span></a>
+                                    <div class="d-flex">
+                                        <a class="ml-2" href="{{ route('account.apartment.edit', $apartment->id) }}"><i class="far fa-edit fa-lg"></i></a>
+                                        <a class="ml-2" href="{{ route('apartmet.statistics.show', [Auth::user()->id, $apartment->id]) }}"><i class="fas fa-chart-pie fa-lg"></i></a>
+                                        <a href="{{ route('apartment.sponsor', [Auth::user()->id, $apartment->id]) }}"><span class="ml-1 text-danger"><i class="fas fa-ad fa-lg"></i></span></a>
+                                        <a class="ml-2 text-muted" href="{{ route('account.apartment.delete', [Auth::user()->id, $apartment->id]) }}"><i class="fas fa-trash-alt fa-lg"></i></a>
                                     </div>
                                 </div>
                             </div>

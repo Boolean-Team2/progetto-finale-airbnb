@@ -74,11 +74,8 @@ class ApController extends Controller
             'longitude' => 'required',
             'address' => 'required',
             'visibility' => 'required',
-            'sponsored' => '',
             'user_id' => ''
         ]);
-
-        $data['sponsored'] = 0;
 
         $apartment = Apartment::create($data);
 
@@ -150,6 +147,27 @@ class ApController extends Controller
         $apartment -> services() -> sync($services);
 
         return redirect() -> route('account.apartments.show', $data['user_id']) -> with('status', 'Apartment was edited with success');
+
+    }
+
+    // User's apartment delete
+    public function apartmentDelete($id, $ida) {
+
+        if(Auth::user()->id == $id) {
+
+            $apartment = Apartment::findOrFail($ida);
+
+            $apartment -> services() -> sync([]);
+            $apartment -> ads() -> sync([]);
+            $apartment -> views() -> delete();
+            $apartment -> messages() -> delete();
+
+            $apartment -> delete();
+
+            return back() -> with('status', 'Success');
+        } else {
+            return back()->withErrors('Non puoi vedere questa pagina');
+        }
 
     }
     
