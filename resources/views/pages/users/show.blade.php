@@ -40,8 +40,8 @@
                         <div class="form-row mb-2">
                             <div class="col-12">
                                 <label for="avatar">Avatar</label><br>
-                                <input type="file" name="avatar">
-                                {{-- <input type="file" class="form-control" name="avatar" value="{{ Auth::user()->avatar}}"> --}}
+                                <input type="file" name="avatar"><br>
+                                <small>* Squared image and max 1024mb only</small>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end my-3">

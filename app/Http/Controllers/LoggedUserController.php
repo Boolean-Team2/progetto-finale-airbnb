@@ -38,7 +38,7 @@ class LoggedUserController extends Controller
             'lastname' => 'nullable|string|min:3|max:255',
             'date_of_birth' => 'nullable|string|date', 
             'email' => 'email:rfc,dns',
-            'avatar' => 'nullable',
+            'avatar' => 'nullable|dimensions:ratio=1/1|mimes:jpeg|max:1024',
         ]);
 
         if(isset($validator['avatar'])) {
