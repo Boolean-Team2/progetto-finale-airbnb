@@ -48,24 +48,6 @@ class ApController extends Controller
         } else {
             return back()->withErrors('Non puoi vedere questa pagina');
         }
-
-    
-        $apartments = Apartment::join('ad_apartment', 'apartments.id', '=', 'ad_apartment.apartment_id') 
-            -> where('apartments.visibility', 1)
-            -> where('apartments.sponsored', 1)
-            -> where('ad_apartment.active',1)
-            -> where('apartment_id', $idApp)
-            -> orderBy('start_time', 'desc')
-            -> get();
-
-        dd($apartments);
-        // $messages = Message::select('id', 'created_at','apartment_id')
-        // ->where('apartment_id', $idApp) //Colonna=valore
-        // ->get()
-        // ->groupBy(function($date) {
-        //     return Carbon::parse($date->created_at)->format('m'); // grouping by months
-        // });
-        // return view('pages.users.apartments.show', compact('apartments'));
     }
     
     // User's apartments create

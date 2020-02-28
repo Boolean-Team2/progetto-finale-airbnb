@@ -9,6 +9,7 @@
     </div>
 
 	<div class="container-fluid mb-5">
+		@include('partials.topSectionUser')
 		<div class="row">
 			<div class="d-none d-md-block col-md-3 offset-md-1">
                 @include('partials.leftSidebarUser')

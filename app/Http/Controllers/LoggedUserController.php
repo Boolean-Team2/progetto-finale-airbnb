@@ -38,7 +38,14 @@ class LoggedUserController extends Controller
             'lastname' => 'nullable|string|min:3|max:255',
             'date_of_birth' => 'nullable|string|date', 
             'email' => 'email:rfc,dns',
+            'avatar' => 'nullable',
         ]);
+
+        if(isset($validator['avatar'])) {
+            $fileName = $validator['avatar'] -> getClientOriginalName();
+            $validator['avatar'] -> move('assets/images/users/' . $id . '/avatar/', $fileName);
+            $validator['avatar'] = $fileName;
+        }
 
         $editedUser = User::findOrFail($id);
         $editedUser -> update($validator);
