@@ -11,19 +11,16 @@
             <div class="carousel-item active" style="background-image: url('{{ asset('assets/images/slide1.jpg') }}')">
                 <div class="carousel-caption d-none d-md-block text-right">
                     <h2 class="display-4">Seaview apartments</h2>
-                    <p class="lead">This is a description for the first slide.</p>
                 </div>
             </div>
             <div class="carousel-item" style="background-image: url('{{ asset('assets/images/slide2.jpg') }}')">
                 <div class="carousel-caption d-none d-md-block text-right">
-                    <h2 class="display-4">Confort and relax</h2>
-                    <p class="lead">This is a description for the second slide.</p>
+                    <h2 class="display-4">Comfort and relax</h2>
                 </div>
             </div>
             <div class="carousel-item" style="background-image: url('{{ asset('assets/images/slide3.jpg') }}')">
                 <div class="carousel-caption d-none d-md-block text-right">
                     <h2 class="display-4">Strange places</h2>
-                    <p class="lead">This is a description for the third slide.</p>
                 </div>
             </div>
         </div>
