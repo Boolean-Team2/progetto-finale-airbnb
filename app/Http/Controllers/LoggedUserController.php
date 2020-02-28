@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
-use App\User;
 use App\Apartment;
-use App\Message;
 use App\Ad;
+use App\User;
+
 use Braintree;
 use DateTime;
 
@@ -52,43 +52,6 @@ class LoggedUserController extends Controller
         $editedUser -> update($validator);
 
         return redirect() -> back() -> with('status', 'All informations was edited');
-    }
-
-    // User messages show
-    public function messagesShow($id) {
-        if($id == Auth::user()->id) {
-            $userAps = Apartment::all()->where('user_id', $id);
-
-            $msgs = [];
-            $unread_msgs = 0;
-
-            foreach ($userAps as $apartment) {
-                foreach ($apartment->messages as $message) {
-                    if($message->is_read == 0) {
-                        $unread_msgs ++;
-                    }
-                }
-                $msgs [] = $apartment->messages;
-            }
-
-            $userMsgs = collect($msgs);
-
-            return view('pages.users.messages.show', compact('userMsgs', 'unread_msgs'));
-        } else {
-            return back()->withErrors("You don't have permission to visit this page");
-        }
-    }
-    public function messageShow($id, $idm) {
-        if($id == Auth::user()->id) {
-
-            $msg = Message::findOrFail($idm);
-            $msg->is_read = 1;
-            $msg->update();
-
-            return view('pages.users.messages.details', compact('msg'));
-        } else {
-            return back()->withErrors("You don't have permission to visit this page");
-        }
     }
 
     // All user's apartments statistics
