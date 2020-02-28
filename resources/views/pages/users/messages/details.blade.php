@@ -17,11 +17,11 @@
                 <h3>Message details</h3>
                 <h5>
                     <span class="font-weight-bold">From:</span>
-                    <small>{{ $msg->email_sender }}</small>
+                    <a href="mailto:{{ $msg->email_sender }}"><small>{{ $msg->email_sender }}</small></a>
                 </h5>
                 <h5>
                     <span class="font-weight-bold">On:</span>
-                    <small>{{ $msg->created_at }}</small>
+                    <small>{{ date('d M y, h:i a', strtotime($msg->created_at)) }}</small>
                 </h5>
                 <p>
                     <p>Dear {{ Auth::user()->firstname }},</p>
@@ -30,6 +30,10 @@
                     </p>
                     <p>Greetings, see you soon!</p>
                 </p>
+                <div class="text-right">
+                    <a class="btn btn-primary" href="{{ route('account.message.changeState', [Auth::user()->id, $msg->id]) }}">Mark as unread</a>
+                    <a class="btn btn-primary" href="mailto:{{ $msg->email_sender }}">Reply</a>
+                </div>
             </div>
         </div>
     </div>
