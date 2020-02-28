@@ -13,8 +13,9 @@ Route::get('/account/{id}/show', 'LoggedUserController@show')->name('account.sho
 Route::patch('/account/{id}/edit', 'LoggedUserController@edit')->name('account.edit');
 
 // User messages routes
-Route::get('/account/{id}/messages/show', 'LoggedUserController@messagesShow')->name('account.messages.show');
-Route::get('/account/{id}/messages/message/{idm}', 'LoggedUserController@messageShow')->name('account.message.show');
+Route::get('/account/{id}/messages/show', 'MessageController@messagesShow')->name('account.messages.show');
+Route::get('/account/{id}/messages/message/{idm}', 'MessageController@messageShow')->name('account.message.show');
+Route::get('/account/{id}/messages/message/{idm}/change-state', 'MessageController@changeState')->name('account.message.changeState');
 
 // User's apartments statistics
 Route::get('/account/{id}/apartments-statistics', 'LoggedUserController@apartmentsStatistics')->name('account.statistics.show');
