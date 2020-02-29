@@ -141,8 +141,7 @@
         </section>
     </div>
 
-    {{-- CDN HANDLEBARS --}}
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    
     {{-- TEMPLATE HANDLEBARS --}}
     <script id="hbApTemplate" type="text/x-handlebars-template">
         <div class="card mb-3 p-1 mr-3" style="width: 19rem;">
@@ -156,14 +155,39 @@
         </div>
     </script>
 
-    {{-- APPARTAMENTI IN ZONA --}}
+    {{-- TOMTOM MAP & NEAR APARTMENTS --}}
     <script>
         $(document).ready(function() {
-
-            // Chiamata al nostro db che restituisce gli appartamenti
+            
             var lat = $('#lat').val();
-            var lon = $('#lon').val();            
+            var lon = $('#lon').val();
+            var location = [lon,lat];
+            var popupOffsets = {
+                content: "hello",
+                top: [0, 0],
+                bottom: [0, -70],
+                'bottom-right': [0, -70],
+                'bottom-left': [0, -70],
+                left: [25, -35],
+                right: [-25, -35]
+            }
 
+            // Generazione mappa
+            var map = tt.map({
+                key: 'UnotVndyZgjPLoXejGGoIUZDc49X2IrU',
+                container: 'map',
+                style: 'tomtom://vector/1/basic-main',
+                center: location,
+                zoom: 12,
+                radius: 20000
+            });
+
+            // Marker della mappa
+            var markerCenter = new tt.Marker().setLngLat(location).addTo(map);
+            map.addControl(new tt.FullscreenControl());
+            map.addControl(new tt.NavigationControl());           
+
+            // Chiamata al db per gli appartamenti
             $.ajax({
                 url: "http://localhost:3000/api/apartments-in-radius",
                 method: 'GET',
@@ -173,60 +197,52 @@
                     radius : 10
                 },
                 success: function (data) {
-                    console.log("Dati del db:",data);
-                    printData(data);
+                    // console.log("Dati del db:",data);
+                    printData(data, map, popupOffsets);
+                    setNearMarkers(data, map, popupOffsets);
                 },
                 error: function (error) {
                     console.log("Si è verificato un errore", error);
                 }
             });
+        });
 
-            // PrintData function
-            function printData(res) {
-                // console.log("Devo stampare in pagina:", res);
+        // PrintData function
+        function printData(res, map, popupOffsets) {
+            // console.log("Devo stampare in pagina:", res);
+            var output = $("#js_hbOutput").html("");
+            var sorgente = $("#hbApTemplate").html();
+            var template = Handlebars.compile(sorgente);
+            var temp;
+            var marker, popup, divTag;
 
-                var output = $("#js_hbOutput").html("");
-                var sorgente = $("#hbApTemplate").html();
-                var template = Handlebars.compile(sorgente);
-                var temp;
+            res.apps.forEach(oggetto => {
+                temp = oggetto;
 
-                res.apps.forEach(oggetto => {
-                    temp = oggetto;
+                var dist = oggetto.km.toFixed(2);
+                temp['km'] = dist;
 
-                    var dist = oggetto.km.toFixed(2);
-                    temp['km'] = dist;
+                var id = oggetto.id;
+                var routeUrl = '{{ route("apartment.show", ":id") }}';
+                routeUrl = routeUrl.replace(':id', id);
+                temp['showUrl'] = routeUrl;
 
-                    var id = oggetto.id;
-                    var routeUrl = '{{ route("apartment.show", ":id") }}';
-                    routeUrl = routeUrl.replace(':id', id);
-                    temp['showUrl'] = routeUrl;
-
-                    html = template(temp);
-                    output.append(html);
-                });
-            }
-
-        }); 
-    </script>
-
-    {{-- TOMTOM MAP --}}
-    <script>
-        $(document).ready(function() {
-            var lon = $('#lon').val();
-            var lat = $('#lat').val();
-            var location = [lon,lat];
-            var map = tt.map({
-                    key: 'UnotVndyZgjPLoXejGGoIUZDc49X2IrU',
-                    container: 'map',
-                    style: 'tomtom://vector/1/basic-main',
-                    center: location,
-                    zoom: 12,
-                    radius: 20000
-                });
-            var marker = new tt.Marker().setLngLat(location).addTo(map);
-            map.addControl(new tt.FullscreenControl());
-            map.addControl(new tt.NavigationControl());
+                html = template(temp);
+                output.append(html);
             });
+        }
+
+        // Print near marker
+        function setNearMarkers(res, map, popupOffsets) {
+            var marker, popup, divTag;
+            res.apps.forEach(element => {
+                divTag = document.createElement('div');
+                divTag.id = 'nearMarker';
+                marker = new tt.Marker({element: divTag}, {offset: popupOffsets}).setLngLat([element.longitude, element.latitude]).addTo(map);
+                popup = new tt.Popup({offset: popupOffsets}).setHTML("Caro studente..");
+                marker.setPopup(popup).togglePopup();
+            });
+        }
     </script>
 
 @endsection
