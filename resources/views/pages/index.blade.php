@@ -31,7 +31,7 @@
         <div class="row h-75 align-items-center">
             <div class="col-sm-12 col-md-10 col-lg-4 offset-md-1 bg-white p-4 border rounded shadow">
                 <h1 class="mb-3">Apartment Search</h1>
-                <small id="js_alertInput" class="text-danger">* Il campo non può essere vuoto.</small>
+                <small id="js_alertInput" class="text-danger">* The field is required!</small>
                 <form>
                     <div class="form-row py-2">
                         <div class="col-sm-12 col-md-9">
@@ -54,11 +54,11 @@
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label>Stanze</label>
-                            <input id="js_rooms" type="number" class="form-control">
+                            <input id="js_rooms" type="number" min="1" max="10" class="form-control">
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label>Letti</label>
-                            <input id="js_beds" type="number" class="form-control">
+                            <input id="js_beds" type="number" min="1" max="10" class="form-control">
                         </div>
                     </div>
                     <hr>
