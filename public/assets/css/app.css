@@ -9952,3 +9952,10 @@ header .carousel-item {
   background: no-repeat center center scroll;
   background-size: cover;
 }
+
+#nearMarker {
+  background-image: url("https://emoji.slack-edge.com/T91QPE3BP/carostudente/088bd155e9b50a81.gif");
+  background-size: cover;
+  width: 55px;
+  height: 55px;
+}

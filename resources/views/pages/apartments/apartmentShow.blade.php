@@ -141,6 +141,10 @@
         </section>
     </div>
 
+    {{-- <div>
+        <h5>oggetto.name</h5>
+    </div> --}}
+
     
     {{-- TEMPLATE HANDLEBARS --}}
     <script id="hbApTemplate" type="text/x-handlebars-template">
@@ -163,11 +167,8 @@
             var lon = $('#lon').val();
             var location = [lon,lat];
             var popupOffsets = {
-                content: "hello",
                 top: [0, 0],
-                bottom: [0, -70],
-                'bottom-right': [0, -70],
-                'bottom-left': [0, -70],
+                bottom: [0, -50],
                 left: [25, -35],
                 right: [-25, -35]
             }
@@ -178,8 +179,7 @@
                 container: 'map',
                 style: 'tomtom://vector/1/basic-main',
                 center: location,
-                zoom: 12,
-                radius: 20000
+                zoom: 12
             });
 
             // Marker della mappa
@@ -197,8 +197,7 @@
                     radius : 10
                 },
                 success: function (data) {
-                    // console.log("Dati del db:",data);
-                    printData(data, map, popupOffsets);
+                    printData(data, map, popupOffsets, markerCenter);
                     setNearMarkers(data, map, popupOffsets);
                 },
                 error: function (error) {
@@ -208,13 +207,11 @@
         });
 
         // PrintData function
-        function printData(res, map, popupOffsets) {
-            // console.log("Devo stampare in pagina:", res);
+        function printData(res, map, popupOffsets, markerCenter) {
             var output = $("#js_hbOutput").html("");
             var sorgente = $("#hbApTemplate").html();
             var template = Handlebars.compile(sorgente);
-            var temp;
-            var marker, popup, divTag;
+            var temp, marker, popup; 
 
             res.apps.forEach(oggetto => {
                 temp = oggetto;
@@ -229,6 +226,11 @@
 
                 html = template(temp);
                 output.append(html);
+
+                var innerPopup = "<div><h5>" + oggetto.name + "</h5><p>" + oggetto.address + "</p></div>";
+
+                popup = new tt.Popup({offset: popupOffsets}).setHTML(innerPopup);
+                markerCenter.setPopup(popup).togglePopup();
             });
         }
 
