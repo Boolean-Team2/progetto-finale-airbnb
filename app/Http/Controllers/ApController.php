@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 
 use App\User;
@@ -156,6 +157,17 @@ class ApController extends Controller
         if(Auth::user()->id == $id) {
 
             $apartment = Apartment::findOrFail($ida);
+
+            $FileSystem = new Filesystem();
+
+            $directory = public_path() . '/assets/images/users/' . $id . '/apartments/' . $apartment->id;
+
+            if ($FileSystem->exists($directory)) {
+                $files = $FileSystem->files($directory);
+                if ($files) {
+                    $FileSystem->deleteDirectory($directory);
+                }
+            }
 
             $apartment -> services() -> sync([]);
             $apartment -> ads() -> sync([]);
