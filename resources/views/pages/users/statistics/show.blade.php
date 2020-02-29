@@ -68,6 +68,7 @@
             $('.js_msgsCount').each( function() {
                 msgs.push($(this).text());
             });
+            
             // console.log("Nomi:", names, "Views:", views, "Msgs:", msgs);
             var ctx = document.getElementById('myViews').getContext('2d');
             new Chart(ctx, {
