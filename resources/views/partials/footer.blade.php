@@ -4,33 +4,33 @@
 			<div class="col-sm-12 col-md-2 offset-md-1">
 				<p class="text-uppercase">BoolB&B</p>
 				<ul class="list-unstyled">
-					<li><a href="#">Opportunità di lavoro</a></li>
+					<li><a href="#">Job Opportunities</a></li>
 					<li><a href="#">News</a></li>
-					<li><a href="#">Condizioni</a></li>
-					<li><a href="#">Aiuto</a></li>
-					<li><a href="#">Diversità e appartenenza</a></li>
-					<li><a href="#">Informazioni di contatto</a></li>
+					<li><a href="#">Conditions</a></li>
+					<li><a href="#">Help</a></li>
+					<li><a href="#">Diversity and membership</a></li>
+					<li><a href="#">Contact Info</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-12 col-md-2">
 				<p class="text-uppercase">Scopri</p>
 				<ul class="list-unstyled">
-					<li><a href="#">Affidabilità e sicurezza</a></li>
+					<li><a href="#">Reliability and Security</a></li>
 					<li><a href="#">Travel Credit</a></li>
-					<li><a href="#">Cittadino di Airbnb</a></li>
-					<li><a href="#">Viaggi di lavoro</a></li>
-					<li><a href="#">Attività</a></li>
+					<li><a href="#">Citizen of Airbnb</a></li>
+					<li><a href="#">Business Trips</a></li>
+					<li><a href="#">Activity</a></li>
 					<li><a href="#">Airbnbmag</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-12 col-md-2">
 				<p class="text-uppercase">Ospita</p>
 				<ul class="list-unstyled">
-					<li><a href="#">Perché affittare</a></li>
-					<li><a href="#">Ospitalità</a></li>
-					<li><a href="#">Ospitare responsabilmente</a></li>
+					<li><a href="#">Why Rent</a></li>
+					<li><a href="#">Hospitality</a></li>
+					<li><a href="#">Responsibly Host</a></li>
 					<li><a href="#">Community Center</a></li>
-					<li><a href="#">Offri un'esperienza</a></li>
+					<li><a href="#">Offer an Experience</a></li>
 					<li><a href="#">Open Homes</a></li>
 				</ul>
 			</div>
