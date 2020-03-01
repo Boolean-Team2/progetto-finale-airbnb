@@ -64,7 +64,7 @@ class ApController extends Controller
 
         $data = $request->validate([
             'name' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:255',
             'rooms' => 'required',
             'beds' => 'required',
             'baths' => 'required',
@@ -115,7 +115,7 @@ class ApController extends Controller
 
         $data = $request->validate([
             'name' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:255',
             'rooms' => 'required',
             'beds' => 'required',
             'baths' => 'required',
