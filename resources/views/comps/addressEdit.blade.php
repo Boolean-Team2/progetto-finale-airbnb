@@ -1,44 +1,45 @@
 <script type="text/x-template" id="address-edit-template">
         <div class="col-sm-12 mb-3">
             <div class="form-row">
-                <div v-show="show" class="col-sm-12 col-md-3">
+                <div v-show="update" class="col-sm-12 col-md-3">
                     <label>Municipality or CAP</label>
                     <input class="form-control" type="text" v-model="municipality">
                 </div>
-                <div v-show="show" class="col-sm-12 col-md-3">
+                <div v-show="update" class="col-sm-12 col-md-3">
                     <label>Street</label>
                     <input class="form-control" type="text" v-model="street">
                 </div>
-                <div v-show="show" class="col-sm-12 col-md-3">
+                <div v-show="update" class="col-sm-12 col-md-3">
                     <label>Number</label>
                     <input class="form-control" type="text" v-model="number">
                 </div>
-                <div v-show="show" class="col-sm-12 col-md-3">
+                <div v-show="update" class="col-sm-12 col-md-3">
                     <label>Cerca</label>
                     <a @click="searchAddress()" href="#" class="form-control btn btn-primary">Inserisci indirizzo</a>
                 </div>
 
                 {{-- Viene mostrato quando si modifica l'indirizzo --}}
-                <div v-show="showInput" class="col-sm-12 col-md-9">
+                <div v-show="updated" class="col-sm-12 col-md-9">
                     <input hidden type="text" name='user_id' value="{{ Auth::user()->id }}">
-                    <label>Updated address</label>
-                    <input class="form-control" type="text" name="address" v-model="address">
                     <input hidden type="text" name="latitude" v-model="lat">
                     <input hidden type="text" name="longitude" v-model="lon">
+                    <label>Updated address</label>
+                    <input class="form-control" type="text" name="address" v-model="address">
+                </div>
+                <div v-show="updated" class="col-sm-12 col-md-3">
+                    <label style="color: white">W IL TEAM 2</label>
+                    <a @click="editAddress()" href="#" class="form-control btn btn-primary">Modifica indirizzo</a>
                 </div>
 
                 {{-- Campi nascosti per passaggio dati --}}
-                <div id="remove" v-show="show" class="col-sm-12 mb-3">
-                    <input hidden type="text" name="address" value="{{ $apartment->address }}">
+                <div id="remove" v-show="current" class="col-sm-12 col-md-9 mb-3">
+                    <label>Current address</label>
+                    <input class="form-control" type="text" name="address" value="{{ $apartment->address }}">
                     <input hidden type="text" name='latitude' value="{{ $apartment->latitude }}">
                     <input hidden type="text" name='longitude' value="{{ $apartment->longitude }}">
                 </div>
                 
-                <div v-show="!showInput" class="col-sm-12 col-md-9">
-                    <label>Current address</label>
-                    <input class="form-control" type="text" value="{{ $apartment->address }}">
-                </div>
-                <div v-show="!show" class="col-sm-12 col-md-3">
+                <div v-show="current" class="col-sm-12 col-md-3">
                     <label style="color: white">W IL TEAM 2</label>
                     <a @click="editAddress()" href="#" class="form-control btn btn-primary">Modifica indirizzo</a>
                 </div>
@@ -60,8 +61,9 @@
                 municipality: "",
                 street: "",
                 number: "",
-                show: false,
-                showInput: false
+                edit: true,
+                update: false,
+                current: true
             };
         },
         methods: {
@@ -94,8 +96,9 @@
                         _this.lon = element.position.lon;
                     });
                     
-                    _this.show = false;                
-                    _this.showInput = true;
+                    _this.current = false;
+                    _this.update = false;
+                    _this.updated = true;
                     
                     // Elimino dal dom gli input con i values del db..
                     $('#remove').remove();
@@ -108,12 +111,9 @@
             },
             editAddress() {
                 const _this = this;
-                _this.show = true;
-                _this.showInput = false;
+                _this.current = false;
+                _this.update = true;
             }
-        },
-        computed: {
-            
         }
     });
 
