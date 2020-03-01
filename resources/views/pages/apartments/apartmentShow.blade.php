@@ -12,9 +12,9 @@
         <section class="my-5">
             <div class="row">
                 <div class="col-sm-12 col-md-4 offset-md-1 bg-light p-5">
-                    <h3>{{ $apartment->name }}</h3>
+                    <h3 id="js_apName">{{ $apartment->name }}</h3>
                     <p class="font-italic">{{ $apartment->description }}</p>
-                    <p><i class="mr-2 fas fa-map-marker"></i> {{ $apartment->address }}</p>
+                    <p id="js_apAddress"><i class="mr-2 fas fa-map-marker"></i> {{ $apartment->address }}</p>
                     <div>
                         <p class="d-flex align-items-center justify-content-between"> 
                             <span><i class="mr-2 fas fa-ruler-combined"></i>{{ $apartment->mq }}</span>
@@ -171,6 +171,8 @@
             
             var lat = $('#lat').val();
             var lon = $('#lon').val();
+            var apName = $('#js_apName').text();
+            var apAddress = $('#js_apAddress').text();
             var location = [lon,lat];
             var popupOffsets = {
                 top: [0, 0],
@@ -185,11 +187,17 @@
                 container: 'map',
                 style: 'tomtom://vector/1/basic-main',
                 center: location,
-                zoom: 10
+                zoom: 12
             });
 
             // Marker della mappa
             var markerCenter = new tt.Marker().setLngLat(location).addTo(map);
+
+            var innerPopup = "<div><h5>" + apName + "</h5><p>" + apAddress + "</p></div>";
+            
+            popup = new tt.Popup({offset: popupOffsets}).setHTML(innerPopup);
+
+            markerCenter.setPopup(popup).togglePopup();
             map.addControl(new tt.FullscreenControl());
             map.addControl(new tt.NavigationControl());           
 
@@ -203,7 +211,7 @@
                     radius : 10
                 },
                 success: function (data) {
-                    printData(data, map, popupOffsets, markerCenter);
+                    printData(data, map, popupOffsets);
                     setNearMarkers(data, map, popupOffsets);
                 },
                 error: function (error) {
@@ -213,11 +221,11 @@
         });
 
         // PrintData function
-        function printData(res, map, popupOffsets, markerCenter) {
+        function printData(res, map, popupOffsets) {
             var output = $("#js_hbOutput").html("");
             var sorgente = $("#hbApTemplate").html();
             var template = Handlebars.compile(sorgente);
-            var temp, marker, popup; 
+            var temp; 
 
             res.apps.forEach(oggetto => {
                 temp = oggetto;
@@ -232,11 +240,6 @@
 
                 html = template(temp);
                 output.append(html);
-
-                var innerPopup = "<div><h5>" + oggetto.name + "</h5><p>" + oggetto.address + "</p></div>";
-
-                popup = new tt.Popup({offset: popupOffsets}).setHTML(innerPopup);
-                markerCenter.setPopup(popup).togglePopup();
             });
         }
 
@@ -247,7 +250,8 @@
                 divTag = document.createElement('div');
                 divTag.id = 'nearMarker';
                 marker = new tt.Marker({element: divTag}, {offset: popupOffsets}).setLngLat([element.longitude, element.latitude]).addTo(map);
-                popup = new tt.Popup({offset: popupOffsets}).setHTML("Caro studente..");
+                var innerPopup = "<div><h5>" + element.name + "</h5><p>" + element.address + "</p></div>";
+                popup = new tt.Popup({offset: popupOffsets}).setHTML(innerPopup);
                 marker.setPopup(popup).togglePopup();
             });
         }

@@ -81,7 +81,11 @@
 {{-- TEMPLATE HANDLEBARS --}}
 <script id="hbApTemplate" type="text/x-handlebars-template">
     <div class="card m-3 p-1" style="width: 19rem;">
-        <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/users/@{{user_id}}/apartments/@{{id}}/@{{img}}"  alt="Card image cap">
+        @{{#if img}}
+            <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/users/@{{user_id}}/apartments/@{{id}}/@{{img}}"  alt="Card image cap">
+            @{{else}}
+            <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/placeholder.jpg"  alt="Card image cap">
+        @{{/if}}
         <div class="card-body">
             <p class="d-flex justify-content-between">
                 <a class="text-primary text-capitalize" href="@{{showUrl}}">@{{name}}</a>
@@ -101,7 +105,7 @@
                         <small class="text-danger">No services avaible</small>
                 @{{/if}}
             </p>
-            <p>Distanza dalla ricerca: @{{km}} km</p>
+            <p>Distance from search: @{{km}} km</p>
         </div>
     </div>
 </script>
@@ -248,7 +252,11 @@
                                         @foreach ($chunk as $apartment)
                                             <div class="col-12 col-md-4 col-lg-2 px-5 px-md-4 px-lg-3 mx-md-0">
                                                 <div class="card shadow p-1">
-                                                    <img class="img-fluid rounded-top" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
+                                                    @if ($apartment->img)
+                                                        <img class="img-fluid" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
+                                                        @else
+                                                        <img class="img-fluid" src="{{ asset('assets/images/placeholder.jpg') }}" alt="Card image cap">
+                                                    @endif
                                                     <div class="card-body">
                                                         <a href="{{ route('apartment.show', $apartment->apartment_id) }}">
                                                             <h5 class="card-title text-center text-capitalize m-0">{{ $apartment->name }}</h5>

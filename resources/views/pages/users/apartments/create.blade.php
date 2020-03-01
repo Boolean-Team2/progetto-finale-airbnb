@@ -47,7 +47,7 @@
                         {{-- INPUT DESCR --}}
                         <div class="col-sm-12 mb-3">
                             <label for="description">Description</label>
-                            <textarea type="text" name="description" class="form-control" placeholder="Enter description">TEST DESCRIPTION</textarea>
+                            <textarea type="text" name="description" class="form-control" placeholder="Enter description">Nulla facilisis et lacus ut ultricies. Nulla facilisi. In lobortis libero a augue sagittis, ut cursus velit consequat. Nullam at ligula dictum, placerat libero id, aliquet dui.</textarea>
                         </div>
                         {{-- INPUT ROOMS --}}
                         <div class="col-sm-12 col-md-3 mb-3">
