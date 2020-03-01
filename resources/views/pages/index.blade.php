@@ -80,9 +80,8 @@
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 {{-- TEMPLATE HANDLEBARS --}}
 <script id="hbApTemplate" type="text/x-handlebars-template">
-    <div class="card mb-3 p-1" style="width: 19rem;">
-        {{-- debug --}} <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/placeholder.jpg"  alt="Card image cap"> {{-- debug --}}
-        {{-- <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/users/@{{user_id}}/apartments/@{{id}}/@{{img}}"  alt="Card image cap"> --}}
+    <div class="card m-3 p-1" style="width: 19rem;">
+        <img class="img-fluid rounded-top" src="http://localhost:3000/assets/images/users/@{{user_id}}/apartments/@{{id}}/@{{img}}"  alt="Card image cap">
         <div class="card-body">
             <p class="d-flex justify-content-between">
                 <a class="text-primary text-capitalize" href="@{{showUrl}}">@{{name}}</a>
@@ -274,7 +273,7 @@
         </section>
         {{-- /CAROUSEL SECTION --}}
         {{-- SEARCH SECTION --}}
-        <section id="js_homeSearch" class="p-5 my-5">
+        <section id="js_homeSearch" class="p-5 my-5 bg-light">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="mb-5">
@@ -282,7 +281,7 @@
                         <p class="text-center">The research has produced these results.</p>
                     </div>
                     {{-- HANDLEBARS OUTPUT --}}
-                    <div id="js_hbOutput" class="col-sm-12 d-flex flex-wrap justify-content-between">
+                    <div id="js_hbOutput" class="col-sm-12 d-flex flex-wrap justify-content-center">
                     </div>
                 </div>
             </div>
