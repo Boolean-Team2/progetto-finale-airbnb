@@ -27,8 +27,20 @@ class LoggedUserController extends Controller
     public function edit(Request $request, $id) {
 
         $validator = $request -> validate([
-            'firstname' => 'nullable|string|min:3|max:255',
-            'lastname' => 'nullable|string|min:3|max:255',
+            'firstname' => 
+                [
+                    'nullable',
+                    'min:3',
+                    'max:255',
+                    'regex:/^[a-zA-Z]*([a-zA-Z]|[a-zA-Z])[a-zA-Z]*$/'
+                ],
+            'lastname' => 
+                [
+                    'nullable',
+                    'min:3',
+                    'max:255',
+                    'regex:/^[a-zA-Z]*([a-zA-Z]|[a-zA-Z])[a-zA-Z]*$/'
+                ],
             'date_of_birth' => 'nullable|string|date', 
             'email' => 'email:rfc,dns',
             'avatar' => 'nullable|dimensions:ratio=1/1|mimes:jpeg|max:1024',
