@@ -53,11 +53,11 @@
                             <input id="js_radius" type="range" class="form-control-range">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label>Stanze</label>
+                            <label>Rooms</label>
                             <input id="js_rooms" type="number" min="1" max="10" class="form-control">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label>Letti</label>
+                            <label>Beds</label>
                             <input id="js_beds" type="number" min="1" max="10" class="form-control">
                         </div>
                     </div>
