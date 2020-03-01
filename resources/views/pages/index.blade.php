@@ -248,7 +248,7 @@
                                         @foreach ($chunk as $apartment)
                                             <div class="col-12 col-md-4 col-lg-2 px-5 px-md-4 px-lg-3 mx-md-0">
                                                 <div class="card shadow p-1">
-                                                    <img class="img-fluid rounded-top" src="{{ asset('assets/images/placeholder.jpg') }}" alt="Card image cap">
+                                                    <img class="img-fluid rounded-top" src="{{ asset('assets/images/users/' . $apartment->user_id . "/apartments/" . $apartment->id . "/" . $apartment->img) }}" alt="Card image cap">
                                                     <div class="card-body">
                                                         <a href="{{ route('apartment.show', $apartment->apartment_id) }}">
                                                             <h5 class="card-title text-center text-capitalize m-0">{{ $apartment->name }}</h5>
