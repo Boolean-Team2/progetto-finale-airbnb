@@ -179,7 +179,7 @@
                 container: 'map',
                 style: 'tomtom://vector/1/basic-main',
                 center: location,
-                zoom: 12
+                zoom: 10
             });
 
             // Marker della mappa
