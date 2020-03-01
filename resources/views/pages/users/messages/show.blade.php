@@ -35,24 +35,23 @@
                         <h6 class="text-uppercase font-weight-bold">Apartment</h6>
                     </div>
                     <hr>
-                    @foreach ($userMsgs as $userMsg)
-                        @foreach ($userMsg as $msg)
-                            <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
-                                <span>{{ $msg->email_sender }}</span>
-                            </div>
-                            <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
-                                <a href="{{ route('account.message.show', [Auth::user()->id, $msg->id]) }}">
-                                    <p style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{ $msg->body }}</p>
-                                </a>
-                            </div>
-                            <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
-                                <span>{{ date('d M yy, h:i a', strtotime($msg->created_at)) }}</span>
-                            </div>
-                            <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
-                                <span>{{ $msg->apartment->name }}</span>
-                            </div>
+                    @foreach ($userMsgs as $msg)
+
+                        <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
+                            <span>{{ $msg->email_sender }}</span>
+                        </div>
+                        <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
+                            <a href="{{ route('account.message.show', [Auth::user()->id, $msg->id]) }}">
+                                <p style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{ $msg->body }}</p>
+                            </a>
+                        </div>
+                        <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
+                            <span>{{ date('d M yy, h:i a', strtotime($msg->created_at)) }}</span>
+                        </div>
+                        <div class="col-sm-12 col-md-3 @if($msg->is_read == 0) font-weight-bold @endif">
+                            <span>{{ $msg->apartment->name }}</span>
+                        </div>
                             
-                        @endforeach
                     @endforeach
                 </div>
             </div>

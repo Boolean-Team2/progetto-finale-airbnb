@@ -16,6 +16,7 @@ class MessageController extends Controller
             $userAps = Apartment::all()->where('user_id', $id);
 
             $msgs = [];
+            $sortedMsgs = [];
             $unread_msgs = 0;
 
             foreach ($userAps as $apartment) {
@@ -23,11 +24,19 @@ class MessageController extends Controller
                     if($message->is_read == 0) {
                         $unread_msgs ++;
                     }
+                    $msgs [] = $apartment->messages;
                 }
-                $msgs [] = $apartment->messages;
+            }            
+
+            foreach ($msgs as $messages) {
+                foreach ($messages as $message) {
+                    $sortedMsgs [] = $message;
+                }
             }
 
-            $userMsgs = collect($msgs);
+            $userMsgs = collect($sortedMsgs) -> sortByDesc('created_at');
+
+            // dd($userMsgs->sortByDesc('created_at'));
 
             return view('pages.users.messages.show', compact('userMsgs', 'unread_msgs'));
         } else {
