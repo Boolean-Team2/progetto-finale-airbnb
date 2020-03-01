@@ -274,7 +274,7 @@
         </section>
         {{-- /CAROUSEL SECTION --}}
         {{-- SEARCH SECTION --}}
-        <section id="js_homeSearch" class="bg-secondary p-5 my-5">
+        <section id="js_homeSearch" class="p-5 my-5">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="mb-5">
