@@ -97,7 +97,7 @@ class AdsController extends Controller
                             }
                         }
                     }
-                    return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
+                    return back()->with('status', 'Transaction successful. The ID is:'. $transaction->id);
                 } else {
                     $errorString = "";
                     foreach ($result->errors->deepAll() as $error) {
