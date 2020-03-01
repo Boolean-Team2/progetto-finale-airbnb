@@ -34,7 +34,7 @@ class ChatController extends Controller
         // $users = User::where('id', '!=', Auth::id())->get();
 
         // count how many message are unread from the selected user
-        $users = DB::select("select users.id, users.firstname, users.avatar, users.email, count(is_read) as unread 
+        $users = DB::select("select users.id, users.firstname, users.lastname, users.avatar, users.email, count(is_read) as unread 
         from users LEFT JOIN  message_chats ON users.id = message_chats.from and is_read = 0 and message_chats.to = " . Auth::id() . "
         where users.id != " . Auth::id() . " 
         group by users.id, users.firstname, users.avatar, users.email");
