@@ -43,7 +43,7 @@
 			</div>
 			<div class="col-sm-12 col-md-2">
 				<div class="social">
-					<p class="text-uppercase">Credit</p>
+					<p class="text-uppercase">Credits</p>
 					<ul class="list-unstyled d-flex justify-content-between">
 						<li style="font-size: 2rem" class="mr-3"><a class="text-success" href="https://github.com/Sofiag19"><i class="fab fa-github"></i></a></li>
 						<li style="font-size: 2rem" class="mr-3"><a class="text-danger" href="https://github.com/Marco-S117"><i class="fab fa-github"></i></a></li>
