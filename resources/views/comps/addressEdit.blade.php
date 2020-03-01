@@ -19,8 +19,9 @@
                 </div>
 
                 {{-- Viene mostrato quando si modifica l'indirizzo --}}
-                <div v-show="showInput" class="col-sm-12">
+                <div v-show="showInput" class="col-sm-12 col-md-9">
                     <input hidden type="text" name='user_id' value="{{ Auth::user()->id }}">
+                    <label>Updated address</label>
                     <input class="form-control" type="text" name="address" v-model="address">
                     <input hidden type="text" name="latitude" v-model="lat">
                     <input hidden type="text" name="longitude" v-model="lon">
@@ -33,8 +34,8 @@
                     <input hidden type="text" name='longitude' value="{{ $apartment->longitude }}">
                 </div>
                 
-                <div v-show="!show" class="col-sm-12 col-md-9">
-                    <label>Addresss</label>
+                <div v-show="!showInput" class="col-sm-12 col-md-9">
+                    <label>Current address</label>
                     <input class="form-control" type="text" value="{{ $apartment->address }}">
                 </div>
                 <div v-show="!show" class="col-sm-12 col-md-3">
@@ -91,9 +92,6 @@
                         _this.address = element.address.freeformAddress;
                         _this.lat = element.position.lat;
                         _this.lon = element.position.lon;
-                        console.log(_this.address);
-                        console.log(_this.lat);
-                        console.log(_this.lon);
                     });
                     
                     _this.show = false;                
@@ -111,6 +109,7 @@
             editAddress() {
                 const _this = this;
                 _this.show = true;
+                _this.showInput = false;
             }
         },
         computed: {
