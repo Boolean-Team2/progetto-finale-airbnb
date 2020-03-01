@@ -13,7 +13,7 @@
 				</ul>
 			</div>
 			<div class="col-sm-12 col-md-2">
-				<p class="text-uppercase">Scopri</p>
+				<p class="text-uppercase">Discover</p>
 				<ul class="list-unstyled">
 					<li><a href="#">Reliability and Security</a></li>
 					<li><a href="#">Travel Credit</a></li>
@@ -24,7 +24,7 @@
 				</ul>
 			</div>
 			<div class="col-sm-12 col-md-2">
-				<p class="text-uppercase">Ospita</p>
+				<p class="text-uppercase">Host</p>
 				<ul class="list-unstyled">
 					<li><a href="#">Why Rent</a></li>
 					<li><a href="#">Hospitality</a></li>
@@ -35,7 +35,7 @@
 				</ul>
 			</div>
 			<div class="col-sm-12 col-md-2">
-				<p class="text-uppercase">Link utili</p>
+				<p class="text-uppercase">Links</p>
 				<ul class="list-unstyled">
 					<li><a href="#">Sitemap</a></li>
 					<li><a href="#">Cookie</a></li>
@@ -43,7 +43,7 @@
 			</div>
 			<div class="col-sm-12 col-md-2">
 				<div class="social">
-					<p class="text-uppercase">Crediti</p>
+					<p class="text-uppercase">Credit</p>
 					<ul class="list-unstyled d-flex justify-content-between">
 						<li style="font-size: 2rem" class="mr-3"><a class="text-success" href="https://github.com/Sofiag19"><i class="fab fa-github"></i></a></li>
 						<li style="font-size: 2rem" class="mr-3"><a class="text-danger" href="https://github.com/Marco-S117"><i class="fab fa-github"></i></a></li>
