@@ -11,7 +11,7 @@
     <div class="container-fluid">
         <section class="my-5">
             <div class="row">
-                <div class="col-sm-12 col-md-4 offset-md-1">
+                <div class="col-sm-12 col-md-4 offset-md-1 bg-light p-5">
                     <h3>{{ $apartment->name }}</h3>
                     <p class="font-italic">{{ $apartment->description }}</p>
                     <p><i class="mr-2 fas fa-map-marker"></i> {{ $apartment->address }}</p>
@@ -43,25 +43,25 @@
                 </div>
             </div>
             <div class="row my-5">
-                <div class="col-sm-12 col-md-10 offset-md-1">
+                <div class="col-sm-12 col-md-10 offset-md-1 bg-light py-5">
                     @auth
                         {{-- OWNER SHOW HIS APARTMENT --}}
                         @if (Auth::user()->id === $apartment->user_id)
-                            <p class="d-flex align-items-center justify-content-between">
-                                <span class="text-success">You're the apartment owner.</span>
+                            <div class="d-flex align-items-center justify-content-center m-0">
+                                <h5 class="text-success m-0 mr-5">You're the apartment owner.</h5>
                                 <a href="{{ route('apartmet.statistics.show', [Auth::user()->id, $apartment->id]) }}" class="btn btn-primary">View all statistics</a>
-                            </p>
+                            </div>
                             @else
                             {{-- CONTACT FORM FOR GUESTS AND OTHER USERS--}}
                             <div class="row">
-                                <div class="col-sm-12 col-md-6">
+                                <div class="col-sm-12 col-md-4 offset-md-1 mb-5">
                                     <h4>Use our chats!</h4>
                                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias, nisi dolorem? Labore, earum. Quam officia deserunt nobis sapiente perferendis. Adipisci qui veritatis vero doloremque est veniam corrupti ut iste aperiam.</p>
                                     <a class="" href="{{ route('chats') }}">
                                         {{ __('Chat messages') }}
                                     </a>
                                 </div>
-                                <div class="col-sm-12 col-md-6">
+                                <div class="col-sm-12 col-md-4 offset-md-2">
                                     <h4>Contact me</h4>
                                     <p>Use the form below to send an email to apartment's owner.</p>
                                     <form action="{{ route('sendmail', $apartment -> id) }}" method="post">
@@ -82,7 +82,7 @@
                                                 <input class="mr-2" type="checkbox" required><span>Accept terms and conditions</span>
                                             </div>
                                             <div class="col-sm-12 col-md-4 text-right">
-                                                <button class="btn btn-primary">Send message</button>
+                                                <button class="btn btn-primary">Send</button>
                                             </div>
                                         </div>
                                     </form>
@@ -91,25 +91,36 @@
                         @endif
                     @else
                     {{-- CONTACT FORM FOR GUESTS AND OTHER USERS--}}
-                    <h4>Contact me</h4>
-                    <form action="{{ route('sendmail', $apartment -> id) }}" method="post">
-                        @csrf
-                        @method('POST')
-                        <div class="form-group">
-                            <input type="email" name="email_sender" class="form-control" placeholder="Inserisci e-mail">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4 offset-md-1 mb-5">
+                            <h4>Use our chats!</h4>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias, nisi dolorem? Labore, earum. Quam officia deserunt nobis sapiente perferendis. Adipisci qui veritatis vero doloremque est veniam corrupti ut iste aperiam.</p>
+                            <a class="" href="{{ route('chats') }}">
+                                {{ __('Chat messages') }}
+                            </a>
                         </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="body" placeholder="Dear owner.."></textarea>
+                        <div class="col-sm-12 col-md-4 offset-md-2">
+                            <h4>Contact me</h4>
+                            <form action="{{ route('sendmail', $apartment -> id) }}" method="post">
+                                @csrf
+                                @method('POST')
+                                <div class="form-group">
+                                    <input type="email" name="email_sender" class="form-control" placeholder="Inserisci e-mail">
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="body" placeholder="Dear owner.."></textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-sm-12 col-md-8">
+                                        <input class="mr-2" type="checkbox" required><span>Accept terms and conditions</span>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 text-right">
+                                        <button class="btn btn-primary">Send</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-row">
-                            <div class="col-sm-12 col-md-8">
-                                <input class="mr-2" type="checkbox" required><span>Accept terms and conditions</span>
-                            </div>
-                            <div class="col-sm-12 col-md-4 text-right">
-                                <button class="btn btn-primary">Send message</button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                     @endauth
                 </div>
             </div>
@@ -140,11 +151,6 @@
             </div>
         </section>
     </div>
-
-    {{-- <div>
-        <h5>oggetto.name</h5>
-    </div> --}}
-
     
     {{-- TEMPLATE HANDLEBARS --}}
     <script id="hbApTemplate" type="text/x-handlebars-template">
