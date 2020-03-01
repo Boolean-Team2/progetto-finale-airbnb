@@ -4,7 +4,7 @@
 @section('body')
 
 <div class="container-fluid">
-    <div id="ms_chat" class="row">
+    <div id="ms_chat" class="row p-5">
         <div class="col-md-4">
             <div class="user-wrapper">
                 <ul class="users">
@@ -17,15 +17,16 @@
 
                             <div class="media">
                                 <div class="media-left">
-                                    <img src="{{ $user->avatar }}" alt="" class="media-object">
+                                    <img src="{{ asset('assets/images/users/' . $user->id . '/avatar/' . Auth::user()->avatar) }}" alt="" class="media-object">
                                 </div>
 
                                 <div class="media-body">
-                                    <p class="name">{{ $user->firstname }}</p>
+                                    <p class="name">{{ $user->firstname }} {{ $user->lastname }}</p>
                                     <p class="email">{{ $user->email }}</p>
                                 </div>
                             </div>
                         </li>
+                        <hr class="py-0 my-0">
                     @endforeach
                 </ul>
             </div>
