@@ -30,7 +30,9 @@ class MessageController extends Controller
 
             foreach ($msgs as $messages) {
                 foreach ($messages as $message) {
-                    $sortedMsgs [] = $message;
+                    if(!in_array($message, $sortedMsgs)) {
+                        $sortedMsgs [] = $message;
+                    }
                 }
             }
 
