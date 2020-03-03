@@ -2,6 +2,7 @@
 
 // * * * INDEX ROUTE * * * //
 Route::get('/', 'MainController@index')->name('index');
+Route::get('/surprise', 'MainController@randAp')->name('surprise');
 
 // * * * AUTH ROUTES * * * //
 Auth::routes();

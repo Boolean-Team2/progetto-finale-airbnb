@@ -73,6 +73,12 @@ class MainController extends Controller
         return view('pages.apartments.apartmentShow', compact('apartment'));
     }
 
+    public function randAp() {
+
+        $apartment = Apartment::inRandomOrder()->first();
+        return view('pages.apartments.apartmentShow', compact('apartment'));
+    }
+
     public function sendMail($ida, Request $request) {
 
         $infoMsg = $request -> validate([

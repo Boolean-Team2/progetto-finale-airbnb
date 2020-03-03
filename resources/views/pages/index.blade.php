@@ -34,11 +34,14 @@
                 <small id="js_alertInput" class="text-danger">* The field is required!</small>
                 <form>
                     <div class="form-row py-2">
-                        <div class="col-10 col-sm-9 col-md-9">
+                        <div class="col-12 mb-3">
                             <input required id="js_input" type="text" class="form-control" placeholder="Where do you want to go ?">
                         </div>
-                        <div class="col-2 col-sm-3 col-md-3">
+                        <div class="col-6">
                             <a id="js_search" type="submit" class="btn btn-primary text-white w-100">Search</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="{{ route('surprise') }}" class="btn btn-secondary text-white w-100">Surprise me</a>
                         </div>
                     </div>
                     <hr>
