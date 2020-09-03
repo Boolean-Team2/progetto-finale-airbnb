@@ -61,32 +61,32 @@ Inoltre, i proprietari di un appartamento possono decidere di pagare per sponsor
 <hr>
 <div style="width:640px">
     <h5>Informazioni personali utente</h5>
-    <p>In questa sezione si possono consulatre e modificare i dati personali dell'utente registrato.</p>
+    <p>In questa sezione si possono consultare e modificare i dati personali dell'utente registrato.</p>
     <img style="width:100%" src="https://github.com/Boolean-Team2/progetto-finale-airbnb/blob/master/screens/screen4.png">
 </div>
 <hr>
 <div style="width:640px">
     <h5>Statistiche appartamenti</h5>
-    <p>In questa sezione si possono consulatre le statistiche globali di tutti gli appartamenti.</p>
+    <p>In questa sezione si possono consultare le statistiche globali di tutti gli appartamenti.</p>
     <img style="width:100%" src="https://github.com/Boolean-Team2/progetto-finale-airbnb/blob/master/screens/screen6.png">
     <br>
-    <p>In questa sezione si possono consulatre le statistiche del singolo appartamento.</p>
+    <p>In questa sezione si possono consultare le statistiche del singolo appartamento.</p>
     <img style="width:100%" src="https://github.com/Boolean-Team2/progetto-finale-airbnb/blob/master/screens/screen9.png">
 </div>
 <hr>
 <div style="width:640px">
     <h5>Informazioni appartamenti</h5>
-    <p>In questa sezione si possono consulatre le informazioni degli appartamenti.</p>
+    <p>In questa sezione si possono consultare le informazioni degli appartamenti.</p>
     <img style="width:100%" src="https://github.com/Boolean-Team2/progetto-finale-airbnb/blob/master/screens/screen5.png">
 </div>
 <hr>
 <div style="width:640px">
     <h5>Informazioni pagamenti</h5>
-    <p>In questa sezione si possono consulatre le informazioni dei pagamenti.</p>
+    <p>In questa sezione si possono consultare le informazioni dei pagamenti.</p>
     <img style="width:100%" src="https://github.com/Boolean-Team2/progetto-finale-airbnb/blob/master/screens/screen7.png">
 </div>
 <hr><div style="width:640px">
     <h5>Informazioni messaggi</h5>
-    <p>In questa sezione si possono consulatre le informazioni e lo stato dei messaggi ricevuti ordinati per data di arrivo.</p>
+    <p>In questa sezione si possono consultare le informazioni e lo stato dei messaggi ricevuti ordinati per data di arrivo.</p>
     <img style="width:100%" src="https://github.com/Boolean-Team2/progetto-finale-airbnb/blob/master/screens/screen8.png">
 </div>
